@@ -20,17 +20,17 @@ const items = computed(() => {
     {
       label: id + " 타이틀1",
       caption: "캡션1",
-      editor: "",
+      content: "",
     },
     {
       label: id + " 타이틀2",
       caption: "캡션2",
-      editor: "",
+      content: "",
     },
     {
       label: id + " 타이틀3",
       caption: "캡션3",
-      editor: "",
+      content: "",
     },
   ];
 });
