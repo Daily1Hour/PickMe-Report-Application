@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
-import vue from "@vitejs/plugin-vue";
 
+import vue from "@vitejs/plugin-vue";
+import { quasar, transformAssetUrls } from "@quasar/vite-plugin";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vite.dev/config/
@@ -14,7 +15,13 @@ export default defineConfig(({ mode }) => {
     // vite 설정
     return {
         plugins: [
-            vue(),
+            vue({
+                // Vue 플러그인 적용
+                template: {
+                    transformAssetUrls, // Quasar 리소스 URL 경로 관리
+                },
+            }),
+            quasar(), // Quasar 플러그인 적용
             tsconfigPaths(), // tsconfig.json의 paths 설정을 적용
         ],
         build: {
