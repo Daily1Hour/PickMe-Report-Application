@@ -1,5 +1,5 @@
 <template>
-  <ul style="list-style-type: none; width: calc(100% - 350px)">
+  <ul style="list-style-type: none;">
     <li v-for="item in items">
       <Section :item="item" />
     </li>
