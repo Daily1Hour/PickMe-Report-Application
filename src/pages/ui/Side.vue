@@ -6,12 +6,28 @@
           <router-link :to="'/' + item.id">{{ item.label }}</router-link>
         </q-item-section>
       </q-item>
+      <q-item clickable v-ripple>
+        <q-item-section style="align-content: center">
+          <q-icon name="add" />
+          <q-popup-edit v-model="label" auto-save v-slot="scope">
+            <q-select
+              v-model="category"
+              :options="category_options"
+              label="카테고리"
+              style="width: 100px"
+            />
+          </q-popup-edit>
+        </q-item-section>
+      </q-item>
     </q-list>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+
+const category = ref("기업");
+const category_options = ref(["기업", "산업"]);
 
 const items = ref([
   { label: "리포트1", id: 1 },
