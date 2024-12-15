@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="width: calc(100% - 350px)">
+  <div class="row" style="height: 100%; width: calc(100% - 350px)">
     <Navigation :items="items" />
 
     <Report :items="items" />
