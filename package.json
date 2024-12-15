@@ -25,6 +25,7 @@
     "vue-tsc": "^2.1.10"
   },
   "dependencies": {
+    "@quasar/extras": "^1.16.15",
     "quasar": "^2.17.5",
     "single-spa": "^6.0.3",
     "vue": "^3.5.13"
