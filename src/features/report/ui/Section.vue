@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const props = defineProps({
   label: String,
@@ -24,6 +24,13 @@ const props = defineProps({
 });
 const expanded = ref(true);
 const local_content = ref(props.content);
+
+watch(
+  () => props.content,
+  (newVal) => {
+    local_content.value = newVal;
+  },
+);
 
 const emit = defineEmits(["update:content"]);
 const update_content = (value) => {
