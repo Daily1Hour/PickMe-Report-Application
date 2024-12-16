@@ -15,9 +15,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 
-import client from "../../shared/api/client";
+import client from "../../../shared/api/client";
 import { ReportDTO } from "../api/dto";
-import Summary from "../../entities/model/Summary";
+import Summary from "../../../entities/report/model/Summary";
 import Tab from "./Tab.vue";
 import AddReport from "./AddReport.vue";
 
