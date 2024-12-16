@@ -3,13 +3,15 @@
     <q-list bordered separator>
       <q-item v-for="item in items" clickable v-ripple>
         <q-item-section>
-          <router-link :to="'/' + item.id">{{ item.label }}</router-link>
+          <router-link :to="'/' + item.createdAt">{{
+            item.createdAt + " / " + item.companyName
+          }}</router-link>
         </q-item-section>
       </q-item>
       <q-item clickable v-ripple>
         <q-item-section style="align-content: center">
           <q-icon name="add" />
-          <q-popup-edit v-model="label" auto-save v-slot="scope">
+          <q-popup-edit v-model="category" auto-save v-slot="scope">
             <q-select
               v-model="category"
               :options="category_options"
@@ -23,15 +25,36 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
 
-const category = ref("기업");
-const category_options = ref(["기업", "산업"]);
+import client from "../api/client";
 
-const items = ref([
-  { label: "리포트1", id: 1 },
-  { label: "리포트2", id: 2 },
-  { label: "리포트3", id: 3 },
-]);
+const category = ref("Company");
+const category_options = ref(["Company", "Industry"]);
+
+const items = ref([]);
+
+const fetch = async () => {
+  const data = await client.get("/list", {
+    params: {
+      category: category.value,
+    },
+  });
+
+  if (data.status === 200) {
+    const reports: Report[] = data.data;
+
+    const formatted_reports = reports.map((report) => ({
+      companyName: report.companyDetails[0].companyName,
+      createdAt: new Date(report.createdAt).toLocaleDateString(),
+    }));
+
+    items.value = formatted_reports;
+  }
+};
+
+onMounted(() => {
+  fetch();
+});
 </script>
