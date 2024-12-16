@@ -1,6 +1,6 @@
 <template>
   <div class="row" style="height: 100%; width: calc(100% - 350px)">
-    <Navigation :items="items" />
+    <Navigation :items="section_names" />
 
     <Report :items="items" />
   </div>
@@ -11,27 +11,35 @@ import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
 
 import { Navigation, Report } from "./ui";
+import client from "../../shared/api/client";
 
 const route = useRoute();
 
-const items = computed(() => {
+const section_names = ["이름", "특징", "인재상", "뉴스"];
+
+const items = computed(async () => {
   const id = route.params.id;
-  return [
-    {
-      label: id + " 타이틀1",
-      caption: "캡션1",
-      content: "",
+  const { category, createdAt } = route.query;
+
+  const data = await client.get("", {
+    params: {
+      category,
+      createdAt,
     },
-    {
-      label: id + " 타이틀2",
-      caption: "캡션2",
-      content: "",
-    },
-    {
-      label: id + " 타이틀3",
-      caption: "캡션3",
-      content: "",
-    },
-  ];
+  });
+
+  if (data.status === 200) {
+    const { companyName, companyFeatures, companyIdealTalent, companyNews } =
+      data.data.companyDetails[0];
+
+    console.log(companyName, companyFeatures, companyIdealTalent, companyNews);
+
+    return {
+      companyName,
+      companyFeatures,
+      companyIdealTalent,
+      companyNews,
+    };
+  }
 });
 </script>
