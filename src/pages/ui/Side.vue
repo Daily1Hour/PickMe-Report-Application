@@ -2,11 +2,7 @@
   <div class="q-pa-md" style="max-width: 350px; position: sticky; top: 0; height: 100%">
     <q-list bordered separator>
       <q-item v-for="item in items" clickable v-ripple>
-        <q-item-section>
-          <router-link :to="'/' + item.created_at">{{
-            item.created_at + " / " + item.name
-          }}</router-link>
-        </q-item-section>
+        <Tab :item="item" />
       </q-item>
       <q-item clickable v-ripple>
         <q-item-section style="align-content: center">
@@ -31,6 +27,7 @@ import { onMounted, ref } from "vue";
 import client from "../api/client";
 import { ReportDTO } from "../api/dto";
 import Summary from "../../entities/model/Summary";
+import Tab from "./Tab.vue";
 
 const category = ref("Company");
 const category_options = ref(["Company", "Industry"]);
