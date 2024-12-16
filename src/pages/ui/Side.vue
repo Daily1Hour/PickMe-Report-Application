@@ -3,15 +3,15 @@
     <q-list bordered separator>
       <q-item v-for="item in items" clickable v-ripple>
         <q-item-section>
-          <router-link :to="'/' + item.createdAt">{{
-            item.createdAt + " / " + item.companyName
+          <router-link :to="'/' + item.created_at">{{
+            item.created_at + " / " + item.name
           }}</router-link>
         </q-item-section>
       </q-item>
       <q-item clickable v-ripple>
         <q-item-section style="align-content: center">
           <q-icon name="add" />
-          <q-popup-edit v-model="category" auto-save v-slot="scope">
+          <q-popup-edit v-model="category" auto-save>
             <q-select
               v-model="category"
               :options="category_options"
@@ -29,11 +29,13 @@
 import { onMounted, ref } from "vue";
 
 import client from "../api/client";
+import { ReportDTO } from "../api/dto";
+import Summary from "../../entities/model/Summary";
 
 const category = ref("Company");
 const category_options = ref(["Company", "Industry"]);
 
-const items = ref([]);
+const items = ref<Summary[]>([]);
 
 const fetch = async () => {
   const data = await client.get("/list", {
@@ -43,11 +45,12 @@ const fetch = async () => {
   });
 
   if (data.status === 200) {
-    const reports: Report[] = data.data;
+    const reports: ReportDTO[] = data.data;
 
     const formatted_reports = reports.map((report) => ({
-      companyName: report.companyDetails[0].companyName,
-      createdAt: new Date(report.createdAt).toLocaleDateString(),
+      category: report.category,
+      name: report.companyDetails[0].companyName,
+      created_at: new Date(report.createdAt),
     }));
 
     items.value = formatted_reports;
