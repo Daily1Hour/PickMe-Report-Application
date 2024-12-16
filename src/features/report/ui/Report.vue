@@ -1,20 +1,21 @@
 <template>
   <ul style="list-style-type: none; width: calc(100% - 150px)">
-    <Section label="이름" caption="이름을 입력해주세요." v-model:content="report.companyName" />
-    <Section label="특징" caption="특징을 입력해주세요." v-model:content="report.companyFeatures" />
-    <Section
-      label="인재상"
-      caption="인재상을 입력해주세요."
-      v-model:content="report.companyIdealTalent"
-    />
-    <Section label="뉴스" caption="뉴스를 입력해주세요." v-model:content="report.companyNews" />
+    <li v-for="(sectionItem, index) in sections" :key="index">
+      <Section
+        :label="sectionItem"
+        :caption="sectionItem + '을 입력해주세요.'"
+        v-model:content="reportList[index]"
+      />
+    </li>
   </ul>
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import Section from "./Section.vue";
 
-defineProps<{
+const props = defineProps<{
+  sections: [string, string, string, string];
   report: {
     companyName: string;
     companyFeatures: string;
@@ -22,4 +23,13 @@ defineProps<{
     companyNews: string;
   };
 }>();
+
+const reportList = computed(() => {
+  return [
+    props.report.companyName,
+    props.report.companyFeatures,
+    props.report.companyIdealTalent,
+    props.report.companyNews,
+  ];
+});
 </script>

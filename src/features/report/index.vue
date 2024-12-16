@@ -1,8 +1,8 @@
 <template>
   <div class="row" style="height: 100%; width: calc(100% - 350px)">
-    <Navigation :items="section_names" />
+    <Navigation :sections="section_names" />
 
-    <Report :report="report" />
+    <Report :sections="section_names" :report="report" />
   </div>
 </template>
 
