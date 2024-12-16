@@ -2,23 +2,28 @@
   <div class="row" style="height: 100%; width: calc(100% - 350px)">
     <Navigation :items="section_names" />
 
-    <Report :items="items" />
+    <Report :report="report" />
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, reactive, watch } from "vue";
 import { useRoute } from "vue-router";
-
 import { Navigation, Report } from "./ui";
 import client from "../../shared/api/client";
 
 const route = useRoute();
-
 const section_names = ["이름", "특징", "인재상", "뉴스"];
+const report = ref({
+  companyName: "",
+  companyFeatures: "",
+  companyIdealTalent: "",
+  companyNews: "",
+});
 
-const items = computed(async () => {
-  const id = route.params.id;
+const param_id = computed(() => route.params.id);
+
+watch(param_id, async () => {
   const { category, createdAt } = route.query;
 
   const data = await client.get("", {
@@ -27,19 +32,8 @@ const items = computed(async () => {
       createdAt,
     },
   });
-
   if (data.status === 200) {
-    const { companyName, companyFeatures, companyIdealTalent, companyNews } =
-      data.data.companyDetails[0];
-
-    console.log(companyName, companyFeatures, companyIdealTalent, companyNews);
-
-    return {
-      companyName,
-      companyFeatures,
-      companyIdealTalent,
-      companyNews,
-    };
+    report.value = data.data.companyDetails[0];
   }
 });
 </script>
