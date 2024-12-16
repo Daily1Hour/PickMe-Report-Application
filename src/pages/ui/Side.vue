@@ -44,7 +44,8 @@ const fetch = async () => {
   if (data.status === 200) {
     const reports: ReportDTO[] = data.data;
 
-    const formatted_reports = reports.map((report) => ({
+    const formatted_reports = reports.map((report, index) => ({
+      id: index.toString(),
       category: report.category,
       name: report.companyDetails[0].companyName,
       created_at: new Date(report.createdAt),

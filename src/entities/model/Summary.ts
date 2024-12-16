@@ -3,6 +3,6 @@ export default class Summary {
     public category: string,
     public name: string,
     public created_at: Date,
-    public id?: string,
+    public id: string,
   ) {}
 }

@@ -9,6 +9,7 @@ const router = createRouter({
     },
     {
       path: "/:id",
+      name: "detail",
       component: () => import("../pages/index.vue"),
     },
   ],
