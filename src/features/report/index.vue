@@ -9,10 +9,12 @@
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
+
 import { Navigation, Report } from "./ui";
-import client from "../../shared/api/client";
-import { CompanyReport, IndustryReport, ReportType } from "../../entities/report/model";
-import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "../../pages/reports/api/dto";
+
+import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/model";
+import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "@/shared/api/dto";
+import client from "@/shared/api/client";
 
 const route = useRoute();
 const section_names: [string, string, string, string] = ["이름", "특징", "인재상", "뉴스"];

@@ -24,6 +24,11 @@ export default defineConfig(({ mode }) => {
             quasar(), // Quasar 플러그인 적용
             tsconfigPaths(), // tsconfig.json의 paths 설정을 적용
         ],
+        resolve: {
+            alias: {
+              "@": "/src",
+            },
+        },
         build: {
             emptyOutDir: false,
         },

@@ -15,11 +15,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 
-import client from "../../../shared/api/client";
-import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "../api/dto";
-import Summary from "../../../entities/report/model/Summary";
 import Tab from "./Tab.vue";
 import AddReport from "./AddReport.vue";
+
+import Summary from "@/entities/report/model/Summary";
+import client from "@/shared/api/client";
+import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "@/shared/api/dto";
 
 const category = ref("Company");
 

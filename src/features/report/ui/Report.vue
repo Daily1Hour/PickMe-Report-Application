@@ -12,8 +12,10 @@
 
 <script setup lang="ts">
 import { watch, ref } from "vue";
+
 import Section from "./Section.vue";
-import { ReportType } from "../../../entities/report/model";
+
+import { ReportType } from "@/entities/report/model";
 
 const props = defineProps<{
   sections: [string, string, string, string];

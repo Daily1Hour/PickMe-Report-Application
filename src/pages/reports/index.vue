@@ -8,5 +8,6 @@
 
 <script setup>
 import Side from "./ui/Side.vue";
-import Report from "../../features/report/index.vue";
+
+import Report from "@/features/report/index.vue";
 </script>
