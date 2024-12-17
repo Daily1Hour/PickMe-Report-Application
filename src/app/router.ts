@@ -5,12 +5,12 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: () => import("../pages/reports/index.vue"),
+      component: () => import("@/pages/reports/index.vue"),
     },
     {
       path: "/:id",
       name: "detail",
-      component: () => import("../pages/reports/index.vue"),
+      component: () => import("@/pages/reports/index.vue"),
     },
   ],
 });

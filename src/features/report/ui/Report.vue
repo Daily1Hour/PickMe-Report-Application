@@ -1,35 +1,26 @@
 <template>
-  <ul style="list-style-type: none; width: calc(100% - 150px)">
-    <li v-for="(sectionItem, index) in sections" :key="index">
-      <Section
-        :label="sectionItem"
-        :caption="sectionItem + '을 입력해주세요.'"
-        v-model:content="reportList[index]"
-      />
-    </li>
-  </ul>
+  <div class="column" style="width: calc(100% - 150px)">
+    <ul style="list-style-type: none; order: 1">
+      <li v-for="key in Object.keys(report)" :key="key">
+        <Section :key="key" v-model:content="report[key as keyof ReportType]" />
+      </li>
+    </ul>
+    <div class="row justify-end" v-for="order in [0, 2]" :key="order" :style="{ order }">
+      <q-btn label="저장" @click="save" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import Section from "./Section.vue";
 
+import { ReportType } from "@/entities/report/model";
+
 const props = defineProps<{
-  sections: [string, string, string, string];
-  report: {
-    companyName: string;
-    companyFeatures: string;
-    companyIdealTalent: string;
-    companyNews: string;
-  };
+  report: ReportType;
 }>();
 
-const reportList = computed(() => {
-  return [
-    props.report.companyName,
-    props.report.companyFeatures,
-    props.report.companyIdealTalent,
-    props.report.companyNews,
-  ];
-});
+function save() {
+  console.log("report", props.report);
+}
 </script>
