@@ -1,6 +1,6 @@
 <template>
-  <div :id="label" class="q-pa-md">
-    <q-expansion-item v-model="expanded" :label="label" :caption="caption">
+  <div :id="id" class="q-pa-md">
+    <q-expansion-item v-model="expanded" :label="label" :caption="label + '을 입력해주세요.'">
       <q-card>
         <q-card-section>
           <q-editor
@@ -14,16 +14,17 @@
   </div>
 </template>
 
-<script setup>
-import { ref, watch } from "vue";
+<script setup lang="ts">
+import { computed, ref, watch } from "vue";
 
-const props = defineProps({
-  label: String,
-  caption: String,
-  content: String,
-});
+const props = defineProps<{
+  id: string;
+  sections_map: Record<string, string>;
+  content: string;
+}>();
 const expanded = ref(true);
 const local_content = ref(props.content);
+const label = computed(() => props.sections_map[props.id]);
 
 watch(
   () => props.content,
@@ -33,7 +34,7 @@ watch(
 );
 
 const emit = defineEmits(["update:content"]);
-const update_content = (value) => {
+const update_content = (value: string) => {
   emit("update:content", value);
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div class="row" style="height: 100%; width: calc(100% - 350px)">
-    <Navigation :sections="section_names" />
+    <Navigation :sections="section_names" :sections_map="sections_map" />
 
-    <Report :sections="section_names" :report="report" />
+    <Report :report="report" :sections_map="sections_map" />
   </div>
 </template>
 
@@ -17,7 +17,14 @@ import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "@/shared/api/dto
 import client from "@/shared/api/client";
 
 const route = useRoute();
-const section_names: [string, string, string, string] = ["이름", "특징", "인재상", "뉴스"];
+const section_names = ref<string[]>([]);
+const sections_map = {
+  name: "이름",
+  features: "특징",
+  ideal_talent: "인재상",
+  news: "뉴스",
+  type: "종류",
+};
 
 const report = ref<ReportType>({
   name: "",
@@ -60,6 +67,8 @@ watch(param_id, async () => {
         );
         break;
     }
+
+    section_names.value = Object.keys(report.value);
   }
 });
 </script>
