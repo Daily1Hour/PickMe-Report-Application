@@ -17,6 +17,8 @@ jobs:
     env:
       VITE_PUBLIC_URL: ${{ vars.VITE_PUBLIC_URL }}
       VITE_MF_TYPE: ${{ vars.VITE_MF_TYPE }}
+      VITE_REPORT_API_URL: ${{ vars.VITE_REPORT_API_URL }}
+      VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
 
     steps:
       - name: Checkout repository
