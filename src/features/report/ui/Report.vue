@@ -11,25 +11,21 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { watch, ref } from "vue";
 import Section from "./Section.vue";
+import { ReportType } from "../../../entities/report/model";
 
 const props = defineProps<{
   sections: [string, string, string, string];
-  report: {
-    companyName: string;
-    companyFeatures: string;
-    companyIdealTalent: string;
-    companyNews: string;
-  };
+  report: ReportType;
 }>();
 
-const reportList = computed(() => {
-  return [
-    props.report.companyName,
-    props.report.companyFeatures,
-    props.report.companyIdealTalent,
-    props.report.companyNews,
-  ];
-});
+const reportList = ref<string[]>([]);
+
+watch(
+  () => props.report,
+  (new_report) => {
+    reportList.value = Object.values(new_report);
+  },
+);
 </script>
