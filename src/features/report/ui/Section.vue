@@ -1,5 +1,5 @@
 <template>
-  <div :id="key" class="q-pa-md">
+  <div :id="id" class="q-pa-md">
     <q-expansion-item v-model="expanded" :label="label" :caption="label + '을 입력해주세요.'">
       <q-card>
         <q-card-section>
@@ -20,12 +20,12 @@ import { computed, ref, watch } from "vue";
 import { sections_map } from "@/shared/trans/ko";
 
 const props = defineProps<{
-  key: string;
+  id: string;
   content: string;
 }>();
 const expanded = ref(true);
 const local_content = ref(props.content);
-const label = computed(() => sections_map[props.key as keyof typeof sections_map]);
+const label = computed(() => sections_map[props.id as keyof typeof sections_map]);
 
 watch(
   () => props.content,
