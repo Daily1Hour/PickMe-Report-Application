@@ -4,7 +4,8 @@ export interface ReportDTO<T = CompanyDetailDTO | IndustryDetailDTO> {
   category: string;
   createdAt: Date;
   updatedAt: Date;
-  companyDetails: T[];
+  companyDetails?: T[];
+  industryDetails?: T[];
 }
 
 export interface CompanyDetailDTO {

@@ -24,57 +24,48 @@ import Summary from "@/entities/report/model/Summary";
 import client from "@/shared/api/client";
 import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "@/shared/api/dto";
 
-const category = ref("Company");
-
 const items = ref<Summary[]>([]);
 
-const fetch = async () => {
+const fetch = async (category: string) => {
   const data = await client.get<ReportDTO[]>("/list", {
     params: {
-      category: category.value,
+      category,
     },
   });
 
   if (data.status === 200) {
     const reports = data.data;
 
-    const formatted_reports = reports.map((report, index) => {
-      const category = report.category;
+    const result = reports.map((report, index) => {
+      if (category === "company") {
+        const detail = report.companyDetails?.[0] || {};
 
-      switch (category) {
-        case "company": {
-          const detail = report.companyDetails?.[0] || {};
-          return {
-            id: index.toString(),
-            category: report.category,
-            name: (detail as CompanyDetailDTO).companyName,
-            created_at: new Date(report.createdAt),
-          };
-        }
-        case "industry": {
-          const detail = report.companyDetails?.[0] || {};
-          return {
-            id: index.toString(),
-            category: report.category,
-            name: (detail as IndustryDetailDTO).industryType,
-            created_at: new Date(report.createdAt),
-          };
-        }
-        default:
-          return {
-            id: index.toString(),
-            category: report.category,
-            name: "Unknown",
-            created_at: new Date(report.createdAt),
-          };
+        return {
+          id: index.toString(),
+          category: report.category,
+          name: (detail as CompanyDetailDTO).companyName,
+          created_at: new Date(report.createdAt),
+        };
+      } else {
+        const detail = report.industryDetails?.[0] || {};
+
+        return {
+          id: index.toString(),
+          category: report.category,
+          name: (detail as IndustryDetailDTO).industryType,
+          created_at: new Date(report.createdAt),
+        };
       }
     });
 
-    items.value = formatted_reports;
+    return result || [];
   }
+  return [];
 };
+onMounted(async () => {
+  const companies = await fetch("company");
+  const industries = await fetch("industry");
 
-onMounted(() => {
-  fetch();
+  items.value = [...companies, ...industries];
 });
 </script>

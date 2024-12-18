@@ -62,11 +62,12 @@ watch(
 
     if (data.status === 200) {
       const updated_category = data.data.category;
-      const fetch_report = data.data.companyDetails[0];
 
       if (updated_category === "company") {
+        const fetch_report = data.data.companyDetails?.[0];
         report.value = map_to_companyReport(fetch_report as CompanyDetailDTO);
       } else if (updated_category === "industry") {
+        const fetch_report = data.data.industryDetails?.[0];
         report.value = map_to_industryReport(fetch_report as IndustryDetailDTO);
       }
       sections.value = Object.keys(report.value) as string[];
