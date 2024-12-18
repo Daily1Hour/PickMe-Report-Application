@@ -2,7 +2,7 @@
   <div class="column" style="width: calc(100% - 150px)">
     <ul style="list-style-type: none; order: 1">
       <li v-for="key in Object.keys(report)" :key="key">
-        <Section :key="key" v-model:content="report[key as keyof ReportType]" />
+        <Section :id="key" v-model:content="report[key as keyof ReportType]" />
       </li>
     </ul>
     <div class="row justify-end" v-for="order in [0, 2]" :key="order" :style="{ order }">
