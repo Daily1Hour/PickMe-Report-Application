@@ -6,8 +6,8 @@
         params: { id },
         query: { category, createdAt: created_at.toISOString() },
       }"
-      >{{ title }}</router-link
-    >
+      >{{ title }}
+    </router-link>
   </q-item-section>
 </template>
 

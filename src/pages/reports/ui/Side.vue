@@ -3,6 +3,7 @@
     <q-list bordered separator>
       <q-item v-for="item in items" clickable v-ripple>
         <Tab :item="item" />
+        <DeleteReport :category="item.category" :created_at="item.created_at.toISOString()" />
       </q-item>
 
       <q-item clickable v-ripple>
@@ -17,6 +18,7 @@ import { onMounted, ref } from "vue";
 
 import Tab from "./Tab.vue";
 import AddReport from "./AddReport.vue";
+import DeleteReport from "./DeleteReport.vue";
 
 import Summary from "@/entities/report/model/Summary";
 import client from "@/shared/api/client";
