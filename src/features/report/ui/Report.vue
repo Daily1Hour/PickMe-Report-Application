@@ -43,12 +43,23 @@ watch(
   },
 );
 watchEffect(async () => {
-  const data = await client.get<ReportDTO>("", {
-    params: {
-      category: props.category,
-      createdAt: props.created_at,
-    },
-  });
+  let data;
+
+  if (props.category === "company") {
+    data = await client.get<ReportDTO<CompanyDetailDTO>>("", {
+      params: {
+        category: props.category,
+        createdAt: props.created_at,
+      },
+    });
+  } else {
+    data = await client.get<ReportDTO<IndustryDetailDTO>>("", {
+      params: {
+        category: props.category,
+        createdAt: props.created_at,
+      },
+    });
+  }
 
   if (data.status === 200) {
     const updated_category = data.data.category;
