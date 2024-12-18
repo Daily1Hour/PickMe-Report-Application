@@ -43,44 +43,29 @@ watch(
   },
 );
 watchEffect(async () => {
-  let data;
+  const params = {
+    category: props.category,
+    createdAt: props.created_at,
+  };
 
-  if (props.category === "company") {
-    data = await client.get<ReportDTO<CompanyDetailDTO>>("", {
-      params: {
-        category: props.category,
-        createdAt: props.created_at,
-      },
-    });
-  } else {
-    data = await client.get<ReportDTO<IndustryDetailDTO>>("", {
-      params: {
-        category: props.category,
-        createdAt: props.created_at,
-      },
-    });
-  }
+  const data = await client.get<ReportDTO>("", { params });
 
   if (data.status === 200) {
     const updated_category = data.data.category;
     const fetch_report = data.data.companyDetails[0];
 
-    switch (updated_category) {
-      case "company":
-        report.value = new CompanyReport(
-          (fetch_report as CompanyDetailDTO).companyName,
-          (fetch_report as CompanyDetailDTO).companyFeatures,
-          (fetch_report as CompanyDetailDTO).companyIdealTalent,
-          (fetch_report as CompanyDetailDTO).companyNews,
-        );
-        break;
-      case "industry":
-        report.value = new IndustryReport(
-          (fetch_report as IndustryDetailDTO).industryType,
-          (fetch_report as IndustryDetailDTO).industryFeatures,
-          (fetch_report as IndustryDetailDTO).industryNews,
-        );
-        break;
+    if (updated_category === "company") {
+      const { companyName, companyFeatures, companyIdealTalent, companyNews } =
+        fetch_report as CompanyDetailDTO;
+      report.value = new CompanyReport(
+        companyName,
+        companyFeatures,
+        companyIdealTalent,
+        companyNews,
+      );
+    } else if (updated_category === "industry") {
+      const { industryType, industryFeatures, industryNews } = fetch_report as IndustryDetailDTO;
+      report.value = new IndustryReport(industryType, industryFeatures, industryNews);
     }
     sections.value = Object.keys(report.value) as string[];
   }
