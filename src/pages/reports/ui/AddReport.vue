@@ -13,8 +13,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import router from "@/app/router";
+import { ref, watch } from "vue";
 
 const category = ref("Company");
 const category_options = ref(["Company", "Industry"]);
+
+watch(
+  () => category.value,
+  (updated_category) => {
+    router.push({ query: { category: updated_category.toLocaleLowerCase() } });
+  },
+);
 </script>
