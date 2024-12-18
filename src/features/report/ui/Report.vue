@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, watchEffect } from "vue";
+import { ref, watch } from "vue";
 import Section from "./Section.vue";
 
 import { ReportType } from "@/entities/report/model";
@@ -23,6 +23,7 @@ import {
   IndustryDetailDTO,
   map_to_companyReport,
   map_to_industryReport,
+  map_to_reportDTO,
 } from "@/shared/api/dto";
 
 const props = defineProps<{
@@ -48,34 +49,44 @@ watch(
     }
   },
 );
-watchEffect(async () => {
-  const params = {
-    category: props.category,
-    createdAt: props.created_at,
-  };
 
-  const data = await client.get<ReportDTO>("", { params });
+watch(
+  () => props.created_at,
+  async () => {
+    const params = {
+      category: props.category,
+      createdAt: props.created_at,
+    };
 
-  if (data.status === 200) {
-    const updated_category = data.data.category;
-    const fetch_report = data.data.companyDetails[0];
+    const data = await client.get<ReportDTO>("", { params });
 
-    if (updated_category === "company") {
-      report.value = map_to_companyReport(fetch_report as CompanyDetailDTO);
-    } else if (updated_category === "industry") {
-      report.value = map_to_industryReport(fetch_report as IndustryDetailDTO);
+    if (data.status === 200) {
+      const updated_category = data.data.category;
+      const fetch_report = data.data.companyDetails[0];
+
+      if (updated_category === "company") {
+        report.value = map_to_companyReport(fetch_report as CompanyDetailDTO);
+      } else if (updated_category === "industry") {
+        report.value = map_to_industryReport(fetch_report as IndustryDetailDTO);
+      }
+      sections.value = Object.keys(report.value) as string[];
     }
-    sections.value = Object.keys(report.value) as string[];
-  }
-});
+  },
+);
 
 async function save() {
   const params = {
     category: props.category,
     createdAt: props.created_at,
   };
-  const response = await client.put("", report.value, { params });
 
-  console.log("report", response);
+  const dto = map_to_reportDTO(report.value);
+  if (params.createdAt) {
+    const response = await client.put("", dto, { params });
+    console.log("put", response);
+  } else {
+    const response = await client.post("", dto);
+    console.log("post", response);
+  }
 }
 </script>
