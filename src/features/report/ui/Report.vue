@@ -1,7 +1,7 @@
 <template>
   <div class="column" style="width: calc(100% - 150px)">
     <ul style="list-style-type: none; order: 1">
-      <li v-for="key in Object.keys(report)" :key="key">
+      <li v-for="key in sections" :key="key">
         <Section :id="key" v-model:content="report[key as keyof ReportType]" />
       </li>
     </ul>
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
+import { ref, watch, watchEffect } from "vue";
 import Section from "./Section.vue";
 
 import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/model";
@@ -24,15 +24,24 @@ const props = defineProps<{
   created_at: string;
 }>();
 
-const report_keys = ref<string[]>([]);
-const report = ref<ReportType>({
-  name: "",
-  type: "",
-  features: "",
-  ideal_talent: "",
-  news: "",
-});
+const sections = ref<string[]>();
+const report = ref<ReportType>(
+  props.category === "company" ? new CompanyReport("", "", "", "") : new IndustryReport("", "", ""),
+);
 
+watch(
+  () => props.category,
+  async (updated_category) => {
+    if (updated_category === "company") {
+      sections.value = ["name", "features", "ideal_talent", "news"];
+      report.value = new CompanyReport("", "", "", "");
+    }
+    if (updated_category === "industry") {
+      sections.value = ["type", "features", "news"];
+      report.value = new IndustryReport("", "", "");
+    }
+  },
+);
 watchEffect(async () => {
   const data = await client.get<ReportDTO>("", {
     params: {
@@ -42,10 +51,10 @@ watchEffect(async () => {
   });
 
   if (data.status === 200) {
-    const category = data.data.category;
+    const updated_category = data.data.category;
     const fetch_report = data.data.companyDetails[0];
 
-    switch (category) {
+    switch (updated_category) {
       case "company":
         report.value = new CompanyReport(
           (fetch_report as CompanyDetailDTO).companyName,
@@ -62,8 +71,7 @@ watchEffect(async () => {
         );
         break;
     }
-
-    report_keys.value = Object.keys(report.value);
+    sections.value = Object.keys(report.value) as string[];
   }
 });
 
