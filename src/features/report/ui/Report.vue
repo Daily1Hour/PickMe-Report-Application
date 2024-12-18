@@ -1,4 +1,4 @@
-<template>
+<template :key="$route.fullPath">
   <div class="column" style="width: calc(100% - 150px)">
     <ul style="list-style-type: none; order: 1">
       <li v-for="key in sections" :key="key">
@@ -12,7 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+
 import Section from "./Section.vue";
 
 import { ReportType } from "@/entities/report/model";
@@ -31,49 +33,44 @@ const props = defineProps<{
   created_at: string;
 }>();
 
+const route = useRoute();
 const sections = ref<string[]>();
 const report = ref<ReportType>(
   props.category === "company" ? map_to_companyReport() : map_to_industryReport(),
 );
 
-watch(
-  () => props.category,
-  async (updated_category) => {
+sections.value =
+  props.category === "company"
+    ? ["name", "features", "ideal_talent", "news"]
+    : ["type", "features", "news"];
+
+if (route.name === "new") {
+  report.value = props.category === "company" ? map_to_companyReport() : map_to_industryReport();
+} else if (route.name === "detail") {
+  fetch();
+}
+
+async function fetch() {
+  const params = {
+    category: props.category,
+    createdAt: props.created_at,
+  };
+
+  const data = await client.get<ReportDTO>("", { params });
+
+  if (data.status === 200) {
+    const updated_category = data.data.category;
+
     if (updated_category === "company") {
-      sections.value = ["name", "features", "ideal_talent", "news"];
-      report.value = map_to_companyReport();
+      const fetch_report = data.data.companyDetails?.[0];
+      report.value = map_to_companyReport(fetch_report as CompanyDetailDTO);
+    } else if (updated_category === "industry") {
+      const fetch_report = data.data.industryDetails?.[0];
+      report.value = map_to_industryReport(fetch_report as IndustryDetailDTO);
     }
-    if (updated_category === "industry") {
-      sections.value = ["type", "features", "news"];
-      report.value = map_to_industryReport();
-    }
-  },
-);
-
-watch(
-  () => props.created_at,
-  async () => {
-    const params = {
-      category: props.category,
-      createdAt: props.created_at,
-    };
-
-    const data = await client.get<ReportDTO>("", { params });
-
-    if (data.status === 200) {
-      const updated_category = data.data.category;
-
-      if (updated_category === "company") {
-        const fetch_report = data.data.companyDetails?.[0];
-        report.value = map_to_companyReport(fetch_report as CompanyDetailDTO);
-      } else if (updated_category === "industry") {
-        const fetch_report = data.data.industryDetails?.[0];
-        report.value = map_to_industryReport(fetch_report as IndustryDetailDTO);
-      }
-      sections.value = Object.keys(report.value) as string[];
-    }
-  },
-);
+    sections.value = Object.keys(report.value) as string[];
+  }
+}
 
 async function save() {
   const params = {
