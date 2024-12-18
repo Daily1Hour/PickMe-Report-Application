@@ -22,7 +22,7 @@ const category_options = ref(["Company", "Industry"]);
 watch(
   () => category.value,
   (updated_category) => {
-    router.push({ query: { category: updated_category.toLocaleLowerCase() } });
+    router.push({ name: "new", query: { category: updated_category.toLocaleLowerCase() } });
   },
 );
 </script>
