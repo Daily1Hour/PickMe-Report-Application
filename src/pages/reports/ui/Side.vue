@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md" style="max-width: 350px; position: sticky; top: 0; height: 100%">
     <q-list bordered separator>
-      <q-item v-for="item in items" clickable v-ripple>
+      <q-item v-for="item in sorted_items" clickable v-ripple>
         <Tab :item="item" />
         <DeleteReport :category="item.category" :created_at="item.created_at.toISOString()" />
       </q-item>
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import Tab from "./Tab.vue";
 import AddReport from "./AddReport.vue";
@@ -25,6 +25,10 @@ import client from "@/shared/api/client";
 import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "@/shared/api/dto";
 
 const items = ref<Summary[]>([]);
+
+const sorted_items = computed(() =>
+  items.value.sort((a, b) => b.created_at.getTime() - a.created_at.getTime()),
+);
 
 const fetch = async (category: string) => {
   const data = await client.get<ReportDTO[]>("/list", {
