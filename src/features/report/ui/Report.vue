@@ -26,7 +26,7 @@ import {
   map_to_companyReport,
   map_to_industryReport,
   map_to_reportDTO,
-} from "@/shared/api/dto";
+} from "@/features/report/api/dto";
 
 const props = defineProps<{
   category: string;

@@ -20,9 +20,9 @@ import Tab from "./Tab.vue";
 import AddReport from "./AddReport.vue";
 import DeleteReport from "./DeleteReport.vue";
 
+import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "@/features/report/api/dto";
 import Summary from "@/entities/report/model/Summary";
 import client from "@/shared/api/client";
-import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "@/shared/api/dto";
 
 const items = ref<Summary[]>([]);
 

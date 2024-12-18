@@ -13,9 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import router from "@/app/router";
 import { ref, watch } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const category = ref("Company");
 const category_options = ref(["Company", "Industry"]);
 
