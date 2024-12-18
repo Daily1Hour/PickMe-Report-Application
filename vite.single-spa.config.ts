@@ -32,7 +32,9 @@ export default defineConfig(({ mode }) => {
     return {
         plugins: [
             vue(),
-            tsconfigPaths(), // tsconfig.json의 paths 설정을 적용
+            tsconfigPaths({
+                loose: true,
+            }), // tsconfig.json의 paths 설정을 적용
             vitePluginSingleSpa(vitePluginSingleSpaOptions), // single-spa 라이브러리 적용
         ],
         build: {
