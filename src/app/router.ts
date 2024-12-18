@@ -7,17 +7,17 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: () => ReportsPage,
+      component: ReportsPage,
     },
     {
       path: "/:id",
       name: "detail",
-      component: () => ReportsPage,
+      component: ReportsPage,
     },
     {
       name: "new",
       path: "/new",
-      component: () => ReportsPage,
+      component: ReportsPage,
     },
   ],
 });
