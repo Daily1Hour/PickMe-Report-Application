@@ -38,23 +38,26 @@ const fetch = async () => {
 
     const formatted_reports = reports.map((report, index) => {
       const category = report.category;
-      const detail = report.companyDetails[0];
 
       switch (category) {
-        case "company":
+        case "company": {
+          const detail = report.companyDetails?.[0] || {};
           return {
             id: index.toString(),
             category: report.category,
             name: (detail as CompanyDetailDTO).companyName,
             created_at: new Date(report.createdAt),
           };
-        case "industry":
+        }
+        case "industry": {
+          const detail = report.companyDetails?.[0] || {};
           return {
             id: index.toString(),
             category: report.category,
             name: (detail as IndustryDetailDTO).industryType,
             created_at: new Date(report.createdAt),
           };
+        }
         default:
           return {
             id: index.toString(),
