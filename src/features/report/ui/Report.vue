@@ -69,7 +69,13 @@ watchEffect(async () => {
   }
 });
 
-function save() {
-  console.log("report", report.value);
+async function save() {
+  const params = {
+    category: props.category,
+    createdAt: props.created_at,
+  };
+  const response = await client.put("", report.value, { params });
+
+  console.log("report", response);
 }
 </script>
