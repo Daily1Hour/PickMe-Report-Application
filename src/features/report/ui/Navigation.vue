@@ -1,17 +1,32 @@
 <template>
   <div class="q-pa-md" style="max-width: 350px; position: sticky; top: 0; height: 100%">
     <q-list bordered separator>
-      <q-item tag="a" :href="'#' + key" v-for="key in report_keys" clickable v-ripple>
-        <q-item-section>{{ sections_map[key as keyof typeof sections_map] }}</q-item-section>
+      <q-item tag="a" :href="'#' + section" v-for="section in sections" clickable v-ripple>
+        <q-item-section>{{ sections_map[section as keyof typeof sections_map] }}</q-item-section>
       </q-item>
     </q-list>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from "vue";
+
 import { sections_map } from "@/shared/trans/ko";
 
-defineProps<{
-  report_keys: string[];
+const props = defineProps<{
+  category: string;
 }>();
+const sections = ref<string[]>([]);
+
+watch(
+  () => props.category,
+  (updated_category) => {
+    if (updated_category === "company") {
+      sections.value = ["name", "features", "ideal_talent", "news"];
+    }
+    if (updated_category === "industry") {
+      sections.value = ["type", "features", "news"];
+    }
+  },
+);
 </script>

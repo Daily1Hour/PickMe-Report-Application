@@ -1,6 +1,6 @@
 <template>
   <div class="row" style="height: 100%; width: calc(100% - 350px)">
-    <Navigation :report_keys="report_keys" />
+    <Navigation :category="query.category" />
 
     <Report :report="report" />
   </div>
@@ -28,14 +28,18 @@ const report = ref<ReportType>({
 });
 
 const param_id = computed(() => route.params.id);
+const query = computed(() => {
+  return {
+    category: route.query.category as string,
+    createdAt: route.query.createdAt as string,
+  };
+});
 
 watch(param_id, async () => {
-  const { category, createdAt } = route.query;
-
   const data = await client.get<ReportDTO>("", {
     params: {
-      category,
-      createdAt,
+      category: query.value.category,
+      createdAt: query.value.createdAt,
     },
   });
 
