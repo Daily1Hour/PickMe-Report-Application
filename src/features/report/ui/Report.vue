@@ -15,9 +15,15 @@
 import { ref, watch, watchEffect } from "vue";
 import Section from "./Section.vue";
 
-import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/model";
+import { ReportType } from "@/entities/report/model";
 import client from "@/shared/api/client";
-import { ReportDTO, CompanyDetailDTO, IndustryDetailDTO } from "@/shared/api/dto";
+import {
+  ReportDTO,
+  CompanyDetailDTO,
+  IndustryDetailDTO,
+  map_to_companyReport,
+  map_to_industryReport,
+} from "@/shared/api/dto";
 
 const props = defineProps<{
   category: string;
@@ -26,7 +32,7 @@ const props = defineProps<{
 
 const sections = ref<string[]>();
 const report = ref<ReportType>(
-  props.category === "company" ? new CompanyReport("", "", "", "") : new IndustryReport("", "", ""),
+  props.category === "company" ? map_to_companyReport() : map_to_industryReport(),
 );
 
 watch(
@@ -34,11 +40,11 @@ watch(
   async (updated_category) => {
     if (updated_category === "company") {
       sections.value = ["name", "features", "ideal_talent", "news"];
-      report.value = new CompanyReport("", "", "", "");
+      report.value = map_to_companyReport();
     }
     if (updated_category === "industry") {
       sections.value = ["type", "features", "news"];
-      report.value = new IndustryReport("", "", "");
+      report.value = map_to_industryReport();
     }
   },
 );
@@ -55,17 +61,9 @@ watchEffect(async () => {
     const fetch_report = data.data.companyDetails[0];
 
     if (updated_category === "company") {
-      const { companyName, companyFeatures, companyIdealTalent, companyNews } =
-        fetch_report as CompanyDetailDTO;
-      report.value = new CompanyReport(
-        companyName,
-        companyFeatures,
-        companyIdealTalent,
-        companyNews,
-      );
+      report.value = map_to_companyReport(fetch_report as CompanyDetailDTO);
     } else if (updated_category === "industry") {
-      const { industryType, industryFeatures, industryNews } = fetch_report as IndustryDetailDTO;
-      report.value = new IndustryReport(industryType, industryFeatures, industryNews);
+      report.value = map_to_industryReport(fetch_report as IndustryDetailDTO);
     }
     sections.value = Object.keys(report.value) as string[];
   }
