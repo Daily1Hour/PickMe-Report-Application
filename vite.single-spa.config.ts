@@ -49,5 +49,8 @@ export default defineConfig(({ mode }) => {
             cssCodeSplit: false, // css 코드 분할 여부
             emptyOutDir: false, // 빌드시 기존 파일 삭제 여부
         },
+        resolve: {
+            extensions: ['.ts', '.js', '.vue'], // 확장자 인식
+        },
     };
 });

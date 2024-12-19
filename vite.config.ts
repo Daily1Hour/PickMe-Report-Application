@@ -29,6 +29,9 @@ export default defineConfig(({ mode }) => {
         build: {
             emptyOutDir: false,
         },
+        resolve: {
+            extensions: ['.ts', '.js', '.vue'], // 확장자 인식
+        },
         server: {
             // 개발 서버 설정
             port: serverPort,
