@@ -16,10 +16,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 
-import Tab from "./ui/Tab.vue";
-import AddReport from "./ui/AddReport.vue";
-import DeleteReport from "./ui/DeleteReport.vue";
-
+import { Tab, AddReport, DeleteReport } from "./ui";
 import { ReportDTO } from "./api/dto";
 import { map_to_summary } from "./api/mapper";
 import { Summary } from "@/entities/summary/model";

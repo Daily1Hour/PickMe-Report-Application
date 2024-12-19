@@ -1,4 +1,2 @@
-import Navigation from "./Navigation.vue";
-import Report from "./Report.vue";
-
-export { Navigation, Report };
+export { default as Navigation } from "./Navigation.vue";
+export { default as Report } from "./Report.vue";
