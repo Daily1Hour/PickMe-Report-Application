@@ -16,17 +16,12 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue";
 
-import { Category } from "@/entities/report/model/Category";
+import { Summary } from "@/entities/report/model";
 
 const props = defineProps<{
-  item: {
-    id: string;
-    category: Category;
-    name: string;
-    created_at: Date;
-  };
+  summary: Summary;
 }>();
-const { id, category, name, created_at } = props.item;
+const { id, category, name, created_at } = props.summary;
 
 const title = computed(() => {
   return category + " / " + name + " /";
