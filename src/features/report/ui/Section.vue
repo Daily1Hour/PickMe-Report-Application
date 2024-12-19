@@ -29,13 +29,13 @@ const label = computed(() => sections_map[props.id as keyof typeof sections_map]
 
 watch(
   () => props.content,
-  (newVal) => {
-    local_content.value = newVal;
+  (edited_content) => {
+    local_content.value = edited_content;
   },
 );
 
 const emit = defineEmits(["update:content"]);
-const update_content = (value: string) => {
-  emit("update:content", value);
+const update_content = (edited_content: string) => {
+  emit("update:content", edited_content);
 };
 </script>

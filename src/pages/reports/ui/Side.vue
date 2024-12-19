@@ -3,7 +3,7 @@
     <q-list bordered separator>
       <q-item v-for="item in sorted_items" clickable v-ripple>
         <Tab :summary="item" />
-        <DeleteReport :category="item.category" :created_at="item.created_at.toISOString()" />
+        <DeleteReport :category="item.category" :created_at="item.created_at" />
       </q-item>
 
       <q-item clickable v-ripple>

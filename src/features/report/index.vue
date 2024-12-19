@@ -15,9 +15,8 @@ import { Category } from "@/entities/report/model/Category";
 
 const route = useRoute();
 const query = computed(() => {
-  return {
-    category: route.query.category as Category,
-    created_at: route.query.createdAt as string,
-  };
+  const { category, createdAt } = route.query as { category: Category; createdAt: string };
+  const created_at = new Date(createdAt);
+  return { category, created_at };
 });
 </script>

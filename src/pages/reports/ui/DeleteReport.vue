@@ -8,14 +8,14 @@ import client from "@/shared/api/client";
 
 const props = defineProps<{
   category: Category;
-  created_at: string;
+  created_at: Date;
 }>();
 
 const remove = async () => {
   const data = await client.delete("", {
     params: {
       category: props.category,
-      createdAt: props.created_at,
+      createdAt: props.created_at.toISOString(),
     },
   });
 

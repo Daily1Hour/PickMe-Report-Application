@@ -10,14 +10,14 @@ import client from "@/shared/api/client";
 
 const props = defineProps<{
   category: Category;
-  created_at: string;
+  created_at: Date;
   report: ReportType;
 }>();
 
 async function save() {
   const params = {
     category: props.category,
-    createdAt: props.created_at,
+    createdAt: props.created_at.toISOString(),
   };
 
   const dto = map_to_reportDTO(props.report);

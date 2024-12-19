@@ -23,10 +23,6 @@ const props = defineProps<{
 }>();
 const { id, category, name, created_at } = props.summary;
 
-const title = computed(() => {
-  return category + " / " + name + " /";
-});
-const caption = computed(() => {
-  return created_at.toLocaleString();
-});
+const title = computed(() => category + " / " + name + " /");
+const caption = computed(() => created_at.toLocaleString());
 </script>

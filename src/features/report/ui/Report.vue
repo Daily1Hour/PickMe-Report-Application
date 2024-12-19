@@ -25,7 +25,7 @@ import client from "@/shared/api/client";
 
 const props = defineProps<{
   category: Category;
-  created_at: string;
+  created_at: Date;
 }>();
 
 const route = useRoute();
@@ -49,7 +49,7 @@ if (route.name === "new") {
 async function fetch() {
   const params = {
     category: props.category,
-    createdAt: props.created_at,
+    createdAt: props.created_at.toISOString(),
   };
 
   const data = await client.get<ReportDTO>("", { params });
