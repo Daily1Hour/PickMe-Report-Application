@@ -1,6 +1,6 @@
 import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "./dto";
-import { Summary } from "@/entities/report/model";
-import { Category } from "@/entities/report/model/Category";
+import { Summary } from "@/entities/summary/model";
+import { Category } from "@/shared/model/Category";
 
 export const map_to_summary = (report: ReportDTO, index: number): Summary => {
   switch (report.category) {

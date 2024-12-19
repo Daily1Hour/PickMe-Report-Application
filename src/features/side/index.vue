@@ -22,8 +22,8 @@ import DeleteReport from "./ui/DeleteReport.vue";
 
 import { ReportDTO } from "./api/dto";
 import { map_to_summary } from "./api/mapper";
-import Summary from "@/entities/report/model/Summary";
-import { Category } from "@/entities/report/model/Category";
+import { Summary } from "@/entities/summary/model";
+import { Category } from "@/shared/model/Category";
 import client from "@/shared/api/client";
 
 const items = ref<Summary[]>([]);

@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue";
 
-import { Summary } from "@/entities/report/model";
+import { Summary } from "@/entities/summary/model";
 
 const props = defineProps<{
   summary: Summary;

@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { Category } from "@/entities/report/model/Category";
+import { Category } from "@/shared/model/Category";
 import { sections_map } from "@/shared/trans/ko";
 
 const props = defineProps<{

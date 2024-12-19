@@ -1,4 +1,4 @@
-import { Category } from "@/entities/report/model/Category";
+import { Category } from "@/shared/model/Category";
 
 export interface ReportDTO<T = CompanyDetailDTO | IndustryDetailDTO> {
   category: Category;

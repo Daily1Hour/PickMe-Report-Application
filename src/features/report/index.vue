@@ -11,7 +11,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 
 import { Navigation, Report } from "./ui";
-import { Category } from "@/entities/report/model/Category";
+import { Category } from "@/shared/model/Category";
 
 const route = useRoute();
 const query = computed(() => {

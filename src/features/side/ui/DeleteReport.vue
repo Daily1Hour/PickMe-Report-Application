@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { Category } from "@/entities/report/model/Category";
+import { Category } from "@/shared/model/Category";
 import client from "@/shared/api/client";
 
 const props = defineProps<{

@@ -1,6 +1,6 @@
 import { CompanyDetailDTO, IndustryDetailDTO } from "./dto";
 import { CompanyReport, IndustryReport } from "@/entities/report/model";
-import { Category } from "@/entities/report/model/Category";
+import { Category } from "@/shared/model/Category";
 
 export const map_to_companyReport = (dto?: CompanyDetailDTO) =>
   dto

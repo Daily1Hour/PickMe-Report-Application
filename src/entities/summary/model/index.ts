@@ -1,6 +1,6 @@
-import { Category } from "./Category";
+import { Category } from "@/shared/model/Category";
 
-export default class Summary {
+export class Summary {
   constructor(
     public category: Category,
     public name: string,

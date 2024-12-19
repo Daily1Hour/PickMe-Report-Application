@@ -20,7 +20,7 @@ import SaveReport from "./SaveReport.vue";
 import { ReportDTO, CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
 import { map_to_companyReport, map_to_industryReport } from "../api/mapper";
 import { ReportType } from "@/entities/report/model";
-import { Category } from "@/entities/report/model/Category";
+import { Category } from "@/shared/model/Category";
 import client from "@/shared/api/client";
 
 const props = defineProps<{
