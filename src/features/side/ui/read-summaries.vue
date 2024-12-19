@@ -1,34 +1,37 @@
 <template></template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { watch } from "vue";
+import { useQuery } from "@tanstack/vue-query";
 
 import { ReportDTO } from "../api/dto";
 import { map_to_summary } from "../api/mapper";
 import { Category } from "@/shared/model/Category";
 import client from "@/shared/api/client";
+import { Summary } from "@/entities/summary/model";
 
 const emit = defineEmits(["fetched"]);
 
 const fetch = async (category: Category) => {
-  const data = await client.get<ReportDTO[]>("/list", {
+  const result = await client.get<ReportDTO[]>("/list", {
     params: {
       category,
     },
   });
 
-  if (data.status === 200) {
-    const reports = data.data;
-    const result = reports.map(map_to_summary);
-    return result || [];
+  if (result.status === 200) {
+    return result.data.map(map_to_summary) || [];
   }
   return [];
 };
 
-onMounted(async () => {
-  const companies = await fetch(Category.Company);
-  const industries = await fetch(Category.Industry);
-  const result = [...companies, ...industries];
-  emit("fetched", result);
+const { data } = useQuery<Summary[]>({
+  queryKey: ["summaries"],
+  queryFn: () => fetch(Category.Company),
+  initialData: [],
+});
+
+watch(data, (data) => {
+  emit("fetched", [...data]);
 });
 </script>
