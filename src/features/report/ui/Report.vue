@@ -19,14 +19,8 @@ import Section from "./Section.vue";
 
 import { ReportType } from "@/entities/report/model";
 import client from "@/shared/api/client";
-import {
-  ReportDTO,
-  CompanyDetailDTO,
-  IndustryDetailDTO,
-  map_to_companyReport,
-  map_to_industryReport,
-  map_to_reportDTO,
-} from "@/features/report/api/dto";
+import { ReportDTO, CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
+import { map_to_companyReport, map_to_industryReport, map_to_reportDTO } from "../api/mapper";
 
 const props = defineProps<{
   category: string;
