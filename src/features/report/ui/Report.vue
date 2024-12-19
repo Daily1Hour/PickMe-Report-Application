@@ -6,7 +6,7 @@
       </li>
     </ul>
     <div class="row justify-end" v-for="order in [0, 2]" :key="order" :style="{ order }">
-      <q-btn label="저장" @click="save" />
+      <SaveReport :category="props.category" :created_at="props.created_at" :report="report" />
     </div>
   </div>
 </template>
@@ -16,11 +16,11 @@ import { ref } from "vue";
 import { useRoute } from "vue-router";
 
 import Section from "./Section.vue";
-
+import SaveReport from "./SaveReport.vue";
+import { ReportDTO, CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
+import { map_to_companyReport, map_to_industryReport } from "../api/mapper";
 import { ReportType } from "@/entities/report/model";
 import client from "@/shared/api/client";
-import { ReportDTO, CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
-import { map_to_companyReport, map_to_industryReport, map_to_reportDTO } from "../api/mapper";
 
 const props = defineProps<{
   category: string;
@@ -63,22 +63,6 @@ async function fetch() {
       report.value = map_to_industryReport(fetch_report as IndustryDetailDTO);
     }
     sections.value = Object.keys(report.value) as string[];
-  }
-}
-
-async function save() {
-  const params = {
-    category: props.category,
-    createdAt: props.created_at,
-  };
-
-  const dto = map_to_reportDTO(report.value);
-  if (params.createdAt) {
-    const response = await client.put("", dto, { params });
-    console.log("put", response);
-  } else {
-    const response = await client.post("", dto);
-    console.log("post", response);
   }
 }
 </script>
