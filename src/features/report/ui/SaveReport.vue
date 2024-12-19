@@ -3,12 +3,13 @@
 </template>
 
 <script setup lang="ts">
-import { ReportType } from "@/entities/report/model";
-import client from "@/shared/api/client";
 import { map_to_reportDTO } from "../api/mapper";
+import { ReportType } from "@/entities/report/model";
+import { Category } from "@/entities/report/model/Category";
+import client from "@/shared/api/client";
 
 const props = defineProps<{
-  category: string;
+  category: Category;
   created_at: string;
   report: ReportType;
 }>();

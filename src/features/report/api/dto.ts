@@ -1,5 +1,7 @@
+import { Category } from "@/entities/report/model/Category";
+
 export interface ReportDTO<T = CompanyDetailDTO | IndustryDetailDTO> {
-  category: string;
+  category: Category;
   createdAt: Date;
   updatedAt: Date;
   companyDetails?: T[];

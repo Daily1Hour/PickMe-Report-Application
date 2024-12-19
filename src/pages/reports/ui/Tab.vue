@@ -16,10 +16,12 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue";
 
+import { Category } from "@/entities/report/model/Category";
+
 const props = defineProps<{
   item: {
     id: string;
-    category: string;
+    category: Category;
     name: string;
     created_at: Date;
   };

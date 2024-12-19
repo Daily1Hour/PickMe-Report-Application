@@ -22,6 +22,7 @@ import DeleteReport from "./DeleteReport.vue";
 
 import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "@/features/report/api/dto";
 import Summary from "@/entities/report/model/Summary";
+import { Category } from "@/entities/report/model/Category";
 import client from "@/shared/api/client";
 
 const items = ref<Summary[]>([]);
@@ -30,7 +31,7 @@ const sorted_items = computed(() =>
   items.value.sort((a, b) => b.created_at.getTime() - a.created_at.getTime()),
 );
 
-const fetch = async (category: string) => {
+const fetch = async (category: Category) => {
   const data = await client.get<ReportDTO[]>("/list", {
     params: {
       category,
@@ -41,7 +42,7 @@ const fetch = async (category: string) => {
     const reports = data.data;
 
     const result = reports.map((report, index) => {
-      if (category === "company") {
+      if (category === Category.Company) {
         const detail = report.companyDetails?.[0] || {};
 
         return {
@@ -67,8 +68,8 @@ const fetch = async (category: string) => {
   return [];
 };
 onMounted(async () => {
-  const companies = await fetch("company");
-  const industries = await fetch("industry");
+  const companies = await fetch(Category.Company);
+  const industries = await fetch(Category.Industry);
 
   items.value = [...companies, ...industries];
 });

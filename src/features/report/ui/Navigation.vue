@@ -11,20 +11,21 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
+import { Category } from "@/entities/report/model/Category";
 import { sections_map } from "@/shared/trans/ko";
 
 const props = defineProps<{
-  category: string;
+  category: Category;
 }>();
 const sections = ref<string[]>([]);
 
 watch(
   () => props.category,
   (updated_category) => {
-    if (updated_category === "company") {
+    if (updated_category === Category.Company) {
       sections.value = ["name", "features", "ideal_talent", "news"];
     }
-    if (updated_category === "industry") {
+    if (updated_category === Category.Industry) {
       sections.value = ["type", "features", "news"];
     }
   },

@@ -20,26 +20,28 @@ import SaveReport from "./SaveReport.vue";
 import { ReportDTO, CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
 import { map_to_companyReport, map_to_industryReport } from "../api/mapper";
 import { ReportType } from "@/entities/report/model";
+import { Category } from "@/entities/report/model/Category";
 import client from "@/shared/api/client";
 
 const props = defineProps<{
-  category: string;
+  category: Category;
   created_at: string;
 }>();
 
 const route = useRoute();
 const sections = ref<string[]>();
 const report = ref<ReportType>(
-  props.category === "company" ? map_to_companyReport() : map_to_industryReport(),
+  props.category === Category.Company ? map_to_companyReport() : map_to_industryReport(),
 );
 
 sections.value =
-  props.category === "company"
+  props.category === Category.Company
     ? ["name", "features", "ideal_talent", "news"]
     : ["type", "features", "news"];
 
 if (route.name === "new") {
-  report.value = props.category === "company" ? map_to_companyReport() : map_to_industryReport();
+  report.value =
+    props.category === Category.Company ? map_to_companyReport() : map_to_industryReport();
 } else if (route.name === "detail") {
   fetch();
 }
@@ -55,13 +57,19 @@ async function fetch() {
   if (data.status === 200) {
     const updated_category = data.data.category;
 
-    if (updated_category === "company") {
-      const fetch_report = data.data.companyDetails?.[0];
-      report.value = map_to_companyReport(fetch_report as CompanyDetailDTO);
-    } else if (updated_category === "industry") {
-      const fetch_report = data.data.industryDetails?.[0];
-      report.value = map_to_industryReport(fetch_report as IndustryDetailDTO);
+    switch (updated_category) {
+      case Category.Company: {
+        const fetch_report = data.data.companyDetails?.[0];
+        report.value = map_to_companyReport(fetch_report as CompanyDetailDTO);
+        break;
+      }
+      case Category.Industry: {
+        const fetch_report = data.data.industryDetails?.[0];
+        report.value = map_to_industryReport(fetch_report as IndustryDetailDTO);
+        break;
+      }
     }
+
     sections.value = Object.keys(report.value) as string[];
   }
 }

@@ -16,14 +16,16 @@
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
+import { Category } from "@/entities/report/model/Category";
+
 const router = useRouter();
-const category = ref("Company");
-const category_options = ref(["Company", "Industry"]);
+const category = ref<Category>();
+const category_options = ref([Category.Company, Category.Industry]);
 
 watch(
   () => category.value,
   (updated_category) => {
-    router.push({ name: "new", query: { category: updated_category.toLocaleLowerCase() } });
+    router.push({ name: "new", query: { category: updated_category } });
   },
 );
 </script>

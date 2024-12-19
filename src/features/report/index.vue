@@ -11,11 +11,12 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 
 import { Navigation, Report } from "./ui";
+import { Category } from "@/entities/report/model/Category";
 
 const route = useRoute();
 const query = computed(() => {
   return {
-    category: route.query.category as string,
+    category: route.query.category as Category,
     created_at: route.query.createdAt as string,
   };
 });
