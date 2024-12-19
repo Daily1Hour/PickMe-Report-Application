@@ -16,12 +16,12 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 
-import Tab from "./Tab.vue";
-import AddReport from "./AddReport.vue";
-import DeleteReport from "./DeleteReport.vue";
+import Tab from "./ui/Tab.vue";
+import AddReport from "./ui/AddReport.vue";
+import DeleteReport from "./ui/DeleteReport.vue";
 
-import { ReportDTO } from "@/features/report/api/dto";
-import { map_to_summary } from "@/features/report/api/mapper";
+import { ReportDTO } from "./api/dto";
+import { map_to_summary } from "./api/mapper";
 import Summary from "@/entities/report/model/Summary";
 import { Category } from "@/entities/report/model/Category";
 import client from "@/shared/api/client";

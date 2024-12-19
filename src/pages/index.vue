@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { Side } from "./ui";
+import Side from "@/features/side/index.vue";
 
 import Report from "@/features/report/index.vue";
 </script>

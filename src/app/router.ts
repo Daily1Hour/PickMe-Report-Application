@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import ReportsPage from "@/pages/reports/index.vue";
+import ReportsPage from "@/pages/index.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_PUBLIC_URL),
