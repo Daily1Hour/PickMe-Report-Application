@@ -16,20 +16,13 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue";
 
-const props = defineProps<{
-  item: {
-    id: string;
-    category: string;
-    name: string;
-    created_at: Date;
-  };
-}>();
-const { id, category, name, created_at } = props.item;
+import { Summary } from "@/entities/summary/model";
 
-const title = computed(() => {
-  return category + " / " + name + " /";
-});
-const caption = computed(() => {
-  return created_at.toLocaleString();
-});
+const props = defineProps<{
+  summary: Summary;
+}>();
+const { id, category, name, created_at } = props.summary;
+
+const title = computed(() => category + " / " + name + " /");
+const caption = computed(() => created_at.toLocaleString());
 </script>

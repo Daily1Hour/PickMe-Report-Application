@@ -1,23 +1,23 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import ReportsPage from "@/pages/reports/index.vue";
+import ReportsPage from "@/pages/index.vue";
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.VITE_PUBLIC_URL),
   routes: [
     {
       path: "/",
-      component: () => ReportsPage,
+      component: ReportsPage,
     },
     {
       path: "/:id",
       name: "detail",
-      component: () => ReportsPage,
+      component: ReportsPage,
     },
     {
       name: "new",
       path: "/new",
-      component: () => ReportsPage,
+      component: ReportsPage,
     },
   ],
 });

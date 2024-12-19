@@ -3,18 +3,19 @@
 </template>
 
 <script setup lang="ts">
+import { Category } from "@/shared/model/Category";
 import client from "@/shared/api/client";
 
 const props = defineProps<{
-  category: string;
-  created_at: string;
+  category: Category;
+  created_at: Date;
 }>();
 
 const remove = async () => {
   const data = await client.delete("", {
     params: {
       category: props.category,
-      createdAt: props.created_at,
+      createdAt: props.created_at.toISOString(),
     },
   });
 

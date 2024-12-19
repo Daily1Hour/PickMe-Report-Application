@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import ReportsPage from "@/pages/reports/index.vue";
+import ReportsPage from "@/pages";
 </script>
