@@ -1,8 +1,8 @@
 <template>
   <div class="row" style="height: 100%; width: calc(100% - 350px)">
-    <Navigation :category="query.category" />
+    <navigation :category="query.category" />
 
-    <Report :key="$route.fullPath" :category="query.category" :created_at="query.created_at" />
+    <report :key="$route.fullPath" :category="query.category" :created_at="query.created_at" />
   </div>
 </template>
 

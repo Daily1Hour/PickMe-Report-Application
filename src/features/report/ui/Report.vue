@@ -1,12 +1,12 @@
 <template :key="$route.fullPath">
   <div class="column" style="width: calc(100% - 150px)">
     <ul style="list-style-type: none; order: 1">
-      <li v-for="key in sections" :key="key">
-        <Section :id="key" v-model:content="report[key as keyof ReportType]" />
+      <li v-for="key in titles" :key="key">
+        <section-tab :id="key" v-model:content="report[key as keyof ReportType]" />
       </li>
     </ul>
     <div class="row justify-end" v-for="order in [0, 2]" :key="order" :style="{ order }">
-      <SaveReport :category="props.category" :created_at="props.created_at" :report="report" />
+      <save-report :category="props.category" :created_at="props.created_at" :report="report" />
     </div>
   </div>
 </template>
@@ -15,8 +15,8 @@
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 
-import Section from "./Section.vue";
-import SaveReport from "./SaveReport.vue";
+import SectionTab from "./section-tab.vue";
+import SaveReport from "./save-report.vue";
 import { ReportDTO, CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
 import { map_to_companyReport, map_to_industryReport } from "../api/mapper";
 import { ReportType } from "@/entities/report/model";
@@ -29,12 +29,12 @@ const props = defineProps<{
 }>();
 
 const route = useRoute();
-const sections = ref<string[]>();
+const titles = ref<string[]>();
 const report = ref<ReportType>(
   props.category === Category.Company ? map_to_companyReport() : map_to_industryReport(),
 );
 
-sections.value =
+titles.value =
   props.category === Category.Company
     ? ["name", "features", "ideal_talent", "news"]
     : ["type", "features", "news"];
@@ -70,7 +70,7 @@ async function fetch() {
       }
     }
 
-    sections.value = Object.keys(report.value) as string[];
+    titles.value = Object.keys(report.value) as string[];
   }
 }
 </script>

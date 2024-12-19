@@ -1,8 +1,8 @@
 <template>
   <div class="row">
-    <Side />
+    <side />
 
-    <Report />
+    <report />
   </div>
 </template>
 

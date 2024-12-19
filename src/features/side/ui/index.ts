@@ -1,3 +1,3 @@
-export { default as AddReport } from "./AddReport.vue";
-export { default as DeleteReport } from "./DeleteReport.vue";
-export { default as Tab } from "./Tab.vue";
+export { default as AddReport } from "./add-report.vue";
+export { default as DeleteReport } from "./delete-report.vue";
+export { default as SectionTab } from "./section-tab.vue";

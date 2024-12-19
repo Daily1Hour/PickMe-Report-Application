@@ -2,12 +2,12 @@
   <div class="q-pa-md" style="max-width: 350px; position: sticky; top: 0; height: 100%">
     <q-list bordered separator>
       <q-item v-for="item in sorted_items" clickable v-ripple>
-        <Tab :summary="item" />
-        <DeleteReport :category="item.category" :created_at="item.created_at" />
+        <section-tab :summary="item" />
+        <delete-report :category="item.category" :created_at="item.created_at" />
       </q-item>
 
       <q-item clickable v-ripple>
-        <AddReport />
+        <add-report />
       </q-item>
     </q-list>
   </div>
@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 
-import { Tab, AddReport, DeleteReport } from "./ui";
+import { SectionTab, AddReport, DeleteReport } from "./ui";
 import { ReportDTO } from "./api/dto";
 import { map_to_summary } from "./api/mapper";
 import { Summary } from "@/entities/summary/model";
