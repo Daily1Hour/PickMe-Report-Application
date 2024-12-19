@@ -3,6 +3,7 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import tsconfigPaths from "vite-tsconfig-paths";
 import vitePluginSingleSpa, { SingleSpaPluginOptions } from "vite-plugin-single-spa";
+import { quasar } from "@quasar/vite-plugin";
 
 // https://github.com/WJSoftware/vite-plugin-single-spa
 export default defineConfig(({ mode }) => {
@@ -31,13 +32,20 @@ export default defineConfig(({ mode }) => {
     // vite 설정
     return {
         plugins: [
-            vue(),
             tsconfigPaths({
                 loose: true,
             }), // tsconfig.json의 paths 설정을 적용
             vitePluginSingleSpa(vitePluginSingleSpaOptions), // single-spa 라이브러리 적용
+            vue({
+                // Vue 플러그인 적용
+            }),
+            quasar({
+                // Quasar 플러그인 적용
+            }),
         ],
         build: {
+            // cssMinify: false, // css 코드 압축 여부
+            // minify: false, // 빌드시 코드 압축 여부
             cssCodeSplit: false, // css 코드 분할 여부
             emptyOutDir: false, // 빌드시 기존 파일 삭제 여부
         },
