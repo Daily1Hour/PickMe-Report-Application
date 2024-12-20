@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { useQuery } from "@tanstack/vue-query";
+import { QueryObserverResult, useQueries } from "@tanstack/vue-query";
 
 import { ReportDTO } from "../api/dto";
 import { map_to_summary } from "../api/mapper";
@@ -25,13 +25,18 @@ const fetch = async (category: Category) => {
   return [];
 };
 
-const { data } = useQuery<Summary[]>({
-  queryKey: ["summaries"],
-  queryFn: () => fetch(Category.Company),
-  initialData: [],
+const data = useQueries<Summary[]>({
+  queries: [Category.Company, Category.Industry].map((category) => ({
+    queryKey: ["summaries", category],
+    queryFn: () => fetch(category),
+    initialData: [],
+    retry: false,
+  })),
+  combine: (results) =>
+    results.map((result) => result.data).flat() as QueryObserverResult<Summary>[],
 });
 
 watch(data, (data) => {
-  emit("fetched", [...data]);
+  emit("fetched", data);
 });
 </script>
