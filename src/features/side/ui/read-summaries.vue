@@ -7,12 +7,13 @@ import { QueryObserverResult, useQueries } from "@tanstack/vue-query";
 import { getSummaries } from "../api";
 import { Summary } from "@/entities/summary/model";
 import { Category } from "@/shared/model/Category";
+import { QueryKey } from "@/shared/model/QueryKey";
 
 const emit = defineEmits(["fetched"]);
 
 const data = useQueries<Summary[]>({
   queries: [Category.Company, Category.Industry].map((category) => ({
-    queryKey: ["summaries", category],
+    queryKey: [QueryKey.Summaries, category],
     queryFn: () => getSummaries(category),
     initialData: [],
     retry: false,
