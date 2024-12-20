@@ -1,14 +1,14 @@
 <template :key="$route.fullPath">
-  <read-report
-    :category="props.category"
-    :created_at="props.created_at"
-    @fetched="report = $event"
-  />
+  <read-report :category="props.category" :created_at="props.created_at" @fetched="fetched" />
 
   <div class="column" style="width: calc(100% - 150px)">
     <ul style="list-style-type: none; order: 1">
       <li v-for="key in titles" :key="key">
-        <section-form :id="key" v-model:content="report[key as keyof ReportType]" />
+        <section-form
+          :id="key"
+          v-model:content="report[key as keyof ReportType]"
+          @update="update(key, $event)"
+        />
       </li>
     </ul>
     <div class="row justify-end" v-for="order in [0, 2]" :key="order" :style="{ order }">
@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 import ReadReport from "./read-report.vue";
 import SectionForm from "./section-form.vue";
@@ -37,7 +37,13 @@ const titles = ref<string[]>(
     ? ["name", "features", "ideal_talent", "news"]
     : ["type", "features", "news"],
 );
-const report = ref<ReportType>(
+const report = reactive<ReportType>(
   props.category === Category.Company ? map_to_companyReport() : map_to_industryReport(),
 );
+
+const fetched = (data: ReportType) => Object.assign(report, data);
+
+const update = (key: string, value: string) => {
+  report[key as keyof ReportType] = value;
+};
 </script>
