@@ -5,8 +5,8 @@
 <script setup lang="ts">
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
+import { deleteReport } from "../api";
 import { Category } from "@/shared/model/Category";
-import client from "@/shared/api/client";
 
 const props = defineProps<{
   category: Category;
@@ -16,18 +16,7 @@ const props = defineProps<{
 const queryClient = useQueryClient();
 
 const mutation = useMutation({
-  mutationFn: async () => {
-    const data = await client.delete("", {
-      params: {
-        category: props.category,
-        createdAt: props.created_at.toISOString(),
-      },
-    });
-
-    if (data.status === 200) {
-      console.log("Deleted");
-    }
-  },
+  mutationFn: () => deleteReport(props.category, props.created_at),
   onSuccess: () => {
     queryClient.refetchQueries({ queryKey: ["summaries"] });
   },

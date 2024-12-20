@@ -4,31 +4,16 @@
 import { watch } from "vue";
 import { QueryObserverResult, useQueries } from "@tanstack/vue-query";
 
-import { ReportDTO } from "../api/dto";
-import { map_to_summary } from "../api/mapper";
-import { Category } from "@/shared/model/Category";
-import client from "@/shared/api/client";
+import { getSummaries } from "../api";
 import { Summary } from "@/entities/summary/model";
+import { Category } from "@/shared/model/Category";
 
 const emit = defineEmits(["fetched"]);
-
-const fetch = async (category: Category) => {
-  const result = await client.get<ReportDTO[]>("/list", {
-    params: {
-      category,
-    },
-  });
-
-  if (result.status === 200) {
-    return result.data.map(map_to_summary) || [];
-  }
-  return [];
-};
 
 const data = useQueries<Summary[]>({
   queries: [Category.Company, Category.Industry].map((category) => ({
     queryKey: ["summaries", category],
-    queryFn: () => fetch(category),
+    queryFn: () => getSummaries(category),
     initialData: [],
     retry: false,
   })),
