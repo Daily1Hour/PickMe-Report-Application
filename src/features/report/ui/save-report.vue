@@ -3,6 +3,8 @@
 </template>
 
 <script setup lang="ts">
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
 import { map_to_reportDTO } from "../api/mapper";
 import { ReportType } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
@@ -14,6 +16,16 @@ const props = defineProps<{
   report: ReportType;
 }>();
 
+const queryClient = useQueryClient();
+
+const mutation = useMutation({
+  mutationFn: ({ dto, params }: { dto: any; params: { category: Category; createdAt: string } }) =>
+    client.put("", dto, { params }),
+  onSuccess: () => {
+    queryClient.refetchQueries({ queryKey: ["summaries"] });
+  },
+});
+
 async function save() {
   const params = {
     category: props.category,
@@ -22,11 +34,9 @@ async function save() {
 
   const dto = map_to_reportDTO(props.report);
   if (params.createdAt) {
-    const response = await client.put("", dto, { params });
-    console.log("put", response);
+    mutation.mutate({ dto, params });
   } else {
-    const response = await client.post("", dto);
-    console.log("post", response);
+    await client.post("", dto);
   }
 }
 </script>
