@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/vue-query";
 
 import { getReport } from "../api";
 import { Category } from "@/shared/model/Category";
+import { RouteName } from "@/shared/model/RouteName";
 
 const props = defineProps<{
   category: Category;
@@ -19,7 +20,7 @@ const route = useRoute();
 
 const { data } = useQuery({
   queryKey: ["report", props.category, props.created_at],
-  queryFn: () => getReport(props.category, props.created_at, route.name as string),
+  queryFn: () => getReport(props.category, props.created_at, route.name as RouteName),
   retry: false,
 });
 

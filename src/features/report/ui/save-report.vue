@@ -9,6 +9,7 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { setReport } from "../api";
 import { ReportType } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
+import { RouteName } from "@/shared/model/RouteName";
 
 const props = defineProps<{
   category: Category;
@@ -21,7 +22,7 @@ const route = useRoute();
 const queryClient = useQueryClient();
 
 const mutation = useMutation({
-  mutationFn: () => setReport(props.category, props.created_at, route.name as string, props.report),
+  mutationFn: () => setReport(props.category, props.created_at, props.report, route.name as RouteName),
   onSuccess: () => {
     queryClient.refetchQueries({ queryKey: ["summaries"] });
   },

@@ -2,9 +2,10 @@ import { CompanyDetailDTO, IndustryDetailDTO } from "./dto";
 import { map_to_companyReport, map_to_industryReport } from "@/features/report/api/mapper";
 import client from "@/shared/api/client";
 import { Category } from "@/shared/model/Category";
+import { RouteName } from "@/shared/model/RouteName";
 
-export default async function getReport(category: Category, created_at: Date, name: string) {
-  if (name === "detail") {
+export default async function getReport(category: Category, created_at: Date, name: RouteName) {
+  if (name === RouteName.Detail) {
     const result = await client.get("", {
       params: {
         category,
