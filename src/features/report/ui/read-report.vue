@@ -2,6 +2,7 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
+import { useQuery } from "@tanstack/vue-query";
 
 import { ReportDTO, CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
 import { map_to_companyReport, map_to_industryReport } from "../api/mapper";
@@ -23,7 +24,13 @@ if (route.name === "new") {
     props.category === Category.Company ? map_to_companyReport() : map_to_industryReport(),
   );
 } else if (route.name === "detail") {
-  emit("fetched", await fetch());
+  const { data } = useQuery({
+    queryKey: ["report", props.category, props.created_at],
+    queryFn: fetch,
+    retry: false,
+  });
+
+  emit("fetched", data.value);
 }
 
 async function fetch() {
