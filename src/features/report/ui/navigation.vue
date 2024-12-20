@@ -11,6 +11,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
+import { company_report_keys, industry_report_keys } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
 import { sections_map } from "@/shared/trans/ko";
 
@@ -23,10 +24,10 @@ watch(
   () => props.category,
   (updated_category) => {
     if (updated_category === Category.Company) {
-      sections.value = ["name", "features", "ideal_talent", "news"];
+      sections.value = company_report_keys;
     }
     if (updated_category === Category.Industry) {
-      sections.value = ["type", "features", "news"];
+      sections.value = industry_report_keys;
     }
   },
 );
