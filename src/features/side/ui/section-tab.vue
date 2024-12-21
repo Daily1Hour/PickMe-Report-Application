@@ -7,7 +7,8 @@
         query: { category, createdAt: created_at.toISOString() },
       }"
     >
-      <div>{{ title }}</div>
+      <div class="text-grey">{{ category }}</div>
+      <div>{{ name }}</div>
       <div class="text-caption text-grey">{{ caption }}</div>
     </router-link>
   </q-item-section>
@@ -24,6 +25,5 @@ const props = defineProps<{
 }>();
 const { id, category, name, created_at } = props.summary;
 
-const title = computed(() => category + " / " + name + " /");
 const caption = computed(() => created_at.toLocaleString());
 </script>
