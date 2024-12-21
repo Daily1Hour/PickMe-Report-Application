@@ -1,5 +1,5 @@
 <template :key="$route.fullPath">
-  <read-report :category="props.category" :created_at="props.created_at" @fetched="fetched" />
+  <load-report :category="props.category" :created_at="props.created_at" @fetched="fetched" />
 
   <div class="column" style="width: calc(100% - 150px)">
     <ul style="list-style-type: none; order: 1">
@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 
-import ReadReport from "./read-report.vue";
+import LoadReport from "./load-report.vue";
 import SectionForm from "./section-form.vue";
 import SaveReport from "./save-report.vue";
 import { map_to_companyReport, map_to_industryReport } from "../api/mapper";
