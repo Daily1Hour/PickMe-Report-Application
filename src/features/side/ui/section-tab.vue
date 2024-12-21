@@ -2,7 +2,7 @@
   <q-item-section>
     <router-link
       :to="{
-        name: 'detail',
+        name: RouteName.Detail,
         params: { id },
         query: { category, createdAt: created_at.toISOString() },
       }"
@@ -17,6 +17,7 @@
 import { computed, defineProps } from "vue";
 
 import { Summary } from "@/entities/summary/model";
+import { RouteName } from "@/shared/model/RouteName";
 
 const props = defineProps<{
   summary: Summary;

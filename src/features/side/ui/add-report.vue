@@ -17,6 +17,7 @@ import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
 import { Category } from "@/shared/model/Category";
+import { RouteName } from "@/shared/model/RouteName";
 
 const router = useRouter();
 const category = ref<Category>();
@@ -25,7 +26,7 @@ const category_options = ref([Category.Company, Category.Industry]);
 watch(
   () => category.value,
   (updated_category) => {
-    router.push({ name: "new", query: { category: updated_category } });
+    router.push({ name: RouteName.New, query: { category: updated_category } });
   },
 );
 </script>

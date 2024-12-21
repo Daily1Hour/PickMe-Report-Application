@@ -6,3 +6,5 @@ export default class CompanyReport {
     public news: string,
   ) {}
 }
+
+export const company_report_keys = Object.keys(new CompanyReport("", "", "", ""));

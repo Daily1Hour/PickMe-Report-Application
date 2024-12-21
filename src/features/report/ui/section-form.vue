@@ -34,8 +34,8 @@ watch(
   },
 );
 
-const emit = defineEmits(["update:content"]);
+const emit = defineEmits(["update"]);
 const update_content = (edited_content: string) => {
-  emit("update:content", edited_content);
+  emit("update", edited_content);
 };
 </script>

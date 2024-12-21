@@ -10,6 +10,7 @@ export const map_to_summary = (report: ReportDTO, index: number): Summary => {
         category: report.category,
         name: (report.companyDetails?.[0] as CompanyDetailDTO).companyName,
         created_at: new Date(report.createdAt),
+        updated_at: new Date(report.updatedAt),
       };
     case Category.Industry:
       return {
@@ -17,6 +18,7 @@ export const map_to_summary = (report: ReportDTO, index: number): Summary => {
         category: report.category,
         name: (report.industryDetails?.[0] as IndustryDetailDTO).industryType,
         created_at: new Date(report.createdAt),
+        updated_at: new Date(report.updatedAt),
       };
   }
 };

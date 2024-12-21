@@ -5,6 +5,7 @@ export class Summary {
     public category: Category,
     public name: string,
     public created_at: Date,
+    public updated_at: Date,
     public id: string,
   ) {}
 }

@@ -1,12 +1,16 @@
 <template>
-  <q-btn label="저장" @click="save" />
+  <q-btn label="저장" @click="() => mutation.mutate()" />
 </template>
 
 <script setup lang="ts">
-import { map_to_reportDTO } from "../api/mapper";
+import { useRoute } from "vue-router";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
+import { setReport } from "../api";
 import { ReportType } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
-import client from "@/shared/api/client";
+import { RouteName } from "@/shared/model/RouteName";
+import { QueryKey } from "@/shared/model/QueryKey";
 
 const props = defineProps<{
   category: Category;
@@ -14,19 +18,15 @@ const props = defineProps<{
   report: ReportType;
 }>();
 
-async function save() {
-  const params = {
-    category: props.category,
-    createdAt: props.created_at.toISOString(),
-  };
+const route = useRoute();
 
-  const dto = map_to_reportDTO(props.report);
-  if (params.createdAt) {
-    const response = await client.put("", dto, { params });
-    console.log("put", response);
-  } else {
-    const response = await client.post("", dto);
-    console.log("post", response);
-  }
-}
+const queryClient = useQueryClient();
+
+const mutation = useMutation({
+  mutationFn: () =>
+    setReport(props.category, props.created_at, props.report, route.name as RouteName),
+  onSuccess: () => {
+    queryClient.refetchQueries({ queryKey: [QueryKey.Summaries] });
+  },
+});
 </script>
