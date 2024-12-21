@@ -1,10 +1,10 @@
 <template>
-  <read-summaries @fetched="fetched" />
+  <load-summaries />
   <div class="q-pa-md" style="max-width: 350px; position: sticky; top: 0; height: 100%">
     <q-list bordered separator>
       <q-item v-for="summary in sorted_summaries" clickable v-ripple :key="updated_time(summary)">
         <section-tab :summary="summary" />
-        <delete-report :category="summary.category" :created_at="summary.created_at" />
+        <remove-report :category="summary.category" :created_at="summary.created_at" />
       </q-item>
 
       <q-item clickable v-ripple>
@@ -15,19 +15,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
-import { SectionTab, ReadSummaries, AddReport, DeleteReport } from "./ui";
+import { SectionTab, LoadSummaries, AddReport, RemoveReport } from "./ui";
+import { useSummaryStore } from "./store/summary";
 import { Summary } from "@/entities/summary/model";
 
-const summaries = ref<Summary[]>([]);
-
-const fetched = (data: Summary[]) => {
-  summaries.value = data;
-};
+const store = useSummaryStore();
 
 const sorted_summaries = computed(() =>
-  summaries.value.sort((a, b) => b.created_at.getTime() - a.created_at.getTime()),
+  store.summaries.sort((a, b) => b.created_at.getTime() - a.created_at.getTime()),
 );
 
 const updated_time = (summary: Summary) => summary.updated_at.toISOString();

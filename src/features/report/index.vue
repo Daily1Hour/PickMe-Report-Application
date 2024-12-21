@@ -1,22 +1,47 @@
 <template>
   <div class="row" style="height: 100%; width: calc(100% - 350px)">
-    <navigation :category="query.category" />
+    <navigation />
 
-    <report :key="$route.fullPath" :category="query.category" :created_at="query.created_at" />
+    <report :key="$route.fullPath" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { watch } from "vue";
 import { useRoute } from "vue-router";
 
 import { Navigation, Report } from "./ui";
+import { map_to_companyReport, map_to_industryReport } from "./api/mapper";
 import { Category } from "@/shared/model/Category";
+import { useReportStore } from "./store/report";
 
 const route = useRoute();
-const query = computed(() => {
-  const { category, createdAt } = route.query as { category: Category; createdAt: string };
-  const created_at = new Date(createdAt);
-  return { category, created_at };
-});
+
+const store = useReportStore();
+
+watch(
+  () => route.query.category as Category,
+  (category) => {
+    store.category = category;
+  },
+);
+watch(
+  () => route.query.createdAt as string,
+  (created_at) => {
+    store.created_at = new Date(created_at);
+  },
+);
+watch(
+  () => route.name && route.query.category,
+  () => {
+    switch (route.query.category) {
+      case Category.Company:
+        store.report = map_to_companyReport();
+        break;
+      case Category.Industry:
+        store.report = map_to_industryReport();
+        break;
+    }
+  },
+);
 </script>

@@ -8,7 +8,7 @@ export const map_to_summary = (report: ReportDTO, index: number): Summary => {
       return {
         id: index.toString(),
         category: report.category,
-        name: (report.companyDetails?.[0] as CompanyDetailDTO).companyName,
+        name: (report.companyDetails?.[0] as CompanyDetailDTO)?.companyName,
         created_at: new Date(report.createdAt),
         updated_at: new Date(report.updatedAt),
       };
@@ -16,7 +16,7 @@ export const map_to_summary = (report: ReportDTO, index: number): Summary => {
       return {
         id: index.toString(),
         category: report.category,
-        name: (report.industryDetails?.[0] as IndustryDetailDTO).industryType,
+        name: (report.industryDetails?.[0] as IndustryDetailDTO)?.industryType,
         created_at: new Date(report.createdAt),
         updated_at: new Date(report.updatedAt),
       };
