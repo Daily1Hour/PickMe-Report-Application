@@ -11,6 +11,7 @@ import { watch } from "vue";
 import { useRoute } from "vue-router";
 
 import { Navigation, Report } from "./ui";
+import { map_to_companyReport, map_to_industryReport } from "./api/mapper";
 import { Category } from "@/shared/model/Category";
 import { useReportStore } from "./store/report";
 
@@ -28,6 +29,19 @@ watch(
   () => route.query.createdAt as string,
   (created_at) => {
     store.created_at = new Date(created_at);
+  },
+);
+watch(
+  () => route.name && route.query.category,
+  () => {
+    switch (route.query.category) {
+      case Category.Company:
+        store.report = map_to_companyReport();
+        break;
+      case Category.Industry:
+        store.report = map_to_industryReport();
+        break;
+    }
   },
 );
 </script>
