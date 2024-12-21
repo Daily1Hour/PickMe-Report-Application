@@ -1,5 +1,5 @@
 <template :key="$route.fullPath">
-  <load-report :category="props.category" :created_at="props.created_at" />
+  <load-report />
 
   <div class="column" style="width: calc(100% - 150px)">
     <ul style="list-style-type: none; order: 1">
