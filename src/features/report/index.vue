@@ -2,12 +2,12 @@
   <div class="row" style="height: 100%; width: calc(100% - 350px)">
     <navigation />
 
-    <report :key="$route.fullPath" :category="query.category" :created_at="query.created_at" />
+    <report :key="$route.fullPath" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from "vue";
+import { watch } from "vue";
 import { useRoute } from "vue-router";
 
 import { Navigation, Report } from "./ui";
@@ -18,16 +18,16 @@ const route = useRoute();
 
 const store = useReportStore();
 
-watch(() => route.query.category as Category, (category) => {
-  store.category = category;
-});
-watch(() => route.query.createdAt as string, (created_at) => {
-  store.created_at = new Date(created_at);
-});
-
-const query = computed(() => {
-  const { category, createdAt } = route.query as { category: Category; createdAt: string };
-  const created_at = new Date(createdAt);
-  return { category, created_at };
-});
+watch(
+  () => route.query.category as Category,
+  (category) => {
+    store.category = category;
+  },
+);
+watch(
+  () => route.query.createdAt as string,
+  (created_at) => {
+    store.created_at = new Date(created_at);
+  },
+);
 </script>

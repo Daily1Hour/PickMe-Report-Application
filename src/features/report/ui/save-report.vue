@@ -7,24 +7,19 @@ import { useRoute } from "vue-router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import { setReport } from "../api";
-import { ReportType } from "@/entities/report/model";
-import { Category } from "@/shared/model/Category";
+import { useReportStore } from "../store/report";
 import { RouteName } from "@/shared/model/RouteName";
 import { QueryKey } from "@/shared/model/QueryKey";
-
-const props = defineProps<{
-  category: Category;
-  created_at: Date;
-  report: ReportType;
-}>();
 
 const route = useRoute();
 
 const queryClient = useQueryClient();
 
+const store = useReportStore();
+
 const mutation = useMutation({
   mutationFn: () =>
-    setReport(props.category, props.created_at, props.report, route.name as RouteName),
+    setReport(store.category, store.created_at, store.report, route.name as RouteName),
   onSuccess: () => {
     queryClient.refetchQueries({ queryKey: [QueryKey.Summaries] });
   },
