@@ -1,19 +1,20 @@
 <template>
   <div :id="id" class="q-pa-md">
-    <q-expansion-item v-model="expanded" :label="label" :caption="label + '을 입력해주세요.'">
+    <q-input
+      v-if="just_text"
+      v-model="store.report[key]"
+      :label="label"
+      :placeholder="label + '을 입력해주세요.'"
+    />
+    <q-expansion-item
+      v-else
+      v-model="expanded"
+      :label="label"
+      :caption="label + '을 입력해주세요.'"
+    >
       <q-card>
         <q-card-section>
-          <q-editor
-            v-if="just_text"
-            v-model="store.report[key]"
-            :definitions="{ bold: { label: 'Bold' } }"
-          />
-          <editorjs
-            v-else
-            placeholder="빈칸"
-            :modelValue="store.report[key]"
-            @update="update"
-          />
+          <editorjs placeholder="빈칸" :modelValue="store.report[key]" @update="update" />
         </q-card-section>
       </q-card>
     </q-expansion-item>
