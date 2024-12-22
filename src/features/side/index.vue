@@ -1,22 +1,31 @@
 <template>
   <load-summaries />
 
-  <div class="q-pa-md" style="max-width: 350px; position: sticky; top: 0; height: 100%">
-    <q-list bordered separator>
-      <q-item clickable v-ripple>
-        <add-report />
-      </q-item>
+  <q-fab color="secondary" icon="menu" direction="down" style="height: 50px">
+    <q-fab-action style="transform: translateX(50%); background: white">
+      <div class="q-pa-md" style="max-width: 350px; position: sticky; top: 0; height: 100%">
+        <q-list bordered separator>
+          <q-item clickable v-ripple>
+            <add-report />
+          </q-item>
 
-      <q-item v-for="summary in pagination_list" clickable v-ripple :key="updated_time(summary)">
-        <section-tab :summary="summary" />
-        <remove-report :category="summary.category" :created_at="summary.created_at" />
-      </q-item>
-    </q-list>
+          <q-item
+            v-for="summary in pagination_list"
+            clickable
+            v-ripple
+            :key="updated_time(summary)"
+          >
+            <section-tab :summary="summary" />
+            <remove-report :category="summary.category" :created_at="summary.created_at" />
+          </q-item>
+        </q-list>
 
-    <div class="flex flex-center">
-      <q-pagination v-model="current" :max="pagination_max" input />
-    </div>
-  </div>
+        <div class="flex flex-center">
+          <q-pagination v-model="current" :max="pagination_max" input />
+        </div>
+      </div>
+    </q-fab-action>
+  </q-fab>
 </template>
 
 <script setup lang="ts">
