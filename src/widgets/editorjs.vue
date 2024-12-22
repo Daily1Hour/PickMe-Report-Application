@@ -5,6 +5,8 @@
 <script setup>
 import { onMounted, onUnmounted, ref, watch } from "vue";
 import EditorJS from "@editorjs/editorjs";
+import ListTool from "@editorjs/list";
+import EmbedTool from "@editorjs/embed";
 
 const editor_container = ref(null);
 
@@ -47,7 +49,10 @@ onMounted(() => {
     holder: editor_container.value,
     placeholder: props.placeholder,
     inlineToolbar: ["bold", "italic", "link"],
-    tools: {},
+    tools: {
+      list: ListTool,
+      embed: EmbedTool,
+    },
     minHeight: "auto",
     data: () => modelToView(),
     onReady: modelToView,
