@@ -25,6 +25,7 @@
     "vue-tsc": "^2.1.10"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.30.7",
     "@quasar/extras": "^1.16.15",
     "@tanstack/vue-query": "^5.62.8",
     "axios": "^1.7.9",
