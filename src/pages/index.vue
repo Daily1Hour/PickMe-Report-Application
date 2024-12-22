@@ -1,9 +1,15 @@
 <template>
-  <div class="row">
-    <side />
+  <q-layout view="lhh LpR lff">
+    <q-page-container>
+      <q-page padding>
+        <report />
 
-    <report />
-  </div>
+        <q-page-sticky position="top-left" :offset="fabPos" style="z-index: 10">
+          <side />
+        </q-page-sticky>
+      </q-page>
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script setup>
