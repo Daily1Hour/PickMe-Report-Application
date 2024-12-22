@@ -4,7 +4,7 @@
       <q-page padding>
         <report />
 
-        <q-page-sticky position="top-left" :offset="fabPos">
+        <q-page-sticky position="top-left" :offset="fabPos" style="z-index: 10">
           <side />
         </q-page-sticky>
       </q-page>
