@@ -17,7 +17,7 @@ let updating_model = false;
 function modelToView() {
   const parsed = JSON.parse(props.modelValue || "{}");
 
-  if (props.modelValue) {
+  if (!!props.modelValue && !!editor.render) {
     editor.render(parsed);
   }
 }
