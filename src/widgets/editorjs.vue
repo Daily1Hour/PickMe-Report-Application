@@ -15,10 +15,16 @@ let editor;
 let updating_model = false;
 
 function modelToView() {
-  const parsed = JSON.parse(props.modelValue || "{}");
+  try {
+    const parsed = JSON.parse(props.modelValue || "{}");
 
-  if (!!props.modelValue && !!editor.render) {
-    editor.render(parsed);
+    if (!!props.modelValue && !!editor.render) {
+      editor.render(parsed);
+    }
+  } catch (e) {
+    if (!!editor.blocks) {
+      editor.blocks.renderFromHTML(props.modelValue);
+    }
   }
 }
 
@@ -43,7 +49,7 @@ onMounted(() => {
     inlineToolbar: ["bold", "italic", "link"],
     tools: {},
     minHeight: "auto",
-    data: JSON.parse(props.modelValue || "{}"),
+    data: () => modelToView(),
     onReady: modelToView,
     onChange: viewToModel,
   });
