@@ -27,7 +27,7 @@ import { computed, ref } from "vue";
 import editorjs from "@/widgets/editorjs.vue";
 
 import { useReportStore } from "../store/report";
-import { ReportType } from "@/entities/report/model";
+import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/model";
 import { sections_map } from "@/shared/trans/ko";
 
 const props = defineProps<{
@@ -38,7 +38,9 @@ const store = useReportStore();
 const expanded = ref(true);
 const key = computed(() => props.id as keyof ReportType);
 const label = computed(() => sections_map[key.value]);
-const just_text = computed(() => key.value === "name" || key.value === "type");
+
+const union_key = computed(() => props.id as keyof CompanyReport | keyof IndustryReport);
+const just_text = computed(() => union_key.value === "name" || union_key.value === "type");
 
 const update = (value: any) => {
   store.report[key.value] = JSON.stringify(value);
