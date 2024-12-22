@@ -73,3 +73,12 @@ onUnmounted(() => {
   //editor.destroy();
 });
 </script>
+
+<style scoped>
+::v-deep(.ce-block__content) {
+  margin: 0;
+}
+::v-deep(.ce-toolbar) {
+  right: auto;
+}
+</style>
