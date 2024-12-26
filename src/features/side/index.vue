@@ -16,7 +16,7 @@
             :key="updated_time(summary)"
           >
             <section-tab :summary="summary" />
-            <remove-report :category="summary.category" :created_at="summary.created_at" />
+            <remove-report :id="summary.id" />
           </q-item>
         </q-list>
 
