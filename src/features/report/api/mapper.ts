@@ -20,8 +20,8 @@ export const map_to_industryReport = (dto?: IndustryDetailDTO, id?: string) =>
 
 export const map_to_reportDTO = (report: CompanyReport | IndustryReport) => ({
   category: report instanceof CompanyReport ? Category.Company : Category.Industry,
-  companyDetails: report instanceof CompanyReport ? [map_to_companyDetailDTO(report)] : null,
-  industryDetails: report instanceof IndustryReport ? [map_to_industryDetailDTO(report)] : null,
+  companyDetail: report instanceof CompanyReport ? map_to_companyDetailDTO(report) : null,
+  industryDetail: report instanceof IndustryReport ? map_to_industryDetailDTO(report) : null,
 });
 
 export const map_to_companyDetailDTO = (report: CompanyReport): CompanyDetailDTO => ({
