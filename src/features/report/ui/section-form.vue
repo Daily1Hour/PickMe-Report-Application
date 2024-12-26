@@ -36,7 +36,7 @@ const props = defineProps<{
 const store = useReportStore();
 
 const expanded = ref(true);
-const key = computed(() => props.id as keyof ReportType);
+const key = computed(() => props.id as keyof Omit<ReportType, "id">);
 const label = computed(() => sections_map[key.value]);
 
 const union_key = computed(() => props.id as keyof CompanyReport | keyof IndustryReport);

@@ -1,5 +1,12 @@
-export default class IndustryReport {
-  constructor(public type: string, public features: string, public news: string) {}
+import IReport from "./Report";
+
+export default class IndustryReport implements IReport {
+  constructor(
+    public id: string | null,
+    public type: string,
+    public features: string,
+    public news: string,
+  ) {}
 }
 
-export const industry_report_keys = Object.keys(new IndustryReport("", "", ""));
+export const industry_report_keys = Object.keys(new IndustryReport("", "", "", ""));
