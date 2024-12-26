@@ -1,11 +1,11 @@
 import { Category } from "@/shared/model/Category";
 
-export interface ReportDTO<T = CompanyDetailDTO | IndustryDetailDTO> {
+export interface ReportDTO {
   category: Category;
   createdAt: Date;
   updatedAt: Date;
-  companyDetails?: T[];
-  industryDetails?: T[];
+  companyDetail?: CompanyDetailDTO;
+  industryDetail?: IndustryDetailDTO;
 }
 
 export interface CompanyDetailDTO {

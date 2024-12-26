@@ -20,15 +20,15 @@ const route = useRoute();
 const store = useReportStore();
 
 watch(
-  () => route.query.category as Category,
-  (category) => {
-    store.category = category;
+  () => route.params.id as string,
+  (id) => {
+    store.id = id;
   },
 );
 watch(
-  () => route.query.createdAt as string,
-  (created_at) => {
-    store.created_at = new Date(created_at);
+  () => route.query.category as Category,
+  (category) => {
+    store.category = category;
   },
 );
 watch(

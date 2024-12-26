@@ -7,8 +7,8 @@ import { Category } from "@/shared/model/Category";
 
 export const useReportStore = defineStore("report", () => {
   const report = reactive<ReportType>(map_to_companyReport());
+  const id = ref<string>();
   const category = ref<Category>(Category.Company);
-  const created_at = ref<Date>(new Date());
 
-  return { report, category, created_at };
+  return { report, category, id };
 });
