@@ -15,8 +15,8 @@ const route = useRoute();
 const store = useReportStore();
 
 const { data } = useQuery<ReportType>({
-  queryKey: [QueryKey.Report, store.category, store.created_at],
-  queryFn: () => getReport(store.category, store.created_at, route.name as RouteName),
+  queryKey: [QueryKey.Report, store.id],
+  queryFn: () => getReport(store.id || "", store.category, route.name as RouteName),
   retry: false,
 });
 

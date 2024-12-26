@@ -18,8 +18,7 @@ const queryClient = useQueryClient();
 const store = useReportStore();
 
 const mutation = useMutation({
-  mutationFn: () =>
-    setReport(store.category, store.created_at, store.report, route.name as RouteName),
+  mutationFn: () => setReport(store.id || "", store.report, route.name as RouteName),
   onSuccess: () => {
     queryClient.refetchQueries({ queryKey: [QueryKey.Summaries, store.category] });
   },

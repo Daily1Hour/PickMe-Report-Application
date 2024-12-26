@@ -21,12 +21,10 @@ import { ref } from "vue";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import { deleteReport } from "../api";
-import { Category } from "@/shared/model/Category";
 import { QueryKey } from "@/shared/model/QueryKey";
 
 const props = defineProps<{
-  category: Category;
-  created_at: Date;
+  id: string;
 }>();
 
 const queryClient = useQueryClient();
@@ -34,7 +32,7 @@ const queryClient = useQueryClient();
 const confirm = ref(false);
 
 const mutation = useMutation({
-  mutationFn: () => deleteReport(props.category, props.created_at),
+  mutationFn: () => deleteReport(props.id),
   onSuccess: () => {
     queryClient.refetchQueries({ queryKey: [QueryKey.Summaries] });
   },

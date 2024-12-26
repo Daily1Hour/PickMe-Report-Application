@@ -1,11 +1,9 @@
 import client from "@/shared/api/client";
-import { Category } from "@/shared/model/Category";
 
-export default async function deleteReport(category: Category, created_at: Date) {
+export default async function deleteReport(id: string) {
   const data = await client.delete("", {
     params: {
-      category,
-      createdAt: created_at.toISOString(),
+      reportId: id,
     },
   });
 
