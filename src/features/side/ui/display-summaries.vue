@@ -35,7 +35,7 @@ const store = useSummaryStore();
 
 // 최신순 정렬
 const sorted_summaries = computed(() =>
-  store.summaries.sort((a, b) => b.created_at.getTime() - a.created_at.getTime()),
+  store.summaries.toSorted((a, b) => b.created_at.getTime() - a.created_at.getTime()),
 );
 
 // 페이지네이션
