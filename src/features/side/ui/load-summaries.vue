@@ -17,7 +17,7 @@ const store = useSummaryStore();
 const data = useQueries({
   queries: [Category.Company, Category.Industry].map((category) => ({
     queryKey: [QueryKey.Summaries, category],
-    queryFn: () => getSummaries(category),
+    queryFn: getSummaries,
     initialData: [],
     retry: false,
   })),
