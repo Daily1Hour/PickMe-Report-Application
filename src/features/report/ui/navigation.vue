@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 import { useReportStore } from "../store/report";
 import { company_report_keys, industry_report_keys, ReportType } from "@/entities/report/model";
@@ -20,11 +20,14 @@ const store = useReportStore();
 
 const sections = ref<string[]>([]);
 
-store.$subscribe((_mutation, state) => {
-  if (state.category === Category.Company) {
-    sections.value = company_report_keys;
-  } else if (state.category === Category.Industry) {
-    sections.value = industry_report_keys;
-  }
-});
+watch(
+  () => store.category,
+  (category) => {
+    if (category === Category.Company) {
+      sections.value = company_report_keys;
+    } else if (category === Category.Industry) {
+      sections.value = industry_report_keys;
+    }
+  },
+);
 </script>
