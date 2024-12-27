@@ -10,4 +10,4 @@ export default class CompanyReport implements IReport {
   ) {}
 }
 
-export const company_report_keys = Object.keys(new CompanyReport("", "", "", "", ""));
+export const company_report_fields = ["name", "features", "ideal_talent", "news"] as const;

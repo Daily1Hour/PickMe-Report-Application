@@ -21,12 +21,12 @@ import LoadReport from "./load-report.vue";
 import SectionForm from "./section-form.vue";
 import SaveReport from "./save-report.vue";
 import { useReportStore } from "../store/report";
-import { company_report_keys, industry_report_keys } from "@/entities/report/model";
+import { company_report_fields, industry_report_fields } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
 
 const store = useReportStore();
 
-const titles = ref<string[]>(
-  store.category === Category.Company ? company_report_keys : industry_report_keys,
+const titles = ref<readonly string[]>(
+  store.category === Category.Company ? company_report_fields : industry_report_fields,
 );
 </script>

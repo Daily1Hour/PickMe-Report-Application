@@ -12,21 +12,21 @@
 import { ref, watch } from "vue";
 
 import { useReportStore } from "../store/report";
-import { company_report_keys, industry_report_keys, ReportType } from "@/entities/report/model";
+import { company_report_fields, industry_report_fields, ReportType } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
 import { sections_map } from "@/shared/trans/ko";
 
 const store = useReportStore();
 
-const sections = ref<string[]>([]);
+const sections = ref<readonly string[]>([]);
 
 watch(
   () => store.category,
   (category) => {
     if (category === Category.Company) {
-      sections.value = company_report_keys;
+      sections.value = company_report_fields;
     } else if (category === Category.Industry) {
-      sections.value = industry_report_keys;
+      sections.value = industry_report_fields;
     }
   },
 );

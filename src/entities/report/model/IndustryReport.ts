@@ -9,4 +9,4 @@ export default class IndustryReport implements IReport {
   ) {}
 }
 
-export const industry_report_keys = Object.keys(new IndustryReport("", "", "", ""));
+export const industry_report_fields = ["type", "features", "news"] as const;
