@@ -1,5 +1,5 @@
 <template :key="$route.fullPath">
-  <div class="column" style="width: calc(100% - 150px)">
+  <div class="column fit">
     <load-report />
 
     <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">

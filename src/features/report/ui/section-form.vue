@@ -1,11 +1,12 @@
 <template>
-  <div :id="id" class="q-pa-md">
+  <div :id="id" class="q-pa-md fit">
     <q-input
       v-if="just_text"
       v-model="store.report[key]"
       :label="label"
       :placeholder="label + '을 입력해주세요.'"
     />
+
     <q-expansion-item
       v-else
       v-model="expanded"

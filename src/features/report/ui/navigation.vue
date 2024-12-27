@@ -1,10 +1,10 @@
 <template>
-  <div class="q-pa-md" style="max-width: 350px; position: sticky; top: 0; height: 100%">
-    <q-list bordered separator>
-      <q-item tag="a" :href="'#' + section" v-for="section in sections" clickable v-ripple>
-        <q-item-section>{{ sections_map[section as keyof Omit<ReportType, "id">] }}</q-item-section>
-      </q-item>
-    </q-list>
+  <div class="q-ma-md q-mt-xl fixed-left" style="z-index: 5">
+    <q-tabs class="bg-white" vertical bordered separator>
+      <q-route-tab v-for="section in sections" :href="'#' + section" clickable v-ripple>
+        {{ sections_map[section as keyof Omit<ReportType, "id">] }}
+      </q-route-tab>
+    </q-tabs>
   </div>
 </template>
 

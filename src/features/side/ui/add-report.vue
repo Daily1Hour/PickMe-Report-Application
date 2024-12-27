@@ -1,13 +1,8 @@
 <template>
   <q-item-section style="align-content: center">
-    <q-icon name="add" />
+    <q-icon name="add" color="secondary" />
     <q-popup-edit v-model="category" auto-save>
-      <q-select
-        v-model="category"
-        :options="category_options"
-        label="카테고리"
-        style="width: 100px"
-      />
+      <q-select v-model="category" :options="category_options" label="카테고리" />
     </q-popup-edit>
   </q-item-section>
 </template>
