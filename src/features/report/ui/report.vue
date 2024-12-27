@@ -1,12 +1,13 @@
 <template :key="$route.fullPath">
-  <load-report />
-
   <div class="column" style="width: calc(100% - 150px)">
-    <ul style="list-style-type: none; order: 1">
-      <li v-for="title in titles" :key="title">
+    <load-report />
+
+    <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
+      <q-item v-for="title in titles" :key="title" v-ripple>
         <section-form :id="title" />
-      </li>
-    </ul>
+      </q-item>
+    </q-list>
+
     <div class="row justify-end" v-for="order in [0, 2]" :key="order" :style="{ order }">
       <save-report />
     </div>

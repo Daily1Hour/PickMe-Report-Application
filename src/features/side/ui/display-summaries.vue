@@ -1,11 +1,11 @@
 <template>
-  <div class="q-pa-md" style="max-width: 350px; position: sticky; top: 0; height: 100%">
+  <div class="q-pa-md" @click="(event: Event) => event.stopPropagation()">
     <q-list bordered separator>
       <q-item clickable v-ripple>
         <add-report />
       </q-item>
 
-      <q-item v-for="summary in current_items" clickable v-ripple :key="summary.id">
+      <q-item v-for="summary in current_items" :key="summary.id" clickable v-ripple>
         <section-tab :summary="summary" />
 
         <remove-report :id="summary.id" />
@@ -13,12 +13,7 @@
     </q-list>
 
     <div class="flex flex-center">
-      <q-pagination
-        input
-        v-model="current_page"
-        :max="max_page"
-        @click="(event: MouseEvent) => event.stopPropagation()"
-      />
+      <q-pagination v-model="current_page" :max="max_page" input />
     </div>
   </div>
 </template>

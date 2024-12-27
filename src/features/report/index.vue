@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 100%; width: calc(100% - 350px)">
+  <div class="row">
     <navigation />
 
     <report :key="$route.fullPath" />
