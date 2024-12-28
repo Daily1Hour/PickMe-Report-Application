@@ -4,7 +4,7 @@ import client from "@/shared/api/client";
 import { Category } from "@/shared/model/Category";
 import { RouteName } from "@/shared/model/RouteName";
 
-export default async function getReport(id: string, category: Category, route_name: RouteName) {
+export default async function getReport(route_name: RouteName, id?: string, category?: Category) {
   if (route_name === RouteName.Detail) {
     const result = await client.get<ReportDTO>("", {
       params: {

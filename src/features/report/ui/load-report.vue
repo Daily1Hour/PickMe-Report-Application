@@ -16,11 +16,11 @@ const store = useReportStore();
 
 const { data } = useQuery<ReportType>({
   queryKey: [QueryKey.Report, store.id],
-  queryFn: () => getReport(store.id || "", store.category, route.name as RouteName),
+  queryFn: () => getReport(route.name as RouteName, store.id, store.category),
   retry: false,
 });
 
 watch(data, (data) => {
-  store.report = Object.assign(store.report, data);
+  store.report = data;
 });
 </script>

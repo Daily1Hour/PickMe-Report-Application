@@ -16,5 +16,5 @@ import { ReportKeys } from "@/entities/report/model";
 import { sections_map } from "@/shared/trans/ko";
 
 const store = useReportStore();
-const sections = computed(() => Object.keys(store.report) as ReportKeys[]);
+const sections = computed(() => Object.keys(store.report!) as ReportKeys[]);
 </script>
