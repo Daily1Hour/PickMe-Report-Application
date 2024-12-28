@@ -15,12 +15,19 @@ const route = useRoute();
 const store = useReportStore();
 
 const { data } = useQuery<ReportType>({
-  queryKey: [QueryKey.Report, store.id],
+  queryKey: [QueryKey.Report, store.id, store.category],
   queryFn: () => getReport(route.name as RouteName, store.id, store.category),
   retry: false,
+  staleTime: 100 * 60 * 5, // 5분
 });
 
-watch(data, (data) => {
-  store.report = data;
-});
+watch(
+  data,
+  (data) => {
+    if (!!data) {
+      store.report = data;
+    }
+  },
+  { immediate: true },
+);
 </script>
