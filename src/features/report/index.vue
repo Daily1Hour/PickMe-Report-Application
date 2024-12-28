@@ -1,11 +1,11 @@
 <template>
-  <div class="row">
-    <navigation />
+  <load-report :key="$route.fullPath" />
 
-    <display-report :key="$route.fullPath" />
-  </div>
+  <navigation />
+
+  <display-report :key="$route.fullPath" />
 </template>
 
 <script setup lang="ts">
-import { Navigation, DisplayReport } from "./ui";
+import { LoadReport, Navigation, DisplayReport } from "./ui";
 </script>

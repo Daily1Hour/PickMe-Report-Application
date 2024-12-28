@@ -1,7 +1,5 @@
-<template :key="$route.fullPath">
+<template>
   <div class="column fit">
-    <load-report />
-
     <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
       <q-item v-for="title in titles" :key="title" v-ripple>
         <section-form :id="title" />
@@ -17,7 +15,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import LoadReport from "./load-report.vue";
 import SectionForm from "./section-form.vue";
 import SaveReport from "./save-report.vue";
 import { useReportStore } from "../store/report";
