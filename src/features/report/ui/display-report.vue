@@ -2,7 +2,7 @@
   <div class="column fit">
     <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
       <q-item v-for="field in fields" :key="field" v-ripple>
-        <section-form :id="field" v-model="store.report[field as keyof Omit<ReportType, 'id'>]" />
+        <section-form :id="field" v-model="(store.report as Record<string, string>)[field]" />
       </q-item>
     </q-list>
 
@@ -13,17 +13,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 import SectionForm from "./section-form.vue";
 import SaveReport from "./save-report.vue";
 import { useReportStore } from "../store/report";
-import { company_report_fields, industry_report_fields, ReportType } from "@/entities/report/model";
-import { Category } from "@/shared/model/Category";
+import { ReportKeys } from "@/entities/report/model";
+import { computed } from "vue";
 
 const store = useReportStore();
-
-const fields = ref<readonly string[]>(
-  store.category === Category.Company ? company_report_fields : industry_report_fields,
-);
+const fields = computed(() => Object.keys(store.report) as ReportKeys[]);
 </script>
