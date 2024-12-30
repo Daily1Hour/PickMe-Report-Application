@@ -1,5 +1,5 @@
 <template>
-  <div class="column" style="width: 1000px; margin-left: 400px">
+  <div class="column q-mx-auto" style="max-width: 1024px">
     <form @submit="onSubmit">
       <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
         <q-item v-for="(field, index) in form_fields" :key="index" v-ripple>
@@ -24,10 +24,10 @@ import SaveReport from "./save-report.vue";
 import { useReportStore } from "../store/report";
 import { ReportKeys } from "@/entities/report/model";
 
-// 상태 저장소
-const store = useReportStore();
+// 초기 데이터
+const report = useReportStore().report;
 // 폼 필드 키
-const fields = Object.keys(store.report);
+const fields = Object.keys(report).filter((field) => field !== "id");
 
 // 폼 스키마
 const reportSchema = yup.object(
@@ -40,16 +40,14 @@ const reportSchema = yup.object(
 // 폼 유효성 검사
 const { handleSubmit } = useForm({
   validationSchema: reportSchema,
-  initialValues: store.report,
+  initialValues: report,
 });
 
 // 폼 필드
-const form_fields = fields.map((field) => {
-  return {
-    ...useField(field),
-    name: field,
-  };
-});
+const form_fields = fields.map((field) => ({
+  ...useField(field),
+  name: field,
+}));
 
 // 저장 컴포넌트 참조
 const saveReport = ref();
