@@ -3,20 +3,19 @@
     <form @submit="onSubmit">
       <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
         <q-item v-for="(field, index) in form_fields" :key="index" v-ripple>
-          <section-form :id="field.name as ReportKeys" v-model="field.value" />
+          <section-form :id="field.name as ReportKeys" v-model="field.value.value" />
         </q-item>
-
-        <button type="submit">Submit</button>
       </q-list>
 
       <div class="row justify-end" v-for="order in [0, 2]" :key="order" :style="{ order }">
-        <save-report />
+        <save-report ref="saveReport" />
       </div>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
 
@@ -46,15 +45,18 @@ const { handleSubmit } = useForm({
 
 // 폼 필드
 const form_fields = fields.map((field) => {
-  const { value } = useField(field);
   return {
-    value: value.value,
+    ...useField(field),
     name: field,
   };
 });
 
+// 저장 컴포넌트 참조
+const saveReport = ref();
+
 // 폼 제출 핸들러
 const onSubmit = handleSubmit((values) => {
-  console.log("Submitted values:", values);
+  // 저장 컴포넌트의 mutate 함수 호출
+  saveReport.value[0].mutate(values);
 });
 </script>

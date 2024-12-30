@@ -18,10 +18,12 @@ export const map_to_industryReport = (dto?: IndustryDetailDTO, id?: string) =>
     ? new IndustryReport(id, dto.industryType, dto.industryFeatures, dto.industryNews)
     : new IndustryReport(null, "", "", "");
 
-export const map_to_reportDTO = (report: CompanyReport | IndustryReport) => ({
-  category: report instanceof CompanyReport ? Category.Company : Category.Industry,
-  companyDetail: report instanceof CompanyReport ? map_to_companyDetailDTO(report) : null,
-  industryDetail: report instanceof IndustryReport ? map_to_industryDetailDTO(report) : null,
+export const map_to_reportDTO = (category: Category, report: CompanyReport | IndustryReport) => ({
+  category,
+  companyDetail:
+    category === Category.Company ? map_to_companyDetailDTO(report as CompanyReport) : null,
+  industryDetail:
+    category === Category.Industry ? map_to_industryDetailDTO(report as IndustryReport) : null,
 });
 
 export const map_to_companyDetailDTO = (report: CompanyReport): CompanyDetailDTO => ({
