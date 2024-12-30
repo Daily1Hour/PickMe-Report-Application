@@ -25,7 +25,7 @@ watch(
   data,
   (data) => {
     if (!!data) {
-      store.report = data;
+      store.report = Object.assign(store.report, data);
     }
   },
   { immediate: true },
