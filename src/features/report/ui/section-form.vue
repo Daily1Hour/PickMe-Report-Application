@@ -30,14 +30,14 @@ import editorjs from "@/widgets/editorjs.vue";
 import { ReportKeys } from "@/entities/report/model";
 import { sections_map } from "@/shared/trans/ko";
 
-const props = defineProps<{
-  id: ReportKeys;
-}>();
+// 프로퍼티
+const props = defineProps<{ id: ReportKeys }>();
 const model_value = defineModel<any>({ required: true });
-
+// 지역 변수
 const expanded = ref(true);
 const label = computed(() => sections_map[props.id]);
 
+// v-model 업데이트
 const update = (value: any) => {
   model_value.value = JSON.stringify(value);
 };

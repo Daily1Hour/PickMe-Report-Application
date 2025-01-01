@@ -14,6 +14,7 @@ import { QueryKey } from "@/shared/model/QueryKey";
 const route = useRoute();
 const store = useReportStore();
 
+// 리포트 데이터 조회
 const { data } = useQuery<ReportType>({
   queryKey: [QueryKey.Report, store.id, store.category],
   queryFn: () => getReport(route.name as RouteName, store.id, store.category),
@@ -21,6 +22,7 @@ const { data } = useQuery<ReportType>({
   staleTime: 100 * 60 * 5, // 5분
 });
 
+// 리포트 상태 저장소 갱신
 watch(
   data,
   (data) => {
