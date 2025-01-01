@@ -1,7 +1,7 @@
 <template>
-  <load-report :key="$route.fullPath" />
-
   <div v-if="!!store.report" :key="$route.fullPath">
+    <load-report />
+
     <navigation />
 
     <display-report />
