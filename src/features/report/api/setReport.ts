@@ -13,9 +13,9 @@ export default async function setReport(
   const dto = map_to_reportDTO(category, report);
 
   if (route_name === RouteName.New) {
-    await client.post("", dto);
+    return await client.post("", dto);
   } else {
-    await client.put("", dto, {
+    return await client.put("", dto, {
       params: {
         reportId: id,
       },
