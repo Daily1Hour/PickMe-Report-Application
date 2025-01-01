@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, watch, ref } from "vue";
 import { useField, useForm } from "vee-validate";
 import * as yup from "yup";
 
@@ -24,30 +24,34 @@ import SaveReport from "./save-report.vue";
 import { useReportStore } from "../store/report";
 import { ReportKeys } from "@/entities/report/model";
 
-// 초기 데이터
-const report = useReportStore().report;
+// 상태 저장소
+const report = computed(() => useReportStore().report);
+
 // 폼 필드 키
-const fields = Object.keys(report).filter((field) => field !== "id");
+const fields = computed(() => Object.keys(report.value).filter((field) => field !== "id"));
 
 // 폼 스키마
 const reportSchema = yup.object(
-  fields.reduce((acc, key) => {
+  fields.value.reduce((acc, key) => {
     acc[key] = yup.string();
     return acc;
   }, {} as Record<string, yup.StringSchema>),
 );
 
 // 폼 유효성 검사
-const { handleSubmit } = useForm({
+const { handleSubmit, setValues } = useForm({
   validationSchema: reportSchema,
   initialValues: report,
 });
 
-// 폼 필드
-const form_fields = fields.map((field) => ({
-  ...useField(field),
+// 폼 필드 리스트 생성
+const form_fields = fields.value.map((field) => ({
+  ...useField(field), // 필드 속성 구조분해
   name: field,
 }));
+
+// 폼 갱신
+watch(report, (new_report) => setValues(new_report as any), { immediate: true });
 
 // 저장 컴포넌트 참조
 const saveReport = ref();
