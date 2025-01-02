@@ -12,6 +12,7 @@
       </q-list>
 
       <div class="row justify-end" v-for="order in [0, 2]" :key="order" :style="{ order }">
+        <remove-report :id="report.id!" />
         <save-report ref="saveReport" />
       </div>
     </form>
@@ -24,6 +25,7 @@ import { useField, useForm } from "vee-validate";
 
 import SectionForm from "./section-form.vue";
 import SaveReport from "./save-report.vue";
+import RemoveReport from "./remove-report.vue";
 import { useReportStore } from "../store/report";
 import { companySchema, industrySchema } from "../model";
 import { CompanyReport, IndustryReport, report_fields, ReportKeys } from "@/entities/report/model";
