@@ -25,15 +25,24 @@ import { useField, useForm } from "vee-validate";
 import SectionForm from "./section-form.vue";
 import SaveReport from "./save-report.vue";
 import { useReportStore } from "../store/report";
-import { report_schema } from "../model/schema";
-import { report_fields, ReportKeys } from "@/entities/report/model";
+import { companySchema, industrySchema } from "../model";
+import { CompanyReport, IndustryReport, report_fields, ReportKeys } from "@/entities/report/model";
 
 // 상태 저장소에서 데이터 가져오기
 const report = computed(() => useReportStore().report);
 
+// 스키마 동적 정의
+const schema = computed(() => {
+  if (report.value instanceof CompanyReport) {
+    return companySchema;
+  }
+  if (report.value instanceof IndustryReport) {
+    return industrySchema;
+  }
+});
 // 폼 정의
 const { handleSubmit, setValues } = useForm({
-  validationSchema: report_schema,
+  validationSchema: schema,
   initialValues: report,
 });
 
