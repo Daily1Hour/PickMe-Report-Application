@@ -17,38 +17,30 @@
 <script setup lang="ts">
 import { computed, watch, ref } from "vue";
 import { useField, useForm } from "vee-validate";
-import * as yup from "yup";
 
 import SectionForm from "./section-form.vue";
 import SaveReport from "./save-report.vue";
 import { useReportStore } from "../store/report";
-import { company_report_fields, industry_report_fields, ReportKeys } from "@/entities/report/model";
+import { report_schema } from "../model/schema";
+import { report_fields, ReportKeys } from "@/entities/report/model";
 
-// 상태 저장소
+// 상태 저장소에서 데이터 가져오기
 const report = computed(() => useReportStore().report);
 
-// 폼 필드 키
-const fields = computed(() => Object.keys(report.value).filter((field) => field !== "id"));
-
-// 폼 스키마
-const reportSchema = yup.object(
-  fields.value.reduce((acc, key) => {
-    acc[key] = yup.string();
-    return acc;
-  }, {} as Record<string, yup.StringSchema>),
-);
-
-// 폼 유효성 검사
+// 폼 정의
 const { handleSubmit, setValues } = useForm({
-  validationSchema: reportSchema,
+  validationSchema: report_schema,
   initialValues: report,
 });
 
-// 폼 필드 리스트 생성
-const form_fields = [...company_report_fields, ...industry_report_fields].reduce((acc, field) => {
+// 폼 필드 리스트 정의
+const form_fields = report_fields.reduce((acc, field) => {
   acc[field] = useField(field); // 필드 속성 구조분해
   return acc;
 }, {} as Record<string, ReturnType<typeof useField>>);
+
+// 폼 필드 키
+const fields = computed(() => Object.keys(report.value).filter((field) => field !== "id"));
 
 // 폼 갱신
 watch(report, (new_report) => setValues(new_report as any), { immediate: true });
