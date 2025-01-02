@@ -12,13 +12,16 @@ export default async function setReport(
 ) {
   const dto = map_to_reportDTO(category, report);
 
-  if (route_name === RouteName.New) {
-    return await client.post("", dto);
-  } else {
-    return await client.put("", dto, {
-      params: {
-        reportId: id,
-      },
-    });
+  switch (route_name) {
+    case RouteName.New:
+      return await client.post("", dto);
+
+    case RouteName.Detail:
+      return await client.put("", dto, {
+        params: {
+          reportId: id,
+        },
+      });
   }
+  throw new Error("Invalid route");
 }

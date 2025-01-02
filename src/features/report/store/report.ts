@@ -5,6 +5,7 @@ import { useRoute } from "vue-router";
 import { ReportType } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
 
+// 중앙 상태 저장소
 export const useReportStore = defineStore("report", () => {
   const route = useRoute();
 

@@ -25,12 +25,12 @@ import { SectionTab, AddReport, RemoveReport } from "../ui";
 import { useSummaryStore } from "../store/summary";
 import { usePagination } from "@/shared/hook";
 
-// 상태 저장소
-const store = useSummaryStore();
+// 상태 저장소에서 데이터 가져오기
+const summaries = computed(() => useSummaryStore().summaries);
 
 // 최신순 정렬
 const sorted_summaries = computed(() =>
-  store.summaries.toSorted((a, b) => b.updated_at.getTime() - a.updated_at.getTime()),
+  summaries.value.toSorted((a, b) => b.updated_at.getTime() - a.updated_at.getTime()),
 );
 
 // 페이지네이션

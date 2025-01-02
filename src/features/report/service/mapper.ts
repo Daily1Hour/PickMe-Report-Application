@@ -2,21 +2,17 @@ import { CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
 import { CompanyReport, IndustryReport } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
 
-export const map_to_companyReport = (dto?: CompanyDetailDTO, id?: string) =>
-  id && dto
-    ? new CompanyReport(
-        id,
-        dto.companyName,
-        dto.companyFeatures,
-        dto.companyIdealTalent,
-        dto.companyNews,
-      )
-    : new CompanyReport(null, "", "", "", "");
+export const map_to_companyReport = (dto: CompanyDetailDTO, id: string) =>
+  new CompanyReport(
+    id,
+    dto.companyName,
+    dto.companyFeatures,
+    dto.companyIdealTalent,
+    dto.companyNews,
+  );
 
-export const map_to_industryReport = (dto?: IndustryDetailDTO, id?: string) =>
-  id && dto
-    ? new IndustryReport(id, dto.industryType, dto.industryFeatures, dto.industryNews)
-    : new IndustryReport(null, "", "", "");
+export const map_to_industryReport = (dto: IndustryDetailDTO, id: string) =>
+  new IndustryReport(id, dto.industryType, dto.industryFeatures, dto.industryNews);
 
 export const map_to_reportDTO = (category: Category, report: CompanyReport | IndustryReport) => ({
   category,

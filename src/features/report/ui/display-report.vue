@@ -45,22 +45,16 @@ const { handleSubmit, setValues } = useForm({
   validationSchema: schema,
   initialValues: report,
 });
-
 // 폼 필드 리스트 정의
-const form_fields = report_fields.reduce((acc, field) => {
-  acc[field] = useField(field); // 필드 속성 구조분해
-  return acc;
-}, {} as Record<string, ReturnType<typeof useField>>);
+const form_fields = Object.fromEntries(report_fields.map((field) => [field, useField(field)]));
 
 // 폼 필드 키
 const fields = computed(() => Object.keys(report.value).filter((field) => field !== "id"));
-
 // 폼 갱신
 watch(report, (new_report) => setValues(new_report as any), { immediate: true });
 
 // 저장 컴포넌트 참조
 const saveReport = ref();
-
 // 폼 제출 핸들러
 const onSubmit = handleSubmit((values) => {
   // 저장 컴포넌트의 mutate 함수 호출

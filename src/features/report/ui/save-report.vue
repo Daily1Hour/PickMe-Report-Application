@@ -33,7 +33,7 @@ const mutation = useMutation({
   },
 });
 
-// 함수 호출 노출
+// mutate 함수 호출 노출
 defineExpose({
   mutate: mutation.mutate,
 });
