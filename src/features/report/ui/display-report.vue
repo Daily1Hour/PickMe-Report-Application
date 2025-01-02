@@ -1,6 +1,6 @@
 <template>
   <div class="column q-mx-auto" style="max-width: 1024px">
-    <form @submit="onSubmit">
+    <form class="column" @submit="onSubmit">
       <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
         <q-item v-for="(field, index) in fields" :key="index" v-ripple>
           <section-form
@@ -11,9 +11,14 @@
         </q-item>
       </q-list>
 
-      <div class="row justify-end" v-for="order in [0, 2]" :key="order" :style="{ order }">
-        <remove-report :id="report.id!" />
-        <save-report ref="saveReport" />
+      <div
+        class="row justify-end q-gutter-sm"
+        v-for="order in [0, 2]"
+        :key="order"
+        :style="{ order }"
+      >
+        <remove-report v-if="report.id" :id="report.id" />
+        <save-report :is_valid="meta.valid" ref="saveReport" />
       </div>
     </form>
   </div>
@@ -43,7 +48,7 @@ const schema = computed(() => {
   }
 });
 // 폼 정의
-const { handleSubmit, setValues } = useForm({
+const { handleSubmit, setValues, meta } = useForm({
   validationSchema: schema,
   initialValues: report,
 });

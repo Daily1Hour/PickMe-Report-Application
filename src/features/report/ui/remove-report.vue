@@ -1,5 +1,5 @@
 <template>
-  <q-btn flat color="negative" icon="delete" size="xs" @click="confirm = true" />
+  <q-btn color="negative" label="삭제" @click="confirm = true" />
 
   <q-dialog v-model="confirm">
     <q-card>
