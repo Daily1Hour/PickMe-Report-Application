@@ -6,4 +6,6 @@ export interface SummaryDTO {
   title: string;
   createdAt: Date;
   updatedAt: Date;
+  companyName?: string;
+  industryType?: string;
 }
