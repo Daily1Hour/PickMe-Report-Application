@@ -1,8 +1,8 @@
 <template>
   <load-summaries />
 
-  <q-fab persistent color="secondary" icon="menu" direction="down" style="height: 50px">
-    <q-fab-action style="transform: translateX(50%); background: white">
+  <q-fab persistent color="secondary" icon="menu" direction="down">
+    <q-fab-action class="cursor-inherit" color="white" anchor="end">
       <display-summaries />
     </q-fab-action>
   </q-fab>

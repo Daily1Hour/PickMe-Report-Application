@@ -8,6 +8,10 @@ export default class CompanyReport implements IReport {
     public ideal_talent: string,
     public news: string,
   ) {}
+
+  static empty() {
+    return new CompanyReport(null, "", "", "", "");
+  }
 }
 
-export const company_report_keys = Object.keys(new CompanyReport("", "", "", "", ""));
+export const company_report_fields = ["name", "features", "ideal_talent", "news"] as const;

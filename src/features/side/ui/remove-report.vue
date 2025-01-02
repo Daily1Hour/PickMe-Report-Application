@@ -23,17 +23,15 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { deleteReport } from "../api";
 import { QueryKey } from "@/shared/model/QueryKey";
 
-const props = defineProps<{
-  id: string;
-}>();
-
-const queryClient = useQueryClient();
-
+const props = defineProps<{ id: string }>();
 const confirm = ref(false);
 
+const queryClient = useQueryClient();
+// 리포트 삭제
 const mutation = useMutation({
   mutationFn: () => deleteReport(props.id),
   onSuccess: () => {
+    // 삭제 후 사이드 목록 갱신
     queryClient.refetchQueries({ queryKey: [QueryKey.Summaries] });
   },
 });

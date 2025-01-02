@@ -4,7 +4,6 @@
       :to="{
         name: RouteName.Detail,
         params: { id },
-        query: { category, createdAt: created_at.toISOString() },
       }"
     >
       <div class="text-grey">{{ category }}</div>

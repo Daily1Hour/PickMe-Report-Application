@@ -7,6 +7,10 @@ export default class IndustryReport implements IReport {
     public features: string,
     public news: string,
   ) {}
+
+  static empty() {
+    return new IndustryReport(null, "", "", "");
+  }
 }
 
-export const industry_report_keys = Object.keys(new IndustryReport("", "", "", ""));
+export const industry_report_fields = ["type", "features", "news"] as const;

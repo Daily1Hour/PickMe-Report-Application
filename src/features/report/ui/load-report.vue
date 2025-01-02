@@ -14,13 +14,22 @@ import { QueryKey } from "@/shared/model/QueryKey";
 const route = useRoute();
 const store = useReportStore();
 
+// 리포트 데이터 조회
 const { data } = useQuery<ReportType>({
-  queryKey: [QueryKey.Report, store.id],
-  queryFn: () => getReport(store.id || "", store.category, route.name as RouteName),
+  queryKey: [QueryKey.Report, store.id, store.category],
+  queryFn: () => getReport(route.name as RouteName, store.id, store.category),
   retry: false,
+  staleTime: 100 * 60 * 5, // 5분
 });
 
-watch(data, (data) => {
-  store.report = Object.assign(store.report, data);
-});
+// 리포트 상태 저장소 갱신
+watch(
+  data,
+  (data) => {
+    if (!!data) {
+      store.report = data;
+    }
+  },
+  { immediate: true },
+);
 </script>

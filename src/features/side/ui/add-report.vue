@@ -1,13 +1,8 @@
 <template>
   <q-item-section style="align-content: center">
-    <q-icon name="add" />
+    <q-icon name="add" color="secondary" />
     <q-popup-edit v-model="category" auto-save>
-      <q-select
-        v-model="category"
-        :options="category_options"
-        label="카테고리"
-        style="width: 100px"
-      />
+      <q-select v-model="category" :options="category_options" label="카테고리" />
     </q-popup-edit>
   </q-item-section>
 </template>
@@ -26,6 +21,7 @@ const category_options = ref([Category.Company, Category.Industry]);
 watch(
   () => category.value,
   (updated_category) => {
+    // 새 리포트 추가 페이지로 이동
     router.push({ name: RouteName.New, query: { category: updated_category } });
   },
 );
