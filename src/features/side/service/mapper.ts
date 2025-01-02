@@ -7,6 +7,6 @@ export const map_to_summary = (dto: SummaryDTO): Summary => {
     dto.category,
     new Date(dto.createdAt),
     new Date(dto.updatedAt),
-    dto.companyName || dto.industryType,
+    dto.title,
   );
 };
