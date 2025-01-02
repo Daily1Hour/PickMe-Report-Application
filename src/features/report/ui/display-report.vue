@@ -2,8 +2,8 @@
   <div class="column q-mx-auto" style="max-width: 1024px">
     <form @submit="onSubmit">
       <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
-        <q-item v-for="(field, index) in form_fields" :key="index" v-ripple>
-          <section-form :id="field.name as ReportKeys" v-model="field.value.value" />
+        <q-item v-for="(field, index) in fields" :key="index" v-ripple>
+          <section-form :id="field as ReportKeys" v-model="form_fields[field].value.value" />
         </q-item>
       </q-list>
 
@@ -22,7 +22,7 @@ import * as yup from "yup";
 import SectionForm from "./section-form.vue";
 import SaveReport from "./save-report.vue";
 import { useReportStore } from "../store/report";
-import { ReportKeys } from "@/entities/report/model";
+import { company_report_fields, industry_report_fields, ReportKeys } from "@/entities/report/model";
 
 // 상태 저장소
 const report = computed(() => useReportStore().report);
@@ -45,10 +45,10 @@ const { handleSubmit, setValues } = useForm({
 });
 
 // 폼 필드 리스트 생성
-const form_fields = fields.value.map((field) => ({
-  ...useField(field), // 필드 속성 구조분해
-  name: field,
-}));
+const form_fields = [...company_report_fields, ...industry_report_fields].reduce((acc, field) => {
+  acc[field] = useField(field); // 필드 속성 구조분해
+  return acc;
+}, {} as Record<string, ReturnType<typeof useField>>);
 
 // 폼 갱신
 watch(report, (new_report) => setValues(new_report as any), { immediate: true });
