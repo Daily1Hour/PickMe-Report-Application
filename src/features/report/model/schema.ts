@@ -8,4 +8,7 @@ export const report_schema = yup.object({
     acc[key] = yup.string();
     return acc;
   }, {} as Record<string, yup.StringSchema>),
+
+  // 추가 필드 유효성 정의
+  name: yup.string().required("Name is required"),
 });

@@ -3,7 +3,11 @@
     <form @submit="onSubmit">
       <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
         <q-item v-for="(field, index) in fields" :key="index" v-ripple>
-          <section-form :id="field as ReportKeys" v-model="form_fields[field].value.value" />
+          <section-form
+            :id="field as ReportKeys"
+            v-model="form_fields[field].value.value"
+            :error="form_fields[field].errorMessage.value"
+          />
         </q-item>
       </q-list>
 

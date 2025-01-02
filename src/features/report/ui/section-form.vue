@@ -5,6 +5,8 @@
       v-model="model_value"
       :label="label"
       :placeholder="label + '을 입력해주세요.'"
+      :error-message="props.error"
+      :error="!!props.error"
     />
 
     <q-expansion-item
@@ -31,7 +33,7 @@ import { ReportKeys } from "@/entities/report/model";
 import { sections_map } from "@/shared/trans/ko";
 
 // 프로퍼티
-const props = defineProps<{ id: ReportKeys }>();
+const props = defineProps<{ id: ReportKeys; error: any }>();
 const model_value = defineModel<any>({ required: true });
 // 지역 변수
 const expanded = ref(true);
