@@ -4,11 +4,12 @@
 
 ## 🛠️ 기술 스택
 
-[![Vuejs](https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)](https://reactjs.org)
-[![Pinia](https://img.shields.io/badge/🍍_Pinia-FFE286?style=flat-square&logoColor=white)](https://pinia.vuejs.org/)
-[![Vue-Query](https://img.shields.io/badge/Vue_Query-F24551.svg?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDBweCIgaGVpZ2h0PSIxMDBweCIgdmlld0JveD0iMCAwIDI2MS43NiAyMjYuNjkiPgogIDxwYXRoIGZpbGw9IiNmZmQ5NGMiIHN0cm9rZT0iIzAwMmM0YiIgc3Ryb2tlLXdpZHRoPSIzMi42MyIgZD0iTTE1Ni43NyA0Mi43NUwxMjYuNTUgOTUuMSA5Ni4zMiA0Mi43NWgtNDguM2w3OC41MyAxMzYgNzguNTMtMTM2eiIgLz4KICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZjQxNTQiIHN0cm9rZS13aWR0aD0iMTIuNDMiIGQ9Ik0xNTYuNzcgNDIuNzVMMTI2LjU1IDk1LjEgOTYuMzIgNDIuNzVoLTQ4LjNsNzguNTMgMTM2IDc4LjUzLTEzNnoiIC8+Cjwvc3ZnPgo=&style=flat-square)](https://vue-query.vercel.app/)  
+[![Vuejs](https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)](https://vuejs.org/)
+[![Pinia](https://img.shields.io/badge/🍍_Pinia-FFD859?style=flat-square&logoColor=white)](https://pinia.vuejs.org/)
+[![Vue-Query](https://img.shields.io/badge/Vue_Query-FF4955.svg?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMTQiIGhlaWdodD0iMjE0IiBzdHlsZT0ic2hhcGUtcmVuZGVyaW5nOmdlb21ldHJpY1ByZWNpc2lvbjt0ZXh0LXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247aW1hZ2UtcmVuZGVyaW5nOm9wdGltaXplUXVhbGl0eTtmaWxsLXJ1bGU6ZXZlbm9kZDtjbGlwLXJ1bGU6ZXZlbm9kZCI+PHBhdGggc3R5bGU9Im9wYWNpdHk6Ljk1MyIgZmlsbD0iIzA3MmM0YiIgZD0iTS0uNSAxMy41YzI4LjY2OS0uMTY3IDU3LjMzNSAwIDg2IC41QTE3ODMuODk0IDE3ODMuODk0IDAgMCAxIDEwNiA0OC41IDU5NS4yNDUgNTk1LjI0NSAwIDAgMCAxMjYuNSAxNGMyOC45OTgtLjUgNTcuOTk4LS42NjcgODctLjV2MmEyNDQ4MS4xNTQgMjQ0ODEuMTU0IDAgMCAwLTEwNy41IDE4NEE4NzAxNzguMDU4IDg3MDE3OC4wNTggMCAwIDAtLjUgMTYuNXYtM3oiLz48cGF0aCBzdHlsZT0ib3BhY2l0eToxIiBmaWxsPSIjNjYzNDRlIiBkPSJNMTMyLjUgMjQuNWMyMC44MzctMS4zMjggNDEuODM3LTEuMzI4IDYzIDAtLjEyNC42MDctLjQ1Ny45NC0xIDFhOTYxLjYzNiA5NjEuNjM2IDAgMCAwLTYyLTF6Ii8+PHBhdGggc3R5bGU9Im9wYWNpdHk6MSIgZmlsbD0iI2ZiNDA1MyIgZD0iTTEzMi41IDI0LjVjMjAuODQtLjMzIDQxLjUwNy4wMDMgNjIgMWEyMDYxMy4yNzIgMjA2MTMuMjcyIDAgMCAxLTg4LjUgMTUzbC04OC41LTE1M2E2NDEuMjIzIDY0MS4yMjMgMCAwIDEgNjItLjVBMjk3MS40OTEgMjk3MS40OTEgMCAwIDEgMTA2IDY5LjVhNzYxLjI5IDc2MS4yOSAwIDAgMCAyNi41LTQ1eiIvPjxwYXRoIHN0eWxlPSJvcGFjaXR5OjEiIGZpbGw9IiMwYjJkNGIiIGQ9Ik0zOC41IDM3LjVjMTEuMTYtMS4xNiAyMi40OTItMS4zMjYgMzQtLjVBNDkxMC4wNiA0OTEwLjA2IDAgMCAwIDEwNiA5NC41bDMzLjUtNTdhMTQ1LjAwNCAxNDUuMDA0IDAgMCAxIDM0IDAgMTAwMDAuNTY0IDEwMDAwLjU2NCAwIDAgMS02Ny41IDExNiA5NzExLjM1NiA5NzExLjM1NiAwIDAgMC02Ny41LTExNnoiLz48cGF0aCBzdHlsZT0ib3BhY2l0eToxIiBmaWxsPSIjZjZkMzRjIiBkPSJNNTYuNSA0Ni41YzMuNjA2LS4yOSA3LjEwNi4wNDQgMTAuNSAxYTMzMzIuMTgzIDMzMzIuMTgzIDAgMCAwIDM5IDY3IDMzMzYuMDE5IDMzMzYuMDE5IDAgMCAwIDM5LTY3YzMuNzQ0LTEuMTI2IDcuNTc3LTEuMjkzIDExLjUtLjVMMTA2IDEzMy41YTI4MTAuOTcgMjgxMC45NyAwIDAgMS00OS41LTg3eiIvPjwvc3ZnPg==&style=flat-square)](https://tanstack.com/query/latest/docs/framework/vue/overview)
+[![VeeValidate](https://img.shields.io/badge/VeeValidate-065f46.svg?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA2ODcuMzYgNTk1LjI4MDA1Jz48cGF0aCBkPSdtNTcyLjQgMC01Ny40OSA5OS41Ni0xNzEuMjMgMjk2LjU5TDE3Mi40NSA5OS41NmgxMTguMDJsNTMuMjEgOTIuMTQgNTMuMjEtOTIuMTRMNDU0LjM2IDBIMGwzNDMuNjggNTk1LjI4TDY4Ny4zNiAwWicgZmlsbD0nIzA2ZDc3Yic+PC9wYXRoPjwvc3ZnPgo=&style=flat-square)](https://vee-validate.logaretm.com/v4/)  
 [![Quasar](https://img.shields.io/badge/Quasar-050A14?style=flat-square&logo=quasar&logoColor=white)](https://quasar.dev/)
-[![Editorjs](https://img.shields.io/badge/+_Editor.js-1CADFE?style=flat-square&logoColor=white)](https://aws.amazon.com/ko/cognito/)  
+[![Editorjs](https://img.shields.io/badge/+_Editor.js-1CADFE?style=flat-square&logoColor=white)](https://editorjs.io/)  
 [![Single-SPA](https://img.shields.io/badge/Single_SPA-gray.svg?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgODExLjIxIj48c2NyaXB0IHhtbG5zPSIiIGlkPSJjdXN0b20tdXNlcmFnZW50LXN0cmluZy1wYWdlLXNjcmlwdCIvPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZWU2ODlmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIj48ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTEwOC41NCwyMDAuMzMsNTI4LjQyLDQ3MC40Miw0NDkuMjcsNTgzLjg0LDU5LjM5LDM4Ni4yMmw0OS4xNS0xODUuODlNNzcuNCwxMjAuMTIsMCw0MTIuODZsNDY1LjYxLDIzNkw2MDAsNDU2LjI4LDc3LjQsMTIwLjEyWiIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSIyODQuODQgNTU2LjM0IDQ2NS42IDY0OC44NSAxNTQuNjkgODExLjIxIDI4NC44NCA1NTYuMzQiLz48cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iNDAxLjA2IDMyOC44NSA3Ny40IDEyMC4xMiA1NjkuMDkgMCA0MDEuMDYgMzI4Ljg1Ii8+PC9nPjwvZz48L3N2Zz4=&style=flat-square&logoColor)](https://single-spa.js.org/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://ko.vite.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=javascript&logoColor=white)](https://www.typescriptlang.org/)  
@@ -36,40 +37,49 @@ PickMe-Report-Application
 │  │  │  └─ model
 │  │  │     ├─ index.ts
 │  │  │     ├─ CompanyReport.ts
-│  │  │     └─ IndustryReport.ts
+│  │  │     ├─ IndustryReport.ts
+│  │  │     └─ Report.ts # 인터페이스
 │  │  └─ summary
 │  │     └─ model
-│  │        └─ index.ts
+│  │        ├─ index.ts
+│  │        └─ Summary.ts
 │  ├─ features # 기능 구현체 레이어
 │  │  ├─ report
 │  │  │  ├─ index.vue
 │  │  │  ├─ api
 │  │  │  │  ├─ index.ts
 │  │  │  │  ├─ dto.ts # 데이터전송객체
-│  │  │  │  ├─ mapper.ts # dto -> model
 │  │  │  │  ├─ getReport.ts
 │  │  │  │  └─ setReport.ts
+│  │  │  ├─ model # 폼 스키마마
+│  │  │  │  ├─ index.ts
+│  │  │  │  ├─ companySchema.ts
+│  │  │  │  └─ industrySchema.ts
+│  │  │  ├─ service
+│  │  │  │  └─ mapper.ts # dto ↔ 엔터티 헬퍼 메서드
 │  │  │  ├─ store # 중앙상태저장소
 │  │  │  │  └─ report.ts
 │  │  │  └─ ui
 │  │  │     ├─ index.ts
+│  │  │     ├─ display-report.vue # 리포트 뷰 컴포넌트
 │  │  │     ├─ load-report.vue # 리포트 데이터 로딩
 │  │  │     ├─ save-report.vue # 리포트 데이터 저장
 │  │  │     ├─ navigation.vue # 페이지 앵커 컴포넌트
-│  │  │     ├─ report.vue # 리포트 컴포넌트
 │  │  │     └─ section-form.vue # 폼 컴포넌트
 │  │  └─ side
 │  │     ├─ index.vue
 │  │     ├─ api
 │  │     │  ├─ index.ts
 │  │     │  ├─ dto.ts
-│  │     │  ├─ mapper.ts
 │  │     │  ├─ getSummaries.ts
 │  │     │  └─ deleteReport.ts
+│  │     ├─ service
+│  │     │  └─ mapper.ts
 │  │     ├─ store
 │  │     │  └─ summary.ts
 │  │     └─ ui
 │  │        ├─ index.ts
+│  │        ├─ display-summaries.vue # 요약 뷰 컴포넌트트
 │  │        ├─ load-summaries.vue # 요약 데이터 로딩
 │  │        ├─ add-report.vue # 리포트 생성
 │  │        ├─ remove-report.vue # 리포트 삭제
@@ -79,6 +89,9 @@ PickMe-Report-Application
 │  ├─ shared # 공유 레이어
 │  │  ├─ api
 │  │  │  └─ client.ts # Axios 인스턴스
+│  │  ├─ hook # 커스텀 훅
+│  │  │  ├─ index.ts
+│  │  │  └─ usePagination.ts # 페이지네이션 훅
 │  │  ├─ model # 열거형 객체
 │  │  │  ├─ Category.ts
 │  │  │  ├─ QueryKey.ts
