@@ -4,7 +4,6 @@
       :to="{
         name: RouteName.Detail,
         params: { id },
-        query: { category },
       }"
     >
       <div class="text-grey">{{ category }}</div>
