@@ -1,5 +1,5 @@
 import { ReportDTO } from "./dto";
-import { map_to_companyReport, map_to_industryReport } from "@/features/report/api/mapper";
+import { map_to_companyReport, map_to_industryReport } from "@/features/report/service/mapper";
 import client from "@/shared/api/client";
 import { Category } from "@/shared/model/Category";
 import { RouteName } from "@/shared/model/RouteName";

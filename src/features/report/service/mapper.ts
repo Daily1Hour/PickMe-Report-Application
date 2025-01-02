@@ -1,4 +1,4 @@
-import { CompanyDetailDTO, IndustryDetailDTO } from "./dto";
+import { CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
 import { CompanyReport, IndustryReport } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
 

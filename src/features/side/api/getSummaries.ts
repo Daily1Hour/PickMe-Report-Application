@@ -1,5 +1,5 @@
 import client from "@/shared/api/client";
-import { map_to_summary } from "./mapper";
+import { map_to_summary } from "../service/mapper";
 import { SummaryDTO } from "./dto";
 
 export default async function getSummaries() {
