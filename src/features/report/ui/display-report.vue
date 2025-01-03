@@ -1,5 +1,5 @@
 <template>
-  <div class="column q-mx-auto" style="max-width: 1024px">
+  <div>
     <form class="column" @submit="onSubmit">
       <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
         <q-item v-for="(field, index) in fields" :key="index" v-ripple>
