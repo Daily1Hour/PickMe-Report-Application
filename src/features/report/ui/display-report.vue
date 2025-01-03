@@ -11,26 +11,17 @@
         </q-item>
       </q-list>
 
-      <div
-        class="row justify-end q-gutter-sm"
-        v-for="order in [0, 2]"
-        :key="order"
-        :style="{ order }"
-      >
-        <remove-report v-if="report.id" :id="report.id" />
-        <save-report :is_valid="meta.valid" ref="saveReport" />
-      </div>
+      <actions-report :id="report.id" :is_valid="meta.valid" ref="actions_report" />
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useField, useForm } from "vee-validate";
 
 import SectionForm from "./section-form.vue";
-import SaveReport from "./save-report.vue";
-import RemoveReport from "./remove-report.vue";
+import ActionsReport from "./actions-report.vue";
 import { useReportStore } from "../store/report";
 import { companySchema, industrySchema } from "../model";
 import { CompanyReport, IndustryReport, report_fields, ReportKeys } from "@/entities/report/model";
@@ -60,11 +51,10 @@ const fields = computed(() => Object.keys(report.value).filter((field) => field 
 // 폼 갱신
 watch(report, (new_report) => setValues(new_report as any), { immediate: true });
 
-// 저장 컴포넌트 참조
-const saveReport = ref();
+// 액션 컴포넌트 참조
+const actions_report = ref();
 // 폼 제출 핸들러
 const onSubmit = handleSubmit((values) => {
-  // 저장 컴포넌트의 mutate 함수 호출
-  saveReport.value[0].mutate(values);
+  actions_report.value.onSubmit(values);
 });
 </script>
