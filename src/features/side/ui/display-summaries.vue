@@ -5,7 +5,12 @@
         <add-report />
       </q-item>
 
-      <q-item v-for="summary in current_items" :key="summary.id" clickable v-ripple>
+      <q-item
+        v-for="summary in current_items"
+        :key="summary.updated_at.getTime()"
+        clickable
+        v-ripple
+      >
         <section-tab :summary="summary" />
       </q-item>
     </q-list>
