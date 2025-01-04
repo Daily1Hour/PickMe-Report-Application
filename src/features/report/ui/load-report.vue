@@ -1,4 +1,11 @@
-<template></template>
+<template>
+  <q-inner-loading
+    :showing="isLoading"
+    label="Please wait..."
+    label-class="text-teal"
+    label-style="font-size: 1.1em"
+  />
+</template>
 
 <script setup lang="ts">
 import { watch } from "vue";
@@ -15,7 +22,7 @@ const route = useRoute();
 const store = useReportStore();
 
 // 리포트 데이터 조회
-const { data } = useQuery<ReportType>({
+const { data, isLoading } = useQuery<ReportType>({
   queryKey: [QueryKey.Report, store.id, store.category],
   queryFn: () => getReport(route.name as RouteName, store.id, store.category),
   retry: false,

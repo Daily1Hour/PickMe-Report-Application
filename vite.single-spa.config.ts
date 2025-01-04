@@ -4,6 +4,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import vitePluginSingleSpa, { SingleSpaPluginOptions } from "vite-plugin-single-spa";
 import vue from "@vitejs/plugin-vue";
 import { quasar } from "@quasar/vite-plugin";
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js"
 
 // https://github.com/WJSoftware/vite-plugin-single-spa
 export default defineConfig(({ mode }) => {
@@ -42,6 +43,7 @@ export default defineConfig(({ mode }) => {
             quasar({
                 // Quasar 플러그인 적용
             }),
+            cssInjectedByJsPlugin(), // css 파일을 js 파일에 삽입
         ],
         build: {
             // cssMinify: false, // css 코드 압축 여부

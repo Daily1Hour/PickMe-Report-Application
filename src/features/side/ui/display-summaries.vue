@@ -7,8 +7,6 @@
 
       <q-item v-for="summary in current_items" :key="summary.id" clickable v-ripple>
         <section-tab :summary="summary" />
-
-        <remove-report :id="summary.id" />
       </q-item>
     </q-list>
 
@@ -21,7 +19,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { SectionTab, AddReport, RemoveReport } from "../ui";
+import { SectionTab, AddReport } from "../ui";
 import { useSummaryStore } from "../store/summary";
 import { usePagination } from "@/shared/hook";
 

@@ -1,8 +1,9 @@
 <template>
-  <q-btn type="submit" label="저장" />
+  <q-btn type="submit" label="저장" :color="color" />
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
@@ -16,6 +17,10 @@ const route = useRoute();
 const router = useRouter();
 const queryClient = useQueryClient();
 const store = useReportStore();
+
+// 유효 여부에 따른 버튼 색상
+const { is_valid } = defineProps<{ is_valid: boolean }>();
+const color = computed(() => (is_valid ? "green-7" : "grey-3"));
 
 const mutation = useMutation({
   mutationFn: (values: ReportType) =>
