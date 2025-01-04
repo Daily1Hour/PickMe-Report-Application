@@ -33,7 +33,7 @@ const mutation = useMutation({
     router.push({
       name: RouteName.Detail,
       params: { id },
-      query: { category: store.category },
+      state: { category: store.category },
     });
   },
 });

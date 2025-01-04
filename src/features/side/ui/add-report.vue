@@ -22,7 +22,7 @@ watch(
   () => category.value,
   (updated_category) => {
     // 새 리포트 추가 페이지로 이동
-    router.push({ name: RouteName.New, query: { category: updated_category } });
+    router.push({ name: RouteName.New, state: { category: updated_category } });
   },
 );
 </script>
