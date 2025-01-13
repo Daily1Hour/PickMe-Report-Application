@@ -46,6 +46,7 @@ export default defineConfig(({ mode }) => {
             cssInjectedByJsPlugin(), // css 파일을 js 파일에 삽입
         ],
         build: {
+            target: "esnext",
             // cssMinify: false, // css 코드 압축 여부
             // minify: false, // 빌드시 코드 압축 여부
             cssCodeSplit: false, // css 코드 분할 여부
