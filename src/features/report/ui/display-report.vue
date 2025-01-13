@@ -11,7 +11,7 @@
         </q-item>
       </q-list>
 
-      <actions-report :id="report.id" :is_valid="meta.valid" ref="actions_report" />
+      <actions-report :report_id="report.id" :is_valid="meta.valid" ref="actions_report" />
     </form>
   </div>
 </template>
