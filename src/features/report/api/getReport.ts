@@ -28,7 +28,7 @@ export default async function getReport(route_name: RouteName, id?: string, cate
       throw new Error("Failed to fetch report");
 
     case RouteName.New:
-      return category === Category.Company ? CompanyReport.empty() : IndustryReport.empty();
+      return category === Category.Industry ? IndustryReport.empty() : CompanyReport.empty();
 
     default:
       throw new Error("Invalid route");
