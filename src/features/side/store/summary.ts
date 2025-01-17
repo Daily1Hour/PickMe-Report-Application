@@ -7,5 +7,8 @@ import { Summary } from "@/entities/summary/model";
 export const useSummaryStore = defineStore("summary", () => {
   const summaries = ref<Summary[]>([]);
 
-  return { summaries };
+  // 검색어
+  const search = ref<string>("");
+
+  return { summaries, search };
 });
