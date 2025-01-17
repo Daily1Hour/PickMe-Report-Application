@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-end q-gutter-sm" v-for="order in [0, 2]" :key="order" :style="{ order }">
+  <div class="fixed-top-right q-ma-md row justify-end q-gutter-sm">
     <remove-report v-if="report_id" :id="report_id" />
     <save-report :is_valid="is_valid" ref="save_report" />
   </div>
