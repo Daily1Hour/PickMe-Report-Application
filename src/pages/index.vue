@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="lhh LpR lff" class="q-my-md">
+  <q-layout view="lhh LpR lff">
     <side />
-    <report />
+    <report class="q-ma-md" />
   </q-layout>
 </template>
 

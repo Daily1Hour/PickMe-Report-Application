@@ -1,7 +1,13 @@
 <template>
-  <q-btn class="fixed" flat icon="menu" @click="is_show = !is_show" />
+  <div class="fixed z-max q-px-md row justify-between items-center">
+    <q-btn flat icon="menu" @click="is_show = !is_show" />
 
-  <q-drawer v-model="is_show" class="q-my-xl" show-if-above side="left" bordered>
+    <div class="text-h6 text-bold">목록</div>
+
+    <q-btn flat disable icon="search" />
+  </div>
+
+  <q-drawer v-model="is_show" class="q-my-xl" :width="250" show-if-above side="left" bordered>
     <slot />
   </q-drawer>
 </template>
@@ -13,7 +19,7 @@ const is_show = ref(true);
 </script>
 
 <style scoped>
-.q-btn {
-  z-index: 1001;
+.fixed {
+  width: 250px;
 }
 </style>

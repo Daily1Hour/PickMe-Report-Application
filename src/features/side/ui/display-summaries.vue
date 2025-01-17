@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md" @click="(event: Event) => event.stopPropagation()">
-    <q-list bordered separator>
+  <div @click="(event: Event) => event.stopPropagation()">
+    <q-list separator>
       <q-item clickable v-ripple>
         <add-report />
       </q-item>
