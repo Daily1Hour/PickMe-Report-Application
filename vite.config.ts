@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => {
             quasar(), // Quasar 플러그인 적용
         ],
         build: {
+            target: "esnext",
             emptyOutDir: false,
         },
         resolve: {

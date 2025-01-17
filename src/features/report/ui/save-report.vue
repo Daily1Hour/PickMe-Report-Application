@@ -1,5 +1,5 @@
 <template>
-  <q-btn type="submit" label="저장" :color="color" />
+  <q-btn type="submit" :disable="!is_valid" :color="color" label="저장" />
 </template>
 
 <script setup lang="ts">
@@ -20,7 +20,7 @@ const store = useReportStore();
 
 // 유효 여부에 따른 버튼 색상
 const { is_valid } = defineProps<{ is_valid: boolean }>();
-const color = computed(() => (is_valid ? "green-7" : "grey-3"));
+const color = computed(() => (is_valid ? "teal-7" : "teal-3"));
 
 const mutation = useMutation({
   mutationFn: (values: ReportType) =>

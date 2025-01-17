@@ -1,7 +1,3 @@
 <template>
-  <ReportsPage />
+  <router-view />
 </template>
-
-<script setup>
-import ReportsPage from "@/pages";
-</script>

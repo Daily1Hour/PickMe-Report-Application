@@ -3,6 +3,7 @@
     <q-input
       v-if="id === 'name' || id === 'type'"
       v-model="model_value"
+      class="q-px-xl text-h5"
       :label="label"
       :placeholder="label + '을 입력해주세요.'"
       :error-message="props.error"
@@ -12,12 +13,18 @@
     <q-expansion-item
       v-else
       v-model="expanded"
+      class="text-h5"
       :label="label"
       :caption="label + '을 입력해주세요.'"
     >
       <q-card>
         <q-card-section>
-          <editorjs placeholder="빈칸" :modelValue="model_value" @update="update" />
+          <editorjs
+            class="text-body2"
+            placeholder="빈칸"
+            :modelValue="model_value"
+            @update="update"
+          />
         </q-card-section>
       </q-card>
     </q-expansion-item>

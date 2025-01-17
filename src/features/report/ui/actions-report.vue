@@ -1,6 +1,6 @@
 <template>
-  <div class="row justify-end q-gutter-sm" v-for="order in [0, 2]" :key="order" :style="{ order }">
-    <remove-report v-if="id" :id="id" />
+  <div class="fixed-top-right q-ma-md row justify-end q-gutter-sm">
+    <remove-report v-if="report_id" :id="report_id" />
     <save-report :is_valid="is_valid" ref="save_report" />
   </div>
 </template>
@@ -12,7 +12,7 @@ import SaveReport from "./save-report.vue";
 import RemoveReport from "./remove-report.vue";
 import { ReportType } from "@/entities/report/model";
 
-const { id, is_valid } = defineProps<{ id: string | null; is_valid: boolean }>();
+const { report_id, is_valid } = defineProps<{ report_id: string | null; is_valid: boolean }>();
 
 // 저장 컴포넌트 참조
 const save_report = ref();

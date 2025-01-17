@@ -1,4 +1,4 @@
-import { computed, ref } from "vue";
+import { computed, shallowRef } from "vue";
 import { defineStore } from "pinia";
 import { useRoute } from "vue-router";
 
@@ -10,8 +10,8 @@ export const useReportStore = defineStore("report", () => {
   const route = useRoute();
 
   const id = computed(() => route.params.id as string);
-  const category = computed(() => history.state.category as Category);
-  const report = ref<ReportType>({} as ReportType);
+  const category = computed(() => route.query.category as Category);
+  const report = shallowRef<ReportType>({} as ReportType);
 
   return { report, category, id };
 });

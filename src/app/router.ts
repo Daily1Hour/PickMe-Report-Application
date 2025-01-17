@@ -8,17 +8,12 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: RouteName.Home,
+      name: RouteName.New,
       component: ReportsPage,
     },
     {
       path: "/:id",
       name: RouteName.Detail,
-      component: ReportsPage,
-    },
-    {
-      path: "/new",
-      name: RouteName.New,
       component: ReportsPage,
     },
   ],

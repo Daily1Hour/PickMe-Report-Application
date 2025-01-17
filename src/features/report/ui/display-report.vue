@@ -1,7 +1,7 @@
 <template>
   <div>
     <form class="column" @submit="onSubmit">
-      <q-list class="q-ma-md rounded-borders" bordered separator style="order: 1">
+      <q-list class="q-ma-md rounded-borders" bordered separator>
         <q-item v-for="(field, index) in fields" :key="index" v-ripple>
           <section-form
             :id="field as ReportKeys"
@@ -11,7 +11,7 @@
         </q-item>
       </q-list>
 
-      <actions-report :id="report.id" :is_valid="meta.valid" ref="actions_report" />
+      <actions-report :report_id="report.id" :is_valid="meta.valid" ref="actions_report" />
     </form>
   </div>
 </template>

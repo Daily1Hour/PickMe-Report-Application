@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md" @click="(event: Event) => event.stopPropagation()">
-    <q-list bordered separator>
+  <div @click="(event: Event) => event.stopPropagation()">
+    <q-list separator>
       <q-item clickable v-ripple>
         <add-report />
       </q-item>
@@ -30,12 +30,19 @@ import { usePagination } from "@/shared/hook";
 
 // 상태 저장소에서 데이터 가져오기
 const summaries = computed(() => useSummaryStore().summaries);
+const search = computed(() => useSummaryStore().search);
 
 // 최신순 정렬
 const sorted_summaries = computed(() =>
   summaries.value.toSorted((a, b) => b.updated_at.getTime() - a.updated_at.getTime()),
 );
 
+const searched_summaries = computed(() =>
+  sorted_summaries.value.filter((summary) =>
+    summary.name?.toLowerCase().includes(search.value.toLowerCase()),
+  ),
+);
+
 // 페이지네이션
-const { current_page, current_items, max_page } = usePagination(sorted_summaries, 5);
+const { current_page, current_items, max_page } = usePagination(searched_summaries, 5);
 </script>
