@@ -40,7 +40,7 @@ jobs:
 
       - name: Build Vite project
         env:
-          VITE_PARCEL_URL: ${{ secrets.VITE_PARCEL_URL }} # 환경 변수 설정
+          VITE_AUTH_PARCEL_URL: ${{ secrets.VITE_AUTH_PARCEL_URL }} # 환경 변수 설정
         run: |
           npm run build # Vite 프로젝트 빌드
           npm run build:single-spa # single-spa 앱 빌드
