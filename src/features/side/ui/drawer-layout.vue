@@ -1,24 +1,22 @@
 <template>
-  <div class="bg-grey-4">
-    <div class="fixed z-max q-px-md row items-center">
-      <q-btn class="z-max" flat icon="menu" @click="is_show = !is_show" />
+  <div class="fixed z-max q-px-md row items-center">
+    <q-btn class="z-max" flat icon="menu" @click="is_show = !is_show" />
 
-      <div v-show="is_title_show" class="absolute-center text-h6 text-bold">목록</div>
+    <div v-show="is_title_show" class="absolute-center text-h6 text-bold">목록</div>
 
-      <search-summaries v-show="is_show" flat />
-    </div>
-
-    <q-drawer
-      v-model="is_show"
-      class="q-py-xl bg-grey-3"
-      :width="250"
-      show-if-above
-      side="left"
-      bordered
-    >
-      <slot />
-    </q-drawer>
+    <search-summaries v-show="is_show" flat />
   </div>
+
+  <q-drawer
+    v-model="is_show"
+    class="q-py-xl bg-grey-3"
+    :width="250"
+    show-if-above
+    side="left"
+    bordered
+  >
+    <slot />
+  </q-drawer>
 </template>
 
 <script setup lang="ts">
