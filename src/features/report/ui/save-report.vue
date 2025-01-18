@@ -7,11 +7,11 @@ import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-import { setReport } from "../api";
+import { setReport, SetType } from "../api";
+import { map_report_to_dto } from "../service";
 import { useReportStore } from "../store/report";
 import { ReportType } from "@/entities/report/model";
-import { RouteName } from "@/shared/model/RouteName";
-import { QueryKey } from "@/shared/model/QueryKey";
+import { RouteName, QueryKey } from "@/shared/model";
 
 const route = useRoute();
 const router = useRouter();
@@ -23,8 +23,18 @@ const { is_valid } = defineProps<{ is_valid: boolean }>();
 const color = computed(() => (is_valid ? "teal-7" : "teal-3"));
 
 const mutation = useMutation({
-  mutationFn: (values: ReportType) =>
-    setReport(route.name as RouteName, store.category, store.id, values),
+  mutationFn: (report: ReportType) => {
+    // 엔터티 모델을 DTO로 변환
+    const dto = map_report_to_dto(store.category, report);
+
+    // 라우터에 Set 타입 할당
+    const type = {
+      [RouteName.New]: SetType.Make,
+      [RouteName.Detail]: SetType.Edit,
+    }[route.name as RouteName];
+
+    return setReport(type, dto, store.id);
+  },
   onSuccess: ({ data: { reportId: id } }) => {
     // 사이드 목록 갱신
     queryClient.refetchQueries({ queryKey: [QueryKey.Summaries] });
@@ -33,7 +43,6 @@ const mutation = useMutation({
     router.push({
       name: RouteName.Detail,
       params: { id },
-      state: { category: store.category },
     });
   },
 });

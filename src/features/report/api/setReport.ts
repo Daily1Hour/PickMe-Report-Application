@@ -1,27 +1,21 @@
-import { ReportType } from "@/entities/report/model";
-import { map_to_reportDTO } from "@/features/report/service/mapper";
+import { ResponseDTO, RequestDTO } from "./dto";
 import client from "@/shared/api/client";
-import { Category } from "@/shared/model/Category";
-import { RouteName } from "@/shared/model/RouteName";
 
-export default async function setReport(
-  route_name: RouteName,
-  category: Category,
-  id: string,
-  report: ReportType,
-) {
-  const dto = map_to_reportDTO(category, report);
+export default async function setReport(setType: SetType, dto: RequestDTO, id?: string) {
+  switch (setType) {
+    case SetType.Make:
+      return await client.post<ResponseDTO>("", dto);
 
-  switch (route_name) {
-    case RouteName.New:
-      return await client.post("", dto);
-
-    case RouteName.Detail:
+    case SetType.Edit:
       return await client.put("", dto, {
         params: {
           reportId: id,
         },
       });
   }
-  throw new Error("Invalid route");
+}
+
+export const enum SetType {
+  Make,
+  Edit,
 }

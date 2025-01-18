@@ -24,8 +24,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { SectionTab, AddReport } from "../ui";
 import { useSummaryStore } from "../store/summary";
+import { SectionTab, AddReport } from "../ui";
 import { usePagination } from "@/shared/hook";
 
 // 상태 저장소에서 데이터 가져오기

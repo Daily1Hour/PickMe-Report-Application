@@ -13,29 +13,31 @@ import { useRoute } from "vue-router";
 import { useQuery } from "@tanstack/vue-query";
 
 import { getReport } from "../api";
+import { ReportDTO } from "../api/dto";
+import { map_dto_to_report } from "../service";
 import { useReportStore } from "../store/report";
-import { ReportType } from "@/entities/report/model";
-import { RouteName } from "@/shared/model/RouteName";
-import { QueryKey } from "@/shared/model/QueryKey";
+import { RouteName, QueryKey } from "@/shared/model";
 
 const route = useRoute();
 const store = useReportStore();
 
 // 리포트 데이터 조회
-const { data, isLoading } = useQuery<ReportType>({
-  queryKey: [QueryKey.Report, store.id, store.category],
-  queryFn: () => getReport(route.name as RouteName, store.id, store.category),
+const { data, isLoading } = useQuery<ReportDTO>({
+  queryKey: [QueryKey.Report, store.id],
+  queryFn: () => getReport(store.id),
   retry: false,
+  enabled: !!store.id,
   staleTime: 100 * 60 * 5, // 5분
 });
 
-// 리포트 상태 저장소 갱신
 watch(
   data,
-  (data) => {
-    if (!!data) {
-      store.report = data;
-    }
+  (dto) => {
+    // dto를 엔터티 모델로 변환
+    const report = map_dto_to_report(route.name as RouteName, dto, store.id, store.category);
+
+    // 리포트 상태 저장소 갱신
+    store.report = report;
   },
   { immediate: true },
 );

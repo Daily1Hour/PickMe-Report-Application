@@ -11,8 +11,7 @@
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
-import { Category } from "@/shared/model/Category";
-import { RouteName } from "@/shared/model/RouteName";
+import { Category, RouteName } from "@/shared/model";
 
 const router = useRouter();
 const category = ref<Category>();

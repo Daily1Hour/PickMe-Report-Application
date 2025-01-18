@@ -1,9 +1,15 @@
-import { Category } from "@/shared/model/Category";
+import { Category } from "@/shared/model";
 
 export interface ReportDTO {
   category: Category;
   createdAt: Date;
   updatedAt: Date;
+  companyDetail?: CompanyDetailDTO;
+  industryDetail?: IndustryDetailDTO;
+}
+
+export interface RequestDTO {
+  category: Category;
   companyDetail?: CompanyDetailDTO;
   industryDetail?: IndustryDetailDTO;
 }
@@ -19,4 +25,8 @@ export interface IndustryDetailDTO {
   industryType: string;
   industryFeatures: string;
   industryNews: string;
+}
+
+export interface ResponseDTO {
+  reportId: string;
 }

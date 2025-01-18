@@ -18,7 +18,7 @@
 import { computed, defineProps } from "vue";
 
 import { Summary } from "@/entities/summary/model";
-import { RouteName } from "@/shared/model/RouteName";
+import { RouteName } from "@/shared/model";
 
 const props = defineProps<{ summary: Summary }>();
 const { id, category, name, created_at } = props.summary;

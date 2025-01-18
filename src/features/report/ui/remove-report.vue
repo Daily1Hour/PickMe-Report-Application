@@ -24,8 +24,7 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { deleteReport } from "../api";
 import { useReportStore } from "../store/report";
 import { ReportType } from "@/entities/report/model";
-import { QueryKey } from "@/shared/model/QueryKey";
-import { RouteName } from "@/shared/model/RouteName";
+import { QueryKey, RouteName } from "@/shared/model";
 
 const router = useRouter();
 const store = useReportStore();
@@ -44,7 +43,7 @@ const mutation = useMutation({
     queryClient.refetchQueries({ queryKey: [QueryKey.Summaries] });
 
     // 홈으로 이동
-    router.push({ name: RouteName.Home });
+    router.push({ name: RouteName.New });
   },
 });
 </script>
