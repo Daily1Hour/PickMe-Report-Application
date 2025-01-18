@@ -1,5 +1,6 @@
-import { map_to_companyReport, map_to_industryReport } from "./mapper";
-import { ReportDTO } from "../api/dto";
+import { plainToInstance } from "class-transformer";
+
+import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "../api/dto";
 import { IndustryReport, CompanyReport, ReportType } from "@/entities/report/model";
 import { Category } from "@/shared/model/Category";
 import { RouteName } from "@/shared/model/RouteName";
@@ -29,3 +30,20 @@ export default (
       return category === Category.Industry ? IndustryReport.empty() : CompanyReport.empty();
   }
 };
+
+export const map_to_companyReport = (dto: CompanyDetailDTO, id: string) =>
+  plainToInstance(CompanyReport, {
+    id,
+    name: dto.companyName,
+    features: dto.companyFeatures,
+    ideal_talent: dto.companyIdealTalent,
+    news: dto.companyNews,
+  });
+
+export const map_to_industryReport = (dto: IndustryDetailDTO, id: string) =>
+  plainToInstance(IndustryReport, {
+    id,
+    type: dto.industryType,
+    features: dto.industryFeatures,
+    news: dto.industryNews,
+  });
