@@ -24,7 +24,13 @@ import { useReportStore } from "../store/report";
 import { companySchema, industrySchema } from "../model";
 import SectionForm from "./section-form.vue";
 import ActionsReport from "./actions-report.vue";
-import { CompanyReport, IndustryReport, report_fields, ReportKeys } from "@/entities/report/model";
+import {
+  CompanyReport,
+  IndustryReport,
+  report_fields,
+  ReportKeys,
+  ReportType,
+} from "@/entities/report/model";
 
 // 상태 저장소에서 데이터 가져오기
 const report = computed(() => useReportStore().report);
@@ -39,9 +45,9 @@ const schema = computed(() => {
   }
 });
 // 폼 정의
-const { handleSubmit, setValues, meta } = useForm({
+const { handleSubmit, setValues, meta } = useForm<ReportType>({
   validationSchema: schema,
-  initialValues: report,
+  initialValues: report.value,
 });
 // 폼 필드 리스트 정의
 const form_fields = Object.fromEntries(report_fields.map((field) => [field, useField(field)]));

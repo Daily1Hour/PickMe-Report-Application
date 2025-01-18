@@ -30,6 +30,7 @@
     "@editorjs/list": "^2.0.2",
     "@quasar/extras": "^1.16.15",
     "@tanstack/vue-query": "^5.62.8",
+    "@vee-validate/zod": "^4.15.0",
     "axios": "^1.7.9",
     "class-transformer": "^0.5.1",
     "pinia": "^2.3.0",
@@ -39,6 +40,6 @@
     "vite-plugin-css-injected-by-js": "^3.5.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
-    "yup": "^1.6.1"
+    "zod": "^3.24.1"
   }
 }
