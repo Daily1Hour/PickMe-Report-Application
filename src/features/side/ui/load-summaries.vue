@@ -5,6 +5,7 @@ import { watch } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 
 import { getSummaries } from "../api";
+import { map_to_summary } from "../service/mapper";
 import { useSummaryStore } from "../store/summary";
 import { QueryKey } from "@/shared/model/QueryKey";
 
@@ -20,7 +21,11 @@ const { data } = useQuery({
 });
 
 // 페칭 완료 후 상태 저장
-watch(data, (summaries) => {
+watch(data, (summaryDTOs) => {
+  // dto를 엔터티 모델로 변환
+  const summaries = summaryDTOs.map(map_to_summary) || [];
+
+  // 요약 상태 저장소 갱신
   store.summaries = summaries;
 });
 </script>
