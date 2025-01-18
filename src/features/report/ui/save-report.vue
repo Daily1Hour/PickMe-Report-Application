@@ -8,6 +8,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import { setReport } from "../api";
+import { map_report_to_dto } from "../service";
 import { useReportStore } from "../store/report";
 import { ReportType } from "@/entities/report/model";
 import { RouteName } from "@/shared/model/RouteName";
@@ -23,8 +24,12 @@ const { is_valid } = defineProps<{ is_valid: boolean }>();
 const color = computed(() => (is_valid ? "teal-7" : "teal-3"));
 
 const mutation = useMutation({
-  mutationFn: (values: ReportType) =>
-    setReport(route.name as RouteName, store.category, store.id, values),
+  mutationFn: (report: ReportType) => {
+    // 엔터티 모델을 DTO로 변환
+    const dto = map_report_to_dto(store.category, report);
+
+    return setReport(route.name as RouteName, dto, store.id);
+  },
   onSuccess: ({ data: { reportId: id } }) => {
     // 사이드 목록 갱신
     queryClient.refetchQueries({ queryKey: [QueryKey.Summaries] });
@@ -33,7 +38,6 @@ const mutation = useMutation({
     router.push({
       name: RouteName.Detail,
       params: { id },
-      state: { category: store.category },
     });
   },
 });

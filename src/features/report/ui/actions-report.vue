@@ -19,6 +19,6 @@ const save_report = ref();
 // 폼 제출 핸들러
 defineExpose({
   // 저장 컴포넌트의 mutate 함수 호출
-  onSubmit: (values: ReportType) => save_report.value[0].mutate(values),
+  onSubmit: (values: ReportType) => save_report.value.mutate(values),
 });
 </script>

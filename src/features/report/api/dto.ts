@@ -8,6 +8,12 @@ export interface ReportDTO {
   industryDetail?: IndustryDetailDTO;
 }
 
+export interface RequestDTO {
+  category: Category;
+  companyDetail?: CompanyDetailDTO;
+  industryDetail?: IndustryDetailDTO;
+}
+
 export interface CompanyDetailDTO {
   companyName: string;
   companyFeatures: string;
