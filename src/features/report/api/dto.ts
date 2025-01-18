@@ -26,3 +26,7 @@ export interface IndustryDetailDTO {
   industryFeatures: string;
   industryNews: string;
 }
+
+export interface ResponseDTO {
+  reportId: string;
+}
