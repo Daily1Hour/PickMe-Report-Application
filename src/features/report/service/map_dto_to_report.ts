@@ -2,8 +2,7 @@ import { plainToInstance } from "class-transformer";
 
 import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "../api/dto";
 import { IndustryReport, CompanyReport, ReportType } from "@/entities/report/model";
-import { Category } from "@/shared/model/Category";
-import { RouteName } from "@/shared/model/RouteName";
+import { Category, RouteName } from "@/shared/model";
 
 export default (
   route_name: RouteName,
@@ -13,9 +12,7 @@ export default (
 ): ReportType => {
   switch (route_name) {
     case RouteName.Detail:
-      const updated_category = dto?.category;
-
-      switch (updated_category) {
+      switch (dto?.category) {
         case Category.Company:
           return map_to_companyReport(dto!.companyDetail!, id!);
 
@@ -31,7 +28,7 @@ export default (
   }
 };
 
-export const map_to_companyReport = (dto: CompanyDetailDTO, id: string) =>
+const map_to_companyReport = (dto: CompanyDetailDTO, id: string) =>
   plainToInstance(CompanyReport, {
     id,
     name: dto.companyName,
@@ -40,7 +37,7 @@ export const map_to_companyReport = (dto: CompanyDetailDTO, id: string) =>
     news: dto.companyNews,
   });
 
-export const map_to_industryReport = (dto: IndustryDetailDTO, id: string) =>
+const map_to_industryReport = (dto: IndustryDetailDTO, id: string) =>
   plainToInstance(IndustryReport, {
     id,
     type: dto.industryType,

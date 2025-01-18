@@ -11,8 +11,7 @@ import { setReport, SetType } from "../api";
 import { map_report_to_dto } from "../service";
 import { useReportStore } from "../store/report";
 import { ReportType } from "@/entities/report/model";
-import { RouteName } from "@/shared/model/RouteName";
-import { QueryKey } from "@/shared/model/QueryKey";
+import { RouteName, QueryKey } from "@/shared/model";
 
 const route = useRoute();
 const router = useRouter();

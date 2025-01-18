@@ -9,8 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { LoadReport, Navigation, DisplayReport } from "./ui";
 import { useReportStore } from "./store/report";
+import { LoadReport, Navigation, DisplayReport } from "./ui";
 
 const store = useReportStore();
 </script>

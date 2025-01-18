@@ -24,8 +24,7 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { deleteReport } from "../api";
 import { useReportStore } from "../store/report";
 import { ReportType } from "@/entities/report/model";
-import { QueryKey } from "@/shared/model/QueryKey";
-import { RouteName } from "@/shared/model/RouteName";
+import { QueryKey, RouteName } from "@/shared/model";
 
 const router = useRouter();
 const store = useReportStore();

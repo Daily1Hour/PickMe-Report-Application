@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/vue-query";
 import { getSummaries } from "../api";
 import { map_to_summary } from "../service/mapper";
 import { useSummaryStore } from "../store/summary";
-import { QueryKey } from "@/shared/model/QueryKey";
+import { QueryKey } from "@/shared/model";
 
 // 상태 저장소
 const store = useSummaryStore();
