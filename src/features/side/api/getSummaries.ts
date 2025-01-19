@@ -1,5 +1,4 @@
 import client from "@/shared/api/client";
-import { map_to_summary } from "../service/mapper";
 import { SummaryDTO } from "./dto";
 
 export default async function getSummaries() {
@@ -8,7 +7,7 @@ export default async function getSummaries() {
 
   if (result.status === 200) {
     // DTO를 엔터티 모델로 변환
-    return result.data.map(map_to_summary) || [];
+    return result.data;
   }
   return [];
 }
