@@ -1,5 +1,5 @@
 <template>
-  <form class="column" @submit="handleSubmit(onSubmit)">
+  <form class="column" @submit="onSubmit">
     <slot />
 
     <actions-report :report_id="report.id" :is_valid="meta.valid" ref="actions_report" />
@@ -40,7 +40,7 @@ watch(report, (new_report) => setValues(new_report as any), { immediate: true })
 // 액션 컴포넌트 참조
 const actions_report = ref();
 // 폼 제출 핸들러
-const onSubmit = (values: ReportType) => {
+const onSubmit = handleSubmit((values) => {
   actions_report.value.onSubmit(values);
-};
+});
 </script>
