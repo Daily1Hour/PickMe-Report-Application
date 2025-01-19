@@ -20,10 +20,10 @@
 import { computed, ref, watch } from "vue";
 import { useField, useForm } from "vee-validate";
 
-import SectionForm from "./section-form.vue";
-import ActionsReport from "./actions-report.vue";
 import { useReportStore } from "../store/report";
 import { companySchema, industrySchema } from "../model";
+import SectionForm from "./section-form.vue";
+import ActionsReport from "./actions-report.vue";
 import { CompanyReport, IndustryReport, report_fields, ReportKeys } from "@/entities/report/model";
 
 // 상태 저장소에서 데이터 가져오기

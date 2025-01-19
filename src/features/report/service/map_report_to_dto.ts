@@ -1,6 +1,6 @@
 import { CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
 import { CompanyReport, IndustryReport } from "@/entities/report/model";
-import { Category } from "@/shared/model/Category";
+import { Category } from "@/shared/model";
 
 export default (category: Category, report: CompanyReport | IndustryReport) => {
   if (report.hasOwnProperty("name")) {
