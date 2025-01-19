@@ -13,13 +13,14 @@
 <script setup lang="ts">
 import { useField } from "vee-validate";
 import { computed } from "vue";
+import { storeToRefs } from "pinia";
 
 import { report_fields, ReportKeys } from "@/entities/report/model";
 import { useReportStore } from "../store/report";
 import SectionField from "./section-field.vue";
 
 // 상태 저장소에서 현재 report 데이터 읽음
-const report = computed(() => useReportStore().report);
+const { report } = storeToRefs(useReportStore());
 
 // 폼 필드 리스트 정의
 const form_fields = Object.fromEntries(report_fields.map((field) => [field, useField(field)]));

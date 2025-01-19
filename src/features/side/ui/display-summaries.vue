@@ -23,14 +23,14 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { storeToRefs } from "pinia";
 
 import { useSummaryStore } from "../store/summary";
 import { SectionTab, AddReport } from "../ui";
 import { usePagination } from "@/shared/hook";
 
 // 상태 저장소에서 데이터 가져오기
-const summaries = computed(() => useSummaryStore().summaries);
-const search = computed(() => useSummaryStore().search);
+const { summaries, search } = storeToRefs(useSummaryStore());
 
 // 최신순 정렬
 const sorted_summaries = computed(() =>

@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import { setReport, SetType } from "../api";
@@ -16,7 +17,7 @@ import { RouteName, QueryKey } from "@/shared/model";
 const route = useRoute();
 const router = useRouter();
 const queryClient = useQueryClient();
-const store = useReportStore();
+const { id, category } = storeToRefs(useReportStore());
 
 // 유효 여부에 따른 버튼 색상
 const { is_valid } = defineProps<{ is_valid: boolean }>();
@@ -25,7 +26,7 @@ const color = computed(() => (is_valid ? "teal-7" : "teal-3"));
 const mutation = useMutation({
   mutationFn: (report: ReportType) => {
     // 엔터티 모델을 DTO로 변환
-    const dto = map_report_to_dto(store.category, report);
+    const dto = map_report_to_dto(category.value, report);
 
     // 라우터에 Set 타입 할당
     const type = {
@@ -33,7 +34,7 @@ const mutation = useMutation({
       [RouteName.Detail]: SetType.Edit,
     }[route.name as RouteName];
 
-    return setReport(type, dto, store.id);
+    return setReport(type, dto, id.value);
   },
   onSuccess: ({ data: { reportId: id } }) => {
     // 사이드 목록 갱신

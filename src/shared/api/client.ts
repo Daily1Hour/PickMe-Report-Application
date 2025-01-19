@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL;
-const AUTH_PARCEL_URL = import.meta.env.VITE_AUTH_PARCEL_URL;
+import { accessToken } from "./tokens";
 
-const { getTokens } = await import(/* @vite-ignore */ AUTH_PARCEL_URL);
-const { accessToken } = await getTokens();
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default axios.create({
   baseURL: API_URL,
