@@ -7,7 +7,7 @@ import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-import { setReport } from "../api";
+import { setReport, SetType } from "../api";
 import { map_report_to_dto } from "../service";
 import { useReportStore } from "../store/report";
 import { ReportType } from "@/entities/report/model";
@@ -28,7 +28,13 @@ const mutation = useMutation({
     // 엔터티 모델을 DTO로 변환
     const dto = map_report_to_dto(store.category, report);
 
-    return setReport(route.name as RouteName, dto, store.id);
+    // 라우터에 Set 타입 할당
+    const type = {
+      [RouteName.New]: SetType.Make,
+      [RouteName.Detail]: SetType.Edit,
+    }[route.name as RouteName];
+
+    return setReport(type, dto, store.id);
   },
   onSuccess: ({ data: { reportId: id } }) => {
     // 사이드 목록 갱신
