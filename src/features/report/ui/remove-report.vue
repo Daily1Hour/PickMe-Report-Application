@@ -44,7 +44,7 @@ const mutation = useMutation({
     queryClient.refetchQueries({ queryKey: [QueryKey.Summaries] });
 
     // 홈으로 이동
-    router.push({ name: RouteName.Home });
+    router.push({ name: RouteName.New });
   },
 });
 </script>
