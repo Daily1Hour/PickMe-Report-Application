@@ -1,5 +1,11 @@
 <template>
-  <q-input v-model="search" class="absolute" input-class="text-right">
+  <q-input
+    v-model="search"
+    class="absolute"
+    input-class="text-right"
+    @focus="searching = true"
+    @blur="searching = false"
+  >
     <template v-slot:append>
       <q-icon v-if="search === ''" name="search" />
       <q-icon v-else name="clear" class="cursor-pointer" @click="search = ''" />
@@ -11,7 +17,7 @@
 import { storeToRefs } from "pinia";
 import { useSummaryStore } from "../store/summary";
 
-const { search } = storeToRefs(useSummaryStore());
+const { search, searching } = storeToRefs(useSummaryStore());
 </script>
 
 <style scoped>
