@@ -9,6 +9,7 @@
 <script setup lang="ts">
 import { useForm } from "vee-validate";
 import { computed, ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 
 import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/model";
 import { companySchema, industrySchema } from "../model";
@@ -16,7 +17,7 @@ import { useReportStore } from "../store/report";
 import ActionsReport from "./actions-report.vue";
 
 // 상태 저장소에서 현재 report 데이터 읽음
-const report = computed(() => useReportStore().report);
+const { report } = storeToRefs(useReportStore());
 
 // 스키마 동적 정의
 const schema = computed(() => {
