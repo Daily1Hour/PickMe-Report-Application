@@ -1,5 +1,5 @@
 <template>
-  <div class="q-ma-md q-mt-xl fixed-left" style="z-index: 5">
+  <div class="q-ma-md q-mt-xl fixed-right" title="네비게이션">
     <q-tabs class="bg-white" vertical bordered separator>
       <q-route-tab v-for="section in sections" :href="'#' + section" clickable v-ripple>
         {{ sections_map[section] }}
