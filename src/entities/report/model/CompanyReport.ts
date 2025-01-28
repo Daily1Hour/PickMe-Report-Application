@@ -14,6 +14,8 @@ export default class CompanyReport implements IReport {
   }
 
   static get keys() {
-    return Object.keys(CompanyReport.empty()) as (keyof CompanyReport)[];
+    return Object.keys(CompanyReport.empty()).filter(
+      (key) => key !== "id",
+    ) as (keyof CompanyReport)[];
   }
 }

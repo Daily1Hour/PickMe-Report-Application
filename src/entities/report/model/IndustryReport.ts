@@ -13,6 +13,8 @@ export default class IndustryReport implements IReport {
   }
 
   static get keys() {
-    return Object.keys(IndustryReport.empty()) as (keyof IndustryReport)[];
+    return Object.keys(IndustryReport.empty()).filter(
+      (key) => key !== "id",
+    ) as (keyof IndustryReport)[];
   }
 }
