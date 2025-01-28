@@ -2,6 +2,14 @@
 
 > Single-Spa Application 구성
 
+## 🚩 목차
+
+- [🛠️ 기술 스택](#%EF%B8%8F-기술-스택)
+- [🎨 스크린샷](#-스크린샷)
+- [🧩 컴포넌트 구성](#-컴포넌트-구성)
+- [🚀 실행 방법](#-실행-방법)
+- [📂 폴더 구조](#-폴더-구조)
+
 ## 🛠️ 기술 스택
 
 [![Vuejs](https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)](https://vuejs.org/)
@@ -27,17 +35,19 @@
 
 ## 🚀 실행 방법
 
-### 의존성 설치
-
-`npm install`
-
 ### 개발 서버 실행
 
-`npm run dev`
+```sh
+$ npm install
+$ npm run dev
+```
 
 ### Single-SPA 애플리케이션 빌드
 
-`npm run build:single-spa`
+```sh
+$ npm install
+$ npm run build:single-spa
+```
 
 ## 📂 폴더 구조
 
@@ -83,11 +93,14 @@ PickMe-Report-Application
 │  │  │  │  ├─ index.ts
 │  │  │  │  ├─ companySchema.ts
 │  │  │  │  └─ industrySchema.ts
-│  │  │  ├─ service # dto ↔ 엔터티 헬퍼 메서드
+│  │  │  ├─ service # 엔터티 ↔ dto/form 헬퍼 메서드
 │  │  │  │  ├─ index.ts
 │  │  │  │  ├─ map_dto_to_report.ts
-│  │  │  │  └─ map_report_to_dto.ts
+│  │  │  │  ├─ map_form_to_report.ts
+│  │  │  │  ├─ map_report_to_dto.ts
+│  │  │  │  └─ map_report_to_form.ts
 │  │  │  ├─ store # 중앙상태저장소
+│  │  │  │  ├─ index.ts
 │  │  │  │  └─ report.ts
 │  │  │  └─ ui
 │  │  │     ├─ index.ts
@@ -107,8 +120,10 @@ PickMe-Report-Application
 │  │     │  ├─ dto.ts
 │  │     │  └─ getSummaries.ts
 │  │     ├─ service
+│  │     │  ├─ index.ts
 │  │     │  └─ mapper.ts
 │  │     ├─ store
+│  │     │  ├─ index.ts
 │  │     │  └─ summary.ts
 │  │     └─ ui
 │  │        ├─ index.ts
@@ -122,11 +137,13 @@ PickMe-Report-Application
 │  │  └─ index.vue
 │  ├─ shared # 공유 레이어
 │  │  ├─ api
-│  │  │  └─ client.ts # Axios 인스턴스
+│  │  │  ├─ client.ts # Axios 인스턴스
+│  │  │  └─ tokens.ts # 토큰 3종종
 │  │  ├─ hook # 커스텀 훅
 │  │  │  ├─ index.ts
 │  │  │  └─ usePagination.ts # 페이지네이션 훅
 │  │  ├─ model # 열거형 객체
+│  │  │  ├─ index.ts
 │  │  │  ├─ Category.ts
 │  │  │  ├─ QueryKey.ts
 │  │  │  └─ RouteName.ts
