@@ -15,6 +15,7 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { CompanyReport, IndustryReport } from "@/entities/report/model";
 import { companySchema, industrySchema, ReportSchemaType } from "../model";
 import { useReportStore } from "../store/report";
+import map_report_to_form from "../service/map_report_to_form";
 import ActionsReport from "./actions-report.vue";
 
 // 상태 저장소에서 현재 report 데이터 읽음
@@ -33,11 +34,11 @@ const schema = computed(() => {
 // 폼 정의
 const { handleSubmit, setValues, meta } = useForm<ReportSchemaType>({
   validationSchema: toTypedSchema(schema.value),
-  initialValues: report.value,
+  initialValues: map_report_to_form(report.value),
 });
 
 // 폼 갱신
-watch(report, (new_report) => setValues(new_report as any), { immediate: true });
+watch(report, (new_report) => setValues(map_report_to_form(new_report)), { immediate: true });
 
 // 액션 컴포넌트 참조
 const actions_report = ref();
