@@ -1,7 +1,7 @@
 <template>
-  <div :id="id" class="q-pa-md fit">
+  <div :id="field" class="q-pa-md fit">
     <q-input
-      v-if="id === 'name' || id === 'type'"
+      v-if="field === 'name' || field === 'type'"
       v-model="model_value"
       class="q-px-xl text-h5"
       :label="label"
@@ -20,6 +20,7 @@
       <q-card>
         <q-card-section>
           <editorjs
+            :key="key"
             class="text-body2"
             placeholder="빈칸"
             :modelValue="model_value"
@@ -40,11 +41,12 @@ import { sections_map } from "@/shared/trans/ko";
 import { ReportKeys } from "@/entities/report/model";
 
 // 프로퍼티
-const props = defineProps<{ id: ReportKeys; error: any }>();
+const props = defineProps<{ field: ReportKeys; error: any }>();
 const model_value = defineModel<any>({ required: true });
+const key = computed(() => JSON.stringify(model_value.value));
 // 지역 변수
 const expanded = ref(true);
-const label = computed(() => sections_map[props.id]);
+const label = computed(() => sections_map[props.field]);
 
 // v-model 업데이트
 const update = (value: any) => {
