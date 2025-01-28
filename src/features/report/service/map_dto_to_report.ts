@@ -9,7 +9,7 @@ export default (
   dto?: ReportDTO,
   id?: string,
   category?: Category,
-): ReportType => {
+): ReportType | null => {
   switch (route_name) {
     case RouteName.Detail:
       switch (dto?.category) {
@@ -20,7 +20,7 @@ export default (
           return map_to_industryReport(dto!.industryDetail!, id!);
 
         default:
-          return CompanyReport.empty();
+          return null; // 데이터 불러오기 전 상태
       }
 
     case RouteName.New:

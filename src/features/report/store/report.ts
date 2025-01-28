@@ -13,7 +13,7 @@ export default defineStore("report", () => {
 
   const id = computed(() => route.params.id as string);
   const category = computed(() => (route.query.category as Category) || Category.Company);
-  const report = shallowRef<ReportType>();
+  const report = shallowRef<ReportType | null>();
 
   // 스키마 동적 정의
   const schema = computed(() => {
