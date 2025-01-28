@@ -13,7 +13,7 @@ import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 
 import { CompanyReport, IndustryReport } from "@/entities/report/model";
-import { companySchema, industrySchema } from "../model";
+import { companySchema, industrySchema, ReportSchemaType } from "../model";
 import { useReportStore } from "../store/report";
 import ActionsReport from "./actions-report.vue";
 
@@ -31,7 +31,7 @@ const schema = computed(() => {
   throw new Error("Invalid report type");
 });
 // 폼 정의
-const { handleSubmit, setValues, meta } = useForm({
+const { handleSubmit, setValues, meta } = useForm<ReportSchemaType>({
   validationSchema: toTypedSchema(schema.value),
   initialValues: report.value,
 });

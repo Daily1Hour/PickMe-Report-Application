@@ -1,11 +1,14 @@
-import { z } from "zod";
+import { z, ZodTypeAny } from "zod";
+
+import { IndustryReport } from "@/entities/report/model";
 
 const industrySchema = z.object({
-  id: z.string().nullable(),
-  // 추가 필드 유효성 정의
+  ...IndustryReport.keys.reduce((acc, key) => {
+    acc[key] = z.string().optional();
+    return acc;
+  }, {} as Record<keyof IndustryReport, ZodTypeAny>),
+
   type: z.string().min(1, { message: "This is required" }),
-  features: z.string().optional(),
-  news: z.string().optional(),
 });
 
 export default industrySchema;
