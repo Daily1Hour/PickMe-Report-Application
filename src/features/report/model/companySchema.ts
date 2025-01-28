@@ -1,12 +1,12 @@
 import { z, ZodTypeAny } from "zod";
 import { toTypedSchema } from "@vee-validate/zod";
 
-import { company_report_fields } from "@/entities/report/model";
+import { CompanyReport } from "@/entities/report/model";
 
 export default toTypedSchema(
   z.object({
     // 기본 필드 유효성 정의
-    ...company_report_fields.reduce((acc, key) => {
+    ...CompanyReport.keys.reduce((acc, key) => {
       acc[key] = z.string().optional();
       return acc;
     }, {} as Record<string, ZodTypeAny>),

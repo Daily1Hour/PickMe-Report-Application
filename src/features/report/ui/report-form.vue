@@ -15,7 +15,7 @@ import { useField } from "vee-validate";
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 
-import { report_fields, ReportKeys } from "@/entities/report/model";
+import { CompanyReport, IndustryReport, ReportKeys } from "@/entities/report/model";
 import { useReportStore } from "../store/report";
 import SectionField from "./section-field.vue";
 
@@ -23,7 +23,9 @@ import SectionField from "./section-field.vue";
 const { report } = storeToRefs(useReportStore());
 
 // 폼 필드 리스트 정의
-const form_fields = Object.fromEntries(report_fields.map((field) => [field, useField(field)]));
+const form_fields = Object.fromEntries(
+  [...CompanyReport.keys, ...IndustryReport.keys].map((field) => [field, useField(field)]),
+);
 
 // 폼 필드 키
 const fields = computed(

@@ -11,6 +11,8 @@ export default class IndustryReport implements IReport {
   static empty() {
     return new IndustryReport(null, "", "", "");
   }
-}
 
-export const industry_report_fields = ["type", "features", "news"] as const;
+  static get keys() {
+    return Object.keys(IndustryReport.empty()) as (keyof IndustryReport)[];
+  }
+}

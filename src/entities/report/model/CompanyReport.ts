@@ -12,6 +12,8 @@ export default class CompanyReport implements IReport {
   static empty() {
     return new CompanyReport(null, "", "", "", "");
   }
-}
 
-export const company_report_fields = ["name", "features", "ideal_talent", "news"] as const;
+  static get keys() {
+    return Object.keys(CompanyReport.empty()) as (keyof CompanyReport)[];
+  }
+}
