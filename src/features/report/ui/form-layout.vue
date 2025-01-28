@@ -7,11 +7,12 @@
 </template>
 
 <script setup lang="ts">
-import { useForm } from "vee-validate";
 import { computed, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
+import { useForm } from "vee-validate";
+import { toTypedSchema } from "@vee-validate/zod";
 
-import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/model";
+import { CompanyReport, IndustryReport } from "@/entities/report/model";
 import { companySchema, industrySchema } from "../model";
 import { useReportStore } from "../store/report";
 import ActionsReport from "./actions-report.vue";
@@ -27,10 +28,11 @@ const schema = computed(() => {
   if (report.value instanceof IndustryReport) {
     return industrySchema;
   }
+  throw new Error("Invalid report type");
 });
 // 폼 정의
-const { handleSubmit, setValues, meta } = useForm<ReportType>({
-  validationSchema: schema,
+const { handleSubmit, setValues, meta } = useForm({
+  validationSchema: toTypedSchema(schema.value),
   initialValues: report.value,
 });
 

@@ -1,17 +1,14 @@
-import { z, ZodTypeAny } from "zod";
-import { toTypedSchema } from "@vee-validate/zod";
+import { z } from "zod";
 
-import { CompanyReport } from "@/entities/report/model";
+const companySchema = z.object({
+  id: z.string().nullable(),
+  // 추가 필드 유효성 정의
+  name: z.string().min(1, { message: "This is required" }),
+  features: z.string().optional(),
+  ideal_talent: z.string().optional(),
+  news: z.string().optional(),
+});
 
-export default toTypedSchema(
-  z.object({
-    // 기본 필드 유효성 정의
-    ...CompanyReport.keys.reduce((acc, key) => {
-      acc[key] = z.string().optional();
-      return acc;
-    }, {} as Record<string, ZodTypeAny>),
+export default companySchema;
 
-    // 추가 필드 유효성 정의
-    name: z.string().min(1, { message: "This is required" }),
-  }),
-);
+export type CompanySchemaType = z.infer<typeof companySchema>;
