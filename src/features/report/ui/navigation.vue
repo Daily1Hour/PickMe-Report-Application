@@ -11,9 +11,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { useReportStore } from "../store/report";
-import { ReportKeys } from "@/entities/report/model";
 import { sections_map } from "@/shared/trans/ko";
+import { ReportKeys } from "@/entities/report/model";
+import { useReportStore } from "../store";
 
 const store = useReportStore();
 // 네비게이션 섹션 리스트

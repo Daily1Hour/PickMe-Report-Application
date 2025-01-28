@@ -16,7 +16,7 @@ import { storeToRefs } from "pinia";
 import { useField } from "vee-validate";
 
 import { CompanyReport, IndustryReport, ReportKeys } from "@/entities/report/model";
-import { useReportStore } from "../store/report";
+import { useReportStore } from "../store";
 import SectionField from "./section-field.vue";
 
 // 상태 저장소에서 현재 report 데이터 읽음

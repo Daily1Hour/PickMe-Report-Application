@@ -8,7 +8,7 @@ import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/mod
 import { companySchema, industrySchema } from "../model";
 
 // 중앙 상태 저장소
-export const useReportStore = defineStore("report", () => {
+export default defineStore("report", () => {
   const route = useRoute();
 
   const id = computed(() => route.params.id as string);

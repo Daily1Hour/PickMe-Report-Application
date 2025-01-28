@@ -1,5 +1,5 @@
-import { SummaryDTO } from "./dto";
 import client from "@/shared/api/client";
+import { SummaryDTO } from "./dto";
 
 export default async function getSummaries() {
   // 사이드바에 표시할 요약 정보 GET 요청

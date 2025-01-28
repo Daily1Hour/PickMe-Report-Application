@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 
-import { useReportStore } from "./store/report";
+import { useReportStore } from "./store";
 import { LoadReport, Navigation, DisplayReport } from "./ui";
 
 const { report } = storeToRefs(useReportStore());

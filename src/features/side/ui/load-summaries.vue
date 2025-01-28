@@ -5,8 +5,8 @@ import { watch } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 
 import { QueryKey } from "@/shared/model";
-import { useSummaryStore } from "../store/summary";
-import { map_to_summary } from "../service/mapper";
+import { useSummaryStore } from "../store";
+import { map_to_summary } from "../service";
 import { getSummaries } from "../api";
 
 // 상태 저장소

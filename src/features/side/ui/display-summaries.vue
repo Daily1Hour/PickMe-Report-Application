@@ -26,8 +26,9 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 
 import { usePagination } from "@/shared/hook";
-import { useSummaryStore } from "../store/summary";
-import { SectionTab, AddReport } from "../ui";
+import { useSummaryStore } from "../store";
+import AddReport from "./add-report.vue";
+import SectionTab from "./section-tab.vue";
 
 // 상태 저장소에서 데이터 가져오기
 const { summaries, search } = storeToRefs(useSummaryStore());

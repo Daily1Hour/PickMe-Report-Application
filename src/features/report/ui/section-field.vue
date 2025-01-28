@@ -35,9 +35,8 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import editorjs from "@/widgets/editorjs.vue"; // editorjs vue용 헬퍼 컴포넌트
-
 import { sections_map } from "@/shared/trans/ko";
+import editorjs from "@/widgets/editorjs.vue"; // editorjs vue용 헬퍼 컴포넌트
 import { ReportKeys } from "@/entities/report/model";
 
 // 프로퍼티

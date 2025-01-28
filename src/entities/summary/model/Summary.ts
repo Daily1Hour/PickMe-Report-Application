@@ -1,4 +1,4 @@
-import { Category } from "@/shared/model/Category";
+import { Category } from "@/shared/model";
 
 export class Summary {
   constructor(
