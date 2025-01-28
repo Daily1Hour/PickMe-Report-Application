@@ -1,7 +1,7 @@
 import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/model";
 import { CompanySchemaType, IndustrySchemaType, ReportSchemaType } from "../model";
 
-export default function map_report_to_form(report: ReportType): ReportSchemaType {
+export default (report: ReportType): ReportSchemaType => {
   if (report instanceof CompanyReport) {
     return report as CompanySchemaType;
   }
@@ -11,4 +11,4 @@ export default function map_report_to_form(report: ReportType): ReportSchemaType
   }
 
   throw new Error("Invalid report type");
-}
+};

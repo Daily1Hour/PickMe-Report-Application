@@ -3,14 +3,6 @@ import { CompanyReport, IndustryReport } from "@/entities/report/model";
 import { Category } from "@/shared/model";
 
 export default (category: Category, report: CompanyReport | IndustryReport) => {
-  if (report.hasOwnProperty("name")) {
-    const { id, name, features, ideal_talent, news } = report as CompanyReport;
-    report = new CompanyReport(id, name, features, ideal_talent, news);
-  } else {
-    const { id, type, features, news } = report as IndustryReport;
-    report = new IndustryReport(id, type, features, news);
-  }
-
   return {
     category,
     companyDetail: report instanceof CompanyReport ? map_to_companyDetailDTO(report) : undefined,
