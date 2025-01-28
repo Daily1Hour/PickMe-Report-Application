@@ -1,8 +1,8 @@
 import { plainToInstance } from "class-transformer";
 
-import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "../api/dto";
-import { IndustryReport, CompanyReport, ReportType } from "@/entities/report/model";
 import { Category, RouteName } from "@/shared/model";
+import { IndustryReport, CompanyReport, ReportType } from "@/entities/report/model";
+import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "../api/dto";
 
 export default (
   route_name: RouteName,

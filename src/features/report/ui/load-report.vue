@@ -13,11 +13,11 @@ import { useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useQuery } from "@tanstack/vue-query";
 
+import { RouteName, QueryKey } from "@/shared/model";
+import { useReportStore } from "../store/report";
+import { map_dto_to_report } from "../service";
 import { getReport } from "../api";
 import { ReportDTO } from "../api/dto";
-import { map_dto_to_report } from "../service";
-import { useReportStore } from "../store/report";
-import { RouteName, QueryKey } from "@/shared/model";
 
 const route = useRoute();
 const { id, category, report } = storeToRefs(useReportStore());
@@ -31,10 +31,11 @@ const { data, isLoading } = useQuery<ReportDTO>({
   staleTime: 100 * 60 * 5, // 5분
 });
 
+// 리포트 데이터 갱신
 watch(
   data,
   (dto) => {
-    // dto를 엔터티 모델로 변환
+    // dto → 엔터티 모델
     report.value = map_dto_to_report(route.name as RouteName, dto, id.value, category.value);
   },
   { immediate: true },

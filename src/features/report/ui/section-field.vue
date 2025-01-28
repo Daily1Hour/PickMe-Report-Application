@@ -33,11 +33,11 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-// editorjs vue용 헬퍼 컴포넌트트
-import editorjs from "@/widgets/editorjs.vue";
 
-import { ReportKeys } from "@/entities/report/model";
+import editorjs from "@/widgets/editorjs.vue"; // editorjs vue용 헬퍼 컴포넌트
+
 import { sections_map } from "@/shared/trans/ko";
+import { ReportKeys } from "@/entities/report/model";
 
 // 프로퍼티
 const props = defineProps<{ id: ReportKeys; error: any }>();

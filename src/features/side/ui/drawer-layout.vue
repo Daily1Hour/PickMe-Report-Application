@@ -28,7 +28,6 @@ import SearchSummaries from "./search-summaries.vue";
 
 const { searching } = storeToRefs(useSummaryStore());
 const is_show = ref(true);
-
 const is_title_show = computed(() => is_show.value && !searching.value);
 </script>
 

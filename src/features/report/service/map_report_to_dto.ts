@@ -1,6 +1,6 @@
-import { CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
-import { CompanyReport, IndustryReport } from "@/entities/report/model";
 import { Category } from "@/shared/model";
+import { CompanyReport, IndustryReport } from "@/entities/report/model";
+import { CompanyDetailDTO, IndustryDetailDTO } from "../api/dto";
 
 export default (category: Category, report: CompanyReport | IndustryReport) => {
   return {

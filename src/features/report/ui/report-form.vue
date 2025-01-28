@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import { useField } from "vee-validate";
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
+import { useField } from "vee-validate";
 
 import { CompanyReport, IndustryReport, ReportKeys } from "@/entities/report/model";
 import { useReportStore } from "../store/report";

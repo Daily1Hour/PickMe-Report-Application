@@ -1,5 +1,6 @@
-import { ResponseDTO, RequestDTO } from "./dto";
+import { RouteName } from "@/shared/model";
 import client from "@/shared/api/client";
+import { ResponseDTO, RequestDTO } from "./dto";
 
 export default async function setReport(setType: SetType, dto: RequestDTO, id?: string) {
   switch (setType) {
@@ -15,7 +16,12 @@ export default async function setReport(setType: SetType, dto: RequestDTO, id?: 
   }
 }
 
-export const enum SetType {
+const enum SetType {
   Make,
   Edit,
 }
+
+export const typeMap = {
+  [RouteName.New]: SetType.Make,
+  [RouteName.Detail]: SetType.Edit,
+};

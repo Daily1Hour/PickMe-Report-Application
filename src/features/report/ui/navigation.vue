@@ -16,5 +16,6 @@ import { ReportKeys } from "@/entities/report/model";
 import { sections_map } from "@/shared/trans/ko";
 
 const store = useReportStore();
+// 네비게이션 섹션 리스트
 const sections = computed(() => Object.keys(store.report!) as ReportKeys[]);
 </script>
