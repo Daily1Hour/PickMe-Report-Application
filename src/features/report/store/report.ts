@@ -13,7 +13,7 @@ export const useReportStore = defineStore("report", () => {
 
   const id = computed(() => route.params.id as string);
   const category = computed(() => (route.query.category as Category) || Category.Company);
-  const report = shallowRef<ReportType>({} as ReportType);
+  const report = shallowRef<ReportType>();
 
   // 스키마 동적 정의
   const schema = computed(() => {

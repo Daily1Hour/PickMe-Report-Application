@@ -2,7 +2,7 @@
   <form class="column" @submit="onSubmit">
     <slot />
 
-    <actions-report :report_id="report.id" :is_valid="meta.valid" ref="actions_report" />
+    <actions-report :report_id="report!.id" :is_valid="meta.valid" ref="actions_report" />
   </form>
 </template>
 
@@ -21,11 +21,11 @@ const { report, schema } = storeToRefs(useReportStore());
 // 폼 정의
 const { handleSubmit, setValues, meta } = useForm<ReportSchemaType>({
   validationSchema: schema,
-  initialValues: map_report_to_form(report.value), // 엔터티 모델 → 폼 모델
+  initialValues: map_report_to_form(report.value!), // 엔터티 모델 → 폼 모델
 });
 
 // 폼 갱신
-watch(report, (new_report) => setValues(map_report_to_form(new_report)), { immediate: true });
+watch(report, (new_report) => setValues(map_report_to_form(new_report!)), { immediate: true });
 
 // 폼 제출
 const actions_report = ref(); // 액션 컴포넌트 참조

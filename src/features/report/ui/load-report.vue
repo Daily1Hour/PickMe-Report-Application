@@ -38,6 +38,5 @@ watch(
     // dto → 엔터티 모델
     report.value = map_dto_to_report(route.name as RouteName, dto, id.value, category.value);
   },
-  { immediate: true },
 );
 </script>

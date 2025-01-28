@@ -29,6 +29,6 @@ const form_fields = Object.fromEntries(
 
 // 폼 필드 키
 const fields = computed(
-  () => Object.keys(report.value).filter((field) => field !== "id") as ReportKeys[],
+  () => Object.keys(report.value!).filter((field) => field !== "id") as ReportKeys[],
 );
 </script>
