@@ -1,6 +1,7 @@
 import { computed, shallowRef } from "vue";
 import { defineStore } from "pinia";
 import { useRoute } from "vue-router";
+import { toTypedSchema } from "@vee-validate/zod";
 
 import { Category } from "@/shared/model";
 import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/model";
@@ -17,10 +18,10 @@ export const useReportStore = defineStore("report", () => {
   // 스키마 동적 정의
   const schema = computed(() => {
     if (report.value instanceof CompanyReport) {
-      return companySchema;
+      return toTypedSchema(companySchema);
     }
     if (report.value instanceof IndustryReport) {
-      return industrySchema;
+      return toTypedSchema(industrySchema);
     }
     throw new Error("Invalid report type");
   });

@@ -10,7 +10,6 @@
 import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useForm } from "vee-validate";
-import { toTypedSchema } from "@vee-validate/zod";
 
 import { ReportSchemaType } from "../model";
 import { map_form_to_report, map_report_to_form } from "../service";
@@ -21,7 +20,7 @@ const { report, schema } = storeToRefs(useReportStore());
 
 // 폼 정의
 const { handleSubmit, setValues, meta } = useForm<ReportSchemaType>({
-  validationSchema: toTypedSchema(schema.value),
+  validationSchema: schema,
   initialValues: map_report_to_form(report.value), // 엔터티 모델 → 폼 모델
 });
 
