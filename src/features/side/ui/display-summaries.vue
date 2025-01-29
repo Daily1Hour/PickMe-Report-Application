@@ -25,9 +25,10 @@
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 
-import { useSummaryStore } from "../store/summary";
-import { SectionTab, AddReport } from "../ui";
 import { usePagination } from "@/shared/hook";
+import { useSummaryStore } from "../store";
+import AddReport from "./add-report.vue";
+import SectionTab from "./section-tab.vue";
 
 // 상태 저장소에서 데이터 가져오기
 const { summaries, search } = storeToRefs(useSummaryStore());
@@ -36,7 +37,7 @@ const { summaries, search } = storeToRefs(useSummaryStore());
 const sorted_summaries = computed(() =>
   summaries.value.toSorted((a, b) => b.updated_at.getTime() - a.updated_at.getTime()),
 );
-
+// 검색어로 필터링
 const searched_summaries = computed(() =>
   sorted_summaries.value.filter((summary) =>
     summary.name?.toLowerCase().includes(search.value.toLowerCase()),

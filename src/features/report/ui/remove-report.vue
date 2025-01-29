@@ -21,17 +21,17 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-import { deleteReport } from "../api";
-import { useReportStore } from "../store/report";
-import { ReportType } from "@/entities/report/model";
 import { QueryKey, RouteName } from "@/shared/model";
+import { ReportType } from "@/entities/report/model";
+import { useReportStore } from "../store";
+import { deleteReport } from "../api";
 
 const router = useRouter();
 const store = useReportStore();
+const queryClient = useQueryClient();
 const props = defineProps<{ id: string }>();
 const confirm = ref(false);
 
-const queryClient = useQueryClient();
 // 리포트 삭제
 const mutation = useMutation({
   mutationFn: () => deleteReport(props.id),

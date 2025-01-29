@@ -1,5 +1,5 @@
-import { SummaryDTO } from "../api/dto";
 import { Summary } from "@/entities/summary/model";
+import { SummaryDTO } from "../api/dto";
 
 export const map_to_summary = (dto: SummaryDTO): Summary => {
   return new Summary(

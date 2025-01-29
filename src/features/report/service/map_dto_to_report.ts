@@ -1,15 +1,15 @@
 import { plainToInstance } from "class-transformer";
 
-import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "../api/dto";
-import { IndustryReport, CompanyReport, ReportType } from "@/entities/report/model";
 import { Category, RouteName } from "@/shared/model";
+import { IndustryReport, CompanyReport, ReportType } from "@/entities/report/model";
+import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "../api/dto";
 
 export default (
   route_name: RouteName,
   dto?: ReportDTO,
   id?: string,
   category?: Category,
-): ReportType => {
+): ReportType | null => {
   switch (route_name) {
     case RouteName.Detail:
       switch (dto?.category) {
@@ -20,7 +20,7 @@ export default (
           return map_to_industryReport(dto!.industryDetail!, id!);
 
         default:
-          return CompanyReport.empty();
+          return null; // 데이터 불러오기 전 상태
       }
 
     case RouteName.New:

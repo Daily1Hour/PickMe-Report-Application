@@ -23,12 +23,11 @@
 import { ref, computed } from "vue";
 import { storeToRefs } from "pinia";
 
-import { useSummaryStore } from "../store/summary";
+import { useSummaryStore } from "../store";
 import SearchSummaries from "./search-summaries.vue";
 
 const { searching } = storeToRefs(useSummaryStore());
 const is_show = ref(true);
-
 const is_title_show = computed(() => is_show.value && !searching.value);
 </script>
 

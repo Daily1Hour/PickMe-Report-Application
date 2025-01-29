@@ -1,17 +1,17 @@
-import IReport from "./Report";
+import Report from "./Report";
 
-export default class CompanyReport implements IReport {
+export default class CompanyReport extends Report {
   constructor(
     public id: string | null,
     public name: string,
     public features: string,
     public ideal_talent: string,
     public news: string,
-  ) {}
+  ) {
+    super(id);
+  }
 
   static empty() {
     return new CompanyReport(null, "", "", "", "");
   }
 }
-
-export const company_report_fields = ["name", "features", "ideal_talent", "news"] as const;

@@ -1,5 +1,5 @@
-import { ReportDTO } from "./dto";
 import client from "@/shared/api/client";
+import { ReportDTO } from "./dto";
 
 export default async function getReport(id?: string): Promise<ReportDTO> {
   const result = await client.get<ReportDTO>("", {

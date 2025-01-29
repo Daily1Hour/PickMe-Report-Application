@@ -15,7 +15,8 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { useSummaryStore } from "../store/summary";
+
+import { useSummaryStore } from "../store";
 
 const { search, searching } = storeToRefs(useSummaryStore());
 </script>
