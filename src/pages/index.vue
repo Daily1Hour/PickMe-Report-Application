@@ -10,7 +10,7 @@ import Side from "@/features/side";
 import Report from "@/features/report";
 </script>
 
-<style>
+<style scoped>
 .q-layout-container {
   height: calc(100vh - 64px) !important; /* 프로젝트 네비게이션바 공간 예약 */
 }
