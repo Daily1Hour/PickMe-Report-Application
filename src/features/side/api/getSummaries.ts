@@ -1,4 +1,4 @@
-import client from "@/shared/api/client";
+import { client, ServerError } from "@/shared/api";
 import { SummaryDTO } from "./dto";
 
 export default async function getSummaries() {
@@ -9,5 +9,5 @@ export default async function getSummaries() {
     // DTO를 엔터티 모델로 변환
     return result.data;
   }
-  return [];
+  throw new ServerError("Failed to get report", result.status);
 }
