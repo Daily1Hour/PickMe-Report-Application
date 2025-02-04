@@ -23,7 +23,7 @@ export default defineStore("report", () => {
     if (report.value instanceof IndustryReport) {
       return toTypedSchema(IndustrySchema);
     }
-    throw new Error("Invalid report type");
+    //throw new Error("Invalid report type");
   });
 
   return { id, category, report, schema };
