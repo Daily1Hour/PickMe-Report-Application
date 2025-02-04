@@ -8,11 +8,14 @@
       </div>
     </q-item>
   </q-list>
+
+  <actions-report-skeleton />
 </template>
 
 <script setup lang="ts">
 import FieldTitleSkeleton from "./field-title-skeleton.vue";
 import FieldContentSkeleton from "./field-content-skeleton.vue";
+import ActionsReportSkeleton from "./actions-report-skeleton.vue";
 
 const fields = ["title", null, null, null];
 </script>
