@@ -1,13 +1,13 @@
 <template>
   <div :id="field" class="q-pa-md fit">
-    <section-title-field
+    <field-title
       v-if="field === 'name' || field === 'type'"
       v-model="model_value"
       :label="label"
       :error_message="props.error"
     />
 
-    <section-content-field v-else v-model="model_value" :label="label" />
+    <field-content v-else v-model="model_value" :label="label" />
   </div>
 </template>
 
@@ -16,8 +16,8 @@ import { computed } from "vue";
 import { ReportKeys } from "@/entities/report/model";
 
 import { sections_map } from "@/shared/trans/ko";
-import SectionTitleField from "./section-title-field.vue";
-import SectionContentField from "./section-content-field.vue";
+import FieldTitle from "./field-title.vue";
+import FieldContent from "./field-content.vue";
 
 const props = defineProps<{ field: ReportKeys; error: any }>(); // 프로퍼티
 const label = computed(() => sections_map[props.field]); // 섹션 레이블
