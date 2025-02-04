@@ -87,8 +87,9 @@ PickMe-Report-Application
 │  │  │  │  ├─ index.ts
 │  │  │  │  ├─ dto.ts # 데이터전송객체
 │  │  │  │  ├─ deleteReport.ts
-│  │  │  │  ├─ getReport.ts
-│  │  │  │  └─ setReport.ts
+│  │  │  │  ├─ getHealthy.ts # 헬스 체크
+│  │  │  │  ├─ getReport.ts # 리포트 가져오기
+│  │  │  │  └─ setReport.ts # 리포트 내보내기
 │  │  │  ├─ model # 폼 스키마
 │  │  │  │  ├─ index.ts
 │  │  │  │  ├─ CompanySchema.ts
@@ -104,14 +105,21 @@ PickMe-Report-Application
 │  │  │  │  └─ report.ts
 │  │  │  └─ ui
 │  │  │     ├─ index.ts
+│  │  │     ├─ load-report.vue # 리포트 데이터 로딩
+│  │  │     ├─ display-report-skeleton.vue
 │  │  │     ├─ display-report.vue # 리포트 뷰 컴포넌트
 │  │  │     ├─ form-layout.vue # 리포트 뷰 폼 레이아웃
 │  │  │     ├─ report-form.vue # 리포트 뷰 폼 컨텐츠
-│  │  │     ├─ section-field.vue # 리포트 뷰 필드 컴포넌트
-│  │  │     ├─ load-report.vue # 리포트 데이터 로딩
+│  │  │     ├─ section-field.vue # 리포트 뷰 필드 레이아웃
+│  │  │     ├─ field-title-skeleton.vue
+│  │  │     ├─ field-title.vue # 리포트 타이틀 필드
+│  │  │     ├─ field-content-skeleton.vue
+│  │  │     ├─ field-content.vue # 리포트 컨텐츠 필드
+│  │  │     ├─ actions-report-skeleton.vue
 │  │  │     ├─ actions-report.vue # 삭제&저장 액션 버튼
 │  │  │     ├─ save-report.vue # 리포트 저장 버튼
 │  │  │     ├─ remove-report.vue # 리포트 삭제 버튼
+│  │  │     ├─ navigation-skeleton.vue
 │  │  │     └─ navigation.vue # 페이지 앵커 컴포넌트
 │  │  └─ side
 │  │     ├─ index.vue
@@ -127,17 +135,22 @@ PickMe-Report-Application
 │  │     │  └─ summary.ts
 │  │     └─ ui
 │  │        ├─ index.ts
+│  │        ├─ load-summaries.vue # 요약 데이터 로딩
 │  │        ├─ search-summaries.vue # 요약 검색
 │  │        ├─ drawer-layout.vue # 서랍형 레이아웃
+│  │        ├─ display-summaries-skeleton.vue
 │  │        ├─ display-summaries.vue # 요약 뷰 컴포넌트
-│  │        ├─ load-summaries.vue # 요약 데이터 로딩
+│  │        ├─ add-report-skeleton.vue
 │  │        ├─ add-report.vue # 리포트 생성 페이지 라우팅
+│  │        ├─ section-tab-skeleton.vue
 │  │        └─ section-tab.vue # 탭 컴포넌트
 │  ├─ pages # 페이지 레이어
 │  │  └─ index.vue
 │  ├─ shared # 공유 레이어
 │  │  ├─ api
+│  │  │  ├─ index.ts
 │  │  │  ├─ client.ts # Axios 인스턴스
+│  │  │  ├─ ServerError.ts # 서버 에러 상태 관리
 │  │  │  └─ tokens.ts # 토큰 3종종
 │  │  ├─ hook # 커스텀 훅
 │  │  │  ├─ index.ts
@@ -147,8 +160,14 @@ PickMe-Report-Application
 │  │  │  ├─ Category.ts
 │  │  │  ├─ QueryKey.ts
 │  │  │  └─ RouteName.ts
-│  │  └─ trans # 다국어 처리
-│  │     └─ ko.ts
+│  │  ├─ trans # 다국어 처리
+│  │  │  └─ ko.ts
+│  │  ├─ type
+│  │  │  └─ QSkeletonAnimation.ts
+│  │  └─ ui
+│  │     ├─ index.ts
+│  │     ├─ pagination-skeleton.vue
+│  │     └─ skeleton-transition.vue
 │  └─ widgets
 │     └─ editorjs.vue # editor.js의 Vue3 컴포넌트 래퍼
 ├─ steiger.config.ts # FSD 린트
