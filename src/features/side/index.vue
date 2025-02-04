@@ -18,7 +18,7 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 
 import { useSummaryStore } from "./store";
-import { SkeletonTransition } from "@/features/report/ui";
+import { SkeletonTransition } from "@/shared/ui";
 import { LoadSummaries, DisplaySummaries, DisplaySummariesSkeleton, DrawerLayout } from "./ui";
 
 const { summaries } = storeToRefs(useSummaryStore());
