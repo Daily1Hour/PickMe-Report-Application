@@ -5,6 +5,7 @@
     <navigation v-if="!!report" />
 
     <display-report v-if="!!report" />
+    <display-report-skeleton v-else />
   </div>
 </template>
 
@@ -12,7 +13,7 @@
 import { storeToRefs } from "pinia";
 
 import { useReportStore } from "./store";
-import { LoadReport, Navigation, DisplayReport } from "./ui";
+import { LoadReport, Navigation, DisplayReport, DisplayReportSkeleton } from "./ui";
 
 const { report } = storeToRefs(useReportStore());
 </script>
