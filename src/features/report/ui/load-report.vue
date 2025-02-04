@@ -34,7 +34,9 @@ watch(
   [data, category], // 생성하기는 category로 구분하여 감지
   ([dto]) => {
     // dto → 엔터티 모델
-    report.value = map_dto_to_report(route.name as RouteName, dto, id.value, category.value);
+    const result = map_dto_to_report(route.name as RouteName, dto, id.value, category.value);
+    // queryFn이 호출되기 전에는 기존 데이터 유지
+    report.value = result ?? report.value;
   },
   {
     immediate: true, // 생성하기 페이지 접근
