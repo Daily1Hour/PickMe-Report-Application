@@ -1,5 +1,5 @@
 <template>
-  <q-item-section class="row items-center">
+  <q-item-section class="row items-center" title="새 리포트 추가">
     <q-icon name="add" color="secondary" />
     <q-popup-edit class="bg-grey-3" v-model="category" auto-save>
       <q-select v-model="category" :options="category_options" label="카테고리" />
