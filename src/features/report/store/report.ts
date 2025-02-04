@@ -5,7 +5,7 @@ import { toTypedSchema } from "@vee-validate/zod";
 
 import { Category } from "@/shared/model";
 import { CompanyReport, IndustryReport, ReportType } from "@/entities/report/model";
-import { companySchema, industrySchema } from "../model";
+import { CompanySchema, IndustrySchema } from "../model";
 
 // 중앙 상태 저장소
 export default defineStore("report", () => {
@@ -18,10 +18,10 @@ export default defineStore("report", () => {
   // 스키마 동적 정의
   const schema = computed(() => {
     if (report.value instanceof CompanyReport) {
-      return toTypedSchema(companySchema);
+      return toTypedSchema(CompanySchema);
     }
     if (report.value instanceof IndustryReport) {
-      return toTypedSchema(industrySchema);
+      return toTypedSchema(IndustrySchema);
     }
     throw new Error("Invalid report type");
   });
