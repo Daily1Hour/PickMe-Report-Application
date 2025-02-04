@@ -3,6 +3,7 @@
     <load-report />
 
     <navigation v-if="!!report" />
+    <navigation-skeleton v-else />
 
     <display-report v-if="!!report" />
     <display-report-skeleton v-else />
@@ -13,7 +14,13 @@
 import { storeToRefs } from "pinia";
 
 import { useReportStore } from "./store";
-import { LoadReport, Navigation, DisplayReport, DisplayReportSkeleton } from "./ui";
+import {
+  LoadReport,
+  Navigation,
+  NavigationSkeleton,
+  DisplayReport,
+  DisplayReportSkeleton,
+} from "./ui";
 
 const { report } = storeToRefs(useReportStore());
 </script>
