@@ -6,21 +6,18 @@ import { CompanyDetailDTO, IndustryDetailDTO, ReportDTO } from "../api/dto";
 
 export default (
   route_name: RouteName,
-  dto?: ReportDTO,
+  dto: ReportDTO | null,
   id?: string,
   category?: Category,
 ): ReportType | null => {
   switch (route_name) {
     case RouteName.Detail:
-      switch (dto?.category) {
+      switch (dto!.category) {
         case Category.Company:
           return map_to_companyReport(dto!.companyDetail!, id!);
 
         case Category.Industry:
           return map_to_industryReport(dto!.industryDetail!, id!);
-
-        default:
-          return null; // 데이터 불러오기 전 상태
       }
 
     case RouteName.New:
