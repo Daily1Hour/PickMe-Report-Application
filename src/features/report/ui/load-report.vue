@@ -38,10 +38,12 @@ const { data, isLoading } = useQuery<ReportDTO | null>({
 watch(
   [data, category], // 생성하기는 category로 구분하여 감지
   ([dto]) => {
-    if (dto === undefined) return; // 비동기 queryFn 호출 전
-
-    // dto → 엔터티 모델
-    report.value = map_dto_to_report(route.name as RouteName, dto, id.value, category.value);
+    if (dto === undefined) {
+      report.value = undefined; // 비동기 queryFn 호출 전
+    } else {
+      // dto → 엔터티 모델
+      report.value = map_dto_to_report(route.name as RouteName, dto, id.value, category.value);
+    }
   },
   {
     immediate: true, // 생성하기 페이지로 이동 시에도 즉시 호출
