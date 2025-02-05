@@ -16,7 +16,7 @@ import { useQuery } from "@tanstack/vue-query";
 import { RouteName, QueryKey } from "@/shared/model";
 import { useReportStore } from "../store";
 import { map_dto_to_report } from "../service";
-import { getReport, ReportDTO } from "../api";
+import { getReport, getHealthy, ReportDTO } from "../api";
 
 const route = useRoute();
 const { id, category, report } = storeToRefs(useReportStore());
@@ -26,7 +26,7 @@ const { data, isLoading } = useQuery<ReportDTO | null>({
   queryKey: [QueryKey.Report, id],
   queryFn: () => {
     if (route.name === RouteName.New) {
-      return Promise.resolve(null);
+      return getHealthy(); // 생성하기 페이지에서는 healthCheck로 검사
     }
     return getReport(id.value);
   },
