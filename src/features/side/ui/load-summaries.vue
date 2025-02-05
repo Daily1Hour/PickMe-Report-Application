@@ -13,7 +13,7 @@ import { getSummaries } from "../api";
 const store = useSummaryStore();
 
 // 쿼리
-const { data } = useQuery({
+const { data, isError } = useQuery({
   queryKey: [QueryKey.Summaries],
   queryFn: getSummaries,
   initialData: [],
@@ -26,5 +26,9 @@ watch(data, (summaryDTOs) => {
 
   // 요약 상태 저장소 갱신
   store.summaries = summaries;
+});
+// 에러 발생 시 요약 초기화
+watch(isError, () => {
+  store.summaries = [];
 });
 </script>

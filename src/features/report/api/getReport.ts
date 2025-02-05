@@ -1,4 +1,4 @@
-import client from "@/shared/api/client";
+import { client, ServerError } from "@/shared/api";
 import { ReportDTO } from "./dto";
 
 export default async function getReport(id?: string): Promise<ReportDTO> {
@@ -11,5 +11,5 @@ export default async function getReport(id?: string): Promise<ReportDTO> {
   if (result.status === 200) {
     return result.data;
   }
-  throw new Error("Failed to fetch report");
+  throw new ServerError("Failed to get report", result.status);
 }

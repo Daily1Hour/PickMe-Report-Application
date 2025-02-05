@@ -1,6 +1,7 @@
 import { Category } from "@/shared/model";
 
 export interface ReportDTO {
+  reportId: string;
   category: Category;
   createdAt: Date;
   updatedAt: Date;
