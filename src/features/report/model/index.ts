@@ -1,8 +1,8 @@
-import { CompanySchemaType } from "./companySchema";
-import { IndustrySchemaType } from "./industrySchema";
+import { CompanySchemaType } from "./CompanySchema";
+import { IndustrySchemaType } from "./IndustrySchema";
 
 export type ReportSchemaType = CompanySchemaType | IndustrySchemaType;
 export type { CompanySchemaType, IndustrySchemaType };
 
-export { default as companySchema } from "./companySchema";
-export { default as industrySchema } from "./industrySchema";
+export { default as CompanySchema } from "./CompanySchema";
+export { default as IndustrySchema } from "./IndustrySchema";

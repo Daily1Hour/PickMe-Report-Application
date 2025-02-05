@@ -27,7 +27,7 @@ const mutation = useMutation({
     // 리포트 생성 또는 수정
     return setReport(type, dto, id.value);
   },
-  onSuccess: ({ data: { reportId: id } }) => {
+  onSuccess: ({ reportId: id }) => {
     queryClient.refetchQueries({ queryKey: [QueryKey.Summaries] }); // 사이드 목록 갱신
 
     // 생성 후 해당하는 리포트 페이지로 이동

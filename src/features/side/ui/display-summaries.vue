@@ -35,7 +35,7 @@ const { summaries, search } = storeToRefs(useSummaryStore());
 
 // 최신순 정렬
 const sorted_summaries = computed(() =>
-  summaries.value.toSorted((a, b) => b.updated_at.getTime() - a.updated_at.getTime()),
+  summaries.value!.toSorted((a, b) => b.updated_at.getTime() - a.updated_at.getTime()),
 );
 // 검색어로 필터링
 const searched_summaries = computed(() =>

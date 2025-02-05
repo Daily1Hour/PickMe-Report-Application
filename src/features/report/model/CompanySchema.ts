@@ -3,7 +3,7 @@ import { z, ZodTypeAny } from "zod";
 import { CompanyReport } from "@/entities/report/model";
 
 // 회사 리포트 스키마 정의
-const companySchema = z.object({
+const CompanySchema = z.object({
   // 기본 필드 유효성 정의
   ...CompanyReport.keys.reduce((acc, key) => {
     // 필드들 옵셔널로 설정
@@ -16,6 +16,6 @@ const companySchema = z.object({
   name: z.string().min(1, { message: "This is required" }),
 });
 
-export default companySchema;
+export default CompanySchema;
 
-export type CompanySchemaType = z.infer<typeof companySchema>;
+export type CompanySchemaType = z.infer<typeof CompanySchema>;
