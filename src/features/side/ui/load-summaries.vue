@@ -29,6 +29,6 @@ watch(data, (summaryDTOs) => {
 });
 // 에러 발생 시 요약 초기화
 watch(isError, () => {
-  store.summaries = [];
+  store.summaries = null;
 });
 </script>
