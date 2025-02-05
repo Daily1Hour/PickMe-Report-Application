@@ -2,7 +2,7 @@ import { z, ZodTypeAny } from "zod";
 
 import { IndustryReport } from "@/entities/report/model";
 
-const industrySchema = z.object({
+const IndustrySchema = z.object({
   ...IndustryReport.keys.reduce((acc, key) => {
     acc[key] = z.string().optional();
     return acc;
@@ -11,6 +11,6 @@ const industrySchema = z.object({
   type: z.string().min(1, { message: "This is required" }),
 });
 
-export default industrySchema;
+export default IndustrySchema;
 
-export type IndustrySchemaType = z.infer<typeof industrySchema>;
+export type IndustrySchemaType = z.infer<typeof IndustrySchema>;

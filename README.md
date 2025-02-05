@@ -91,8 +91,8 @@ PickMe-Report-Application
 │  │  │  │  └─ setReport.ts
 │  │  │  ├─ model # 폼 스키마
 │  │  │  │  ├─ index.ts
-│  │  │  │  ├─ companySchema.ts
-│  │  │  │  └─ industrySchema.ts
+│  │  │  │  ├─ CompanySchema.ts
+│  │  │  │  └─ IndustrySchema.ts
 │  │  │  ├─ service # 엔터티 ↔ dto/form 헬퍼 메서드
 │  │  │  │  ├─ index.ts
 │  │  │  │  ├─ map_dto_to_report.ts
