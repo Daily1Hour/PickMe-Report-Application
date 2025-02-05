@@ -20,13 +20,13 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 
 import { useReportStore } from "./store";
+import { SkeletonTransition } from "@/shared/ui";
 import {
   LoadReport,
   Navigation,
   NavigationSkeleton,
   DisplayReport,
   DisplayReportSkeleton,
-  SkeletonTransition,
 } from "./ui";
 
 const { report } = storeToRefs(useReportStore());
