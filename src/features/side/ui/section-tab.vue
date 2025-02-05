@@ -1,5 +1,5 @@
 <template>
-  <q-item-section>
+  <q-item-section title="페이지 열기">
     <router-link
       :to="{
         name: RouteName.Detail,

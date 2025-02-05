@@ -13,9 +13,9 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { ReportKeys } from "@/entities/report/model";
 
 import { sections_map } from "@/shared/trans/ko";
+import { ReportKeys } from "@/entities/report/model";
 import FieldTitle from "./field-title.vue";
 import FieldContent from "./field-content.vue";
 

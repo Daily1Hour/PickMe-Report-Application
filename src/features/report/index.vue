@@ -4,8 +4,8 @@
 
     <skeleton-transition v-model="show_skeleton">
       <template #skeleton>
-        <navigation-skeleton />
-        <display-report-skeleton />
+        <navigation-skeleton animation="fade" />
+        <display-report-skeleton animation="fade" />
       </template>
       <template #content>
         <navigation />

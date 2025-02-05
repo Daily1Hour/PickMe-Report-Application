@@ -1,11 +1,13 @@
 <template>
   <div class="q-ma-md q-mt-xl fixed-right q-gutter-sm top-margin-blank" title="네비게이션">
-    <q-skeleton v-for="_ in sections" type="QBtn" animation="fade" width="60px" height="40px" />
+    <q-skeleton v-for="_ in 4" type="QBtn" :animation="animation" width="60px" height="40px" />
   </div>
 </template>
 
 <script setup lang="ts">
-const sections = [null, null, null, null];
+import { QSkeletonAnimation } from "@/shared/type/QSkeletonAnimation";
+
+const { animation } = defineProps<{ animation: QSkeletonAnimation }>();
 </script>
 
 <style scoped>

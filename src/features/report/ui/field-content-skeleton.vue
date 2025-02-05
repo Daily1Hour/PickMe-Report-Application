@@ -2,11 +2,11 @@
   <q-item title="필드">
     <q-item-section>
       <q-item-label>
-        <q-skeleton animation="fade" width="100px" height="30px" />
+        <q-skeleton :animation="animation" width="100px" height="30px" />
       </q-item-label>
 
       <q-item-label caption>
-        <q-skeleton animation="fade" width="150px" height="20px" />
+        <q-skeleton :animation="animation" width="150px" height="20px" />
       </q-item-label>
     </q-item-section>
 
@@ -17,7 +17,13 @@
 
   <q-item title="내용">
     <q-card-section class="full-width">
-      <q-skeleton height="200px" animation="fade" />
+      <q-skeleton type="QInput" height="200px" :animation="animation" />
     </q-card-section>
   </q-item>
 </template>
+
+<script setup lang="ts">
+import { QSkeletonAnimation } from "@/shared/type/QSkeletonAnimation";
+
+const { animation } = defineProps<{ animation: QSkeletonAnimation }>();
+</script>
