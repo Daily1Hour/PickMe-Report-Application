@@ -10,7 +10,8 @@
 </template>
 
 <script setup>
-import { Bleed } from "@/shared/ui";
+import { Bleed } from "@styleguide/vue";
+
 import Side from "@/features/side";
 import Report from "@/features/report";
 
