@@ -5,11 +5,12 @@
 ## 🚩 목차
 
 - [🛠️ 기술 스택](#%EF%B8%8F-기술-스택)
-- [🎨 스크린샷](#-스크린샷)
+- [💁 소개](#-소개)
 - [💡 주요 기능](#-주요-기능)
+- [🎨 스크린샷](#-스크린샷)
 - [🧩 컴포넌트 구성](#-컴포넌트-구성)
-- [🚀 실행 방법](#-실행-방법)
 - [📂 폴더 구조](#-폴더-구조)
+- [🚀 실행 방법](#-실행-방법)
 
 ## 🛠️ 기술 스택
 
@@ -26,44 +27,36 @@
 [![Steiger](https://img.shields.io/badge/FSD_Steiger-211b1d.svg?logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiPgo8cGF0aCBkPSJNMCAwIEMyOC4zOCAwIDU2Ljc2IDAgODYgMCBDODYgMy42MyA4NiA3LjI2IDg2IDExIEM1Ny42MiAxMSAyOS4yNCAxMSAwIDExIEMwIDcuMzcgMCAzLjc0IDAgMCBaICIgZmlsbD0iI0VCRUFFQSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTcsMTAyKSIvPgo8cGF0aCBkPSJNMCAwIEMyOC4zOCAwIDU2Ljc2IDAgODYgMCBDODYgMy42MyA4NiA3LjI2IDg2IDExIEM1Ny42MiAxMSAyOS4yNCAxMSAwIDExIEMwIDcuMzcgMCAzLjc0IDAgMCBaICIgZmlsbD0iI0VCRUFFQSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTcsODcpIi8+CjxwYXRoIGQ9Ik0wIDAgQzI4LjM4IDAgNTYuNzYgMCA4NiAwIEM4NiAzLjYzIDg2IDcuMjYgODYgMTEgQzU3LjYyIDExIDI5LjI0IDExIDAgMTEgQzAgNy4zNyAwIDMuNzQgMCAwIFogIiBmaWxsPSIjRUJFQUVBIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1Nyw1NykiLz4KPHBhdGggZD0iTTAgMCBDMjguMzggMCA1Ni43NiAwIDg2IDAgQzg2IDMuNjMgODYgNy4yNiA4NiAxMSBDNTcuNjIgMTEgMjkuMjQgMTEgMCAxMSBDMCA3LjM3IDAgMy43NCAwIDAgWiAiIGZpbGw9IiNFQkVBRUEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU3LDQyKSIvPgo8cGF0aCBkPSJNMCAwIEMxMy41MyAwIDI3LjA2IDAgNDEgMCBDNDEgMy42MyA0MSA3LjI2IDQxIDExIEMyNy40NyAxMSAxMy45NCAxMSAwIDExIEMwIDcuMzcgMCAzLjc0IDAgMCBaICIgZmlsbD0iI0U5RThFOCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTcsMTQ3KSIvPgo8cGF0aCBkPSJNMCAwIEMxMy41MyAwIDI3LjA2IDAgNDEgMCBDNDEgMy42MyA0MSA3LjI2IDQxIDExIEMyNy40NyAxMSAxMy45NCAxMSAwIDExIEMwIDcuMzcgMCAzLjc0IDAgMCBaICIgZmlsbD0iI0U5RThFOCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTcsMTMyKSIvPgo8cGF0aCBkPSJNMCAwIEMxMy41MyAwIDI3LjA2IDAgNDEgMCBDNDEgMy42MyA0MSA3LjI2IDQxIDExIEMyNy40NyAxMSAxMy45NCAxMSAwIDExIEMwIDcuMzcgMCAzLjc0IDAgMCBaICIgZmlsbD0iI0U5RThFOCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTcsMTE3KSIvPgo8cGF0aCBkPSJNMCAwIEMxMy41MyAwIDI3LjA2IDAgNDEgMCBDNDEgMy42MyA0MSA3LjI2IDQxIDExIEMyNy40NyAxMSAxMy45NCAxMSAwIDExIEMwIDcuMzcgMCAzLjc0IDAgMCBaICIgZmlsbD0iI0U5RThFOCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTcsNzIpIi8+Cjwvc3ZnPgo=&style=flat-square&logoColor=black)](https://github.com/feature-sliced/steiger)
 [![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=white)](https://eslint.org/)
 
-## 🎨 스크린샷
+## 💁 소개
 
-![screen](https://github.com/user-attachments/assets/0cf54396-b7e6-4a11-85e8-5720bf707744)
+기업 분석 마이크로 프론트엔드는 모듈화된 마이크로 프론트엔드 아키텍처를 기반으로, 사용자가 스스로 기업이나 산업을 분석하고 정리하며, 이를 기록으로 남길 수 있도록 돕습니다.  
+이를 통해 면접이나 취업 준비 과정에서 보다 체계적으로 정보를 정리하고 활용할 수 있으며, 개인적인 인사이트를 쌓아가는 데에도 유용합니다.
 
 ## 💡 주요 기능
 
-- 새로운 분석 페이지 생성, 수정, 삭제 기능 제공
-- 분석 페이지 목록 검색 기능
-- 목록 페이지네이션(_Pagination_) 지원
-- **Vue Query**를 활용한 쿼리 캐싱
-- **VeeValidate**와 **Zod**를 이용한 폼 유효성 검사
-- **Editor.js**를 활용한 리치 텍스트 입력 폼 적용
-- **Pinia**를 활용한 프록시 기반 상태 관리
-- **Feature-Sliced Design(FSD)** 방식으로 폴더 구조 설계
-- **Module Federation**을 활용한 스타일 가이드 통합
-- **Single-SPA** 기반으로 애플리케이션 빌드
+1. 새로운 분석 페이지 생성, 수정, 삭제 기능 제공
+2. 분석 페이지 목록 검색 기능
+3. 목록 페이지네이션(_Pagination_) 지원
+4. **Vue Query**를 활용한 쿼리 캐싱
+5. **VeeValidate**와 **Zod**를 이용한 폼 유효성 검사
+6. **Editor.js**를 활용한 리치 텍스트 입력 폼 적용
+7. **Pinia**를 활용한 프록시 기반 상태 관리
+8. **Feature-Sliced Design(FSD)** 방식으로 폴더 구조 설계
+9. **Module Federation**을 활용한 스타일 가이드 통합
+10. **Single-SPA** 기반으로 애플리케이션 빌드
+
+## 🎨 스크린샷
+
+![screen](https://github.com/user-attachments/assets/0cf54396-b7e6-4a11-85e8-5720bf707744)
 
 ## 🧩 컴포넌트 구성
 
 ![components](https://github.com/user-attachments/assets/6d72a2b7-bd7a-4e10-8d13-dbd2d5a5fba8)
 
-## 🚀 실행 방법
-
-### 개발 서버 실행
-
-```sh
-$ npm install
-$ npm run dev
-```
-
-### Single-SPA 애플리케이션 빌드
-
-```sh
-$ npm install
-$ npm run build:single-spa
-```
-
 ## 📂 폴더 구조
+
+<details>
+<summary>열기</summary>
 
 > <image src="https://feature-sliced.design/kr/img/brand/logo-primary.png" width=40 />
 
@@ -189,4 +182,35 @@ PickMe-Report-Application
 ├─ shims-vue.d.ts # *.vue 타입 정의
 ├─ vite.config.ts # Vite 설정 파일
 └─ vite.single-spa.config.ts # Single-spa용 Vite 설정 파일
+```
+
+</details>
+
+## 🚀 실행 방법
+
+### 백엔드
+
+[🔗 Report-Service 바로가기](https://github.com/Daily1Hour/PickMe-Report-Service)
+
+### 프론트엔드
+
+#### 개발 서버 실행
+
+```sh
+$ npm install
+$ npm run dev
+```
+
+#### Single-SPA 애플리케이션 빌드
+
+```sh
+$ npm install
+$ npm run build:single-spa
+```
+
+#### Single-SPA 주입 개발 서버
+
+```sh
+$ npm install
+$ npm run start
 ```
