@@ -8,7 +8,9 @@
 - [💁 소개](#-소개)
 - [💡 주요 기능](#-주요-기능)
 - [🎨 스크린샷](#-스크린샷)
-- [🧩 컴포넌트 구성](#-컴포넌트-구성)
+- [📊 다이어그램](#-다이어그램)
+  - [🧩 컴포넌트 구성](#-컴포넌트-구성)
+  - [🔄 CI/CD 파이프라인](#-cicd-파이프라인)
 - [📂 폴더 구조](#-폴더-구조)
 - [🚀 실행 방법](#-실행-방법)
 
@@ -48,9 +50,27 @@
 
 ![screen](https://github.com/user-attachments/assets/0cf54396-b7e6-4a11-85e8-5720bf707744)
 
-## 🧩 컴포넌트 구성
+## 📊 다이어그램
+
+### 🧩 컴포넌트 구성
 
 ![components](https://github.com/user-attachments/assets/6d72a2b7-bd7a-4e10-8d13-dbd2d5a5fba8)
+
+### 🔄 CI/CD 파이프라인
+
+<a href="https://github.com/Daily1Hour/PickMe-Report-Application/actions" title="GitHub Actions">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" height="45" /> GitHub Actions
+</a>
+
+```mermaid
+graph LR
+    Push[코드 푸시] --> Review[코드 리뷰]
+    Review -->|Accept| Merge[main 브랜치로 머지]
+    Merge --> Test[테스트]
+    Test --> |Success|Lint[린트]
+    Lint --> |Success|DeployGH[gh-pages 배포]
+    Lint --> |Success|DeployAWS[AWS S3 배포]
+```
 
 ## 📂 폴더 구조
 
