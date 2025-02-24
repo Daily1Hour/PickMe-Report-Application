@@ -15,5 +15,5 @@ import { Bleed } from "@styleguide/vue";
 import Side from "@/features/side";
 import Report from "@/features/report";
 
-const height = (document.querySelector("#pickme-nav")?.clientHeight || 0) + "px";
+const height = document.querySelector("#pickme-nav")?.clientHeight || 0;
 </script>
