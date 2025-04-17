@@ -8,8 +8,8 @@
 - [💁 소개](#-소개)
 - [💡 주요 기능](#-주요-기능)
 - [🎨 스크린샷](#-스크린샷)
-- [📊 다이어그램](#-다이어그램)
-  - [🧩 컴포넌트 구성](#-컴포넌트-구성)
+- [📐 다이어그램](#-다이어그램)
+  - [🧩 컴포넌트 의존성 그래프](#-컴포넌트-의존성-그래프)
   - [🚚 CI/CD 파이프라인](#-cicd-파이프라인)
 - [📂 폴더 구조](#-폴더-구조)
 - [🚀 실행 방법](#-실행-방법)
@@ -50,11 +50,66 @@
 
 ![screen](https://github.com/user-attachments/assets/0cf54396-b7e6-4a11-85e8-5720bf707744)
 
-## 📊 다이어그램
+## 📐 다이어그램
 
-### 🧩 컴포넌트 구성
+### 🧩 컴포넌트 의존성 그래프
 
-![components](https://github.com/user-attachments/assets/6d72a2b7-bd7a-4e10-8d13-dbd2d5a5fba8)
+```mermaid
+graph TD
+    direction TB
+    App --> report-page --> side-feature & report-feature
+
+    subgraph side-feature
+        direction TB
+        summary-store[(pinia store)]
+
+        load-summaries -.-> summary-store -.-> drawer-layout & display-summaries & search-summaries
+
+        side --> load-summaries & drawer-layout & display-summaries
+        drawer-layout --> search-summaries
+        display-summaries --> add-report & section-tab
+    end
+
+    subgraph report-feature
+        report-store[(pinia store)]
+
+        remove-report & load-report -.-> report-store -.-> navigation & report-form & save-report
+        report-store -.-> form-layout
+        report --> navigation & load-report & display-report
+
+        display-report --> form-layout
+        form-layout --> report-form & actions-report
+        report-form --> section-field --> field-content & field-title
+        actions-report --> save-report & remove-report
+    end
+
+    click App "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/app/App.vue"
+    click report-page "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/pages/index.vue"
+    click side "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/side/index.vue"
+    click load-summaries "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/load-report.vue"
+    click summary-store "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/side/store/summary.ts"
+    click drawer-layout "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/side/ui/drawer-layout.vue"
+    click display-summaries "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/side/ui/display-summaries.vue"
+    click search-summaries "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/side/ui/search-summaries.vue"
+    click add-report "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/side/ui/add-report.vue"
+    click section-tab "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/side/ui/section-tab.vue"
+
+    click report "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/index.vue"
+    click load-report "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/load-report.vue"
+    click report-store "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/store/report.ts"
+    click navigation "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/navigation.vue"
+    click report-form "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/report-form.vue"
+    click save-report "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/save-report.vue"
+    click form-layout "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/form-layout.vue"
+    click display-report "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/display-report.vue"
+    click actions-report "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/actions-report.vue"
+    click section-field "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/section-field.vue"
+    click field-content "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/field-content.vue"
+    click field-title "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/field-title.vue"
+    click remove-report "https://github.com/Daily1Hour/PickMe-Report-Application/blob/main/src/features/report/ui/remove-report.vue"
+```
+
+![components](https://github.com/user-attachments/assets/46a8d704-fff9-4cc9-8afc-4002b41fd799)
 
 ### 🚚 CI/CD 파이프라인
 
