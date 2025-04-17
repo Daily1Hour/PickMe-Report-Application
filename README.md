@@ -10,6 +10,7 @@
 - [🎨 스크린샷](#-스크린샷)
 - [📐 다이어그램](#-다이어그램)
   - [🧩 컴포넌트 의존성 그래프](#-컴포넌트-의존성-그래프)
+  - [🎯 상태 전이 다이어그램](#-상태-전이-다이어그램)
   - [🚚 CI/CD 파이프라인](#-cicd-파이프라인)
 - [📂 폴더 구조](#-폴더-구조)
 - [🚀 실행 방법](#-실행-방법)
@@ -110,6 +111,85 @@ graph TD
 ```
 
 ![components](https://github.com/user-attachments/assets/46a8d704-fff9-4cc9-8afc-4002b41fd799)
+
+### 🎯 상태 전이 다이어그램
+
+```mermaid
+stateDiagram-v2
+    state report {
+        state "load" as load {
+            state load/if_exist_id <<choice>>
+            state load/if_fetch <<choice>>
+            state load/join_state <<join>>
+
+            load/Prepare: Prepare
+            load/Fetching: Fetching
+            load/Empty: Empty
+            load/Loaded: Loaded
+
+            [*] --> load/Prepare: 페이지 진입 시
+            load/Prepare --> load/if_exist_id: 경로 확인<br>useRoute()
+            load/if_exist_id --> load/Empty: new
+            load/if_exist_id --> load/Fetching: 경로 존재
+            load/Fetching --> load/if_fetch: 데이터 패칭<br>useQuery()
+            load/if_fetch --> load/Empty: fetch 실패
+            load/if_fetch --> load/Loaded: fetch 성공
+            load/Empty --> load/join_state
+            load/Loaded --> load/join_state
+        }
+        state report/is_valid <<choice>>
+
+        report/Ready: Ready
+        report/Editing: Editing
+        report/Edited: Edited
+        report/Validating: Validating
+        report/Submitting: Submitting
+
+        report/Ready --> valid/SchemaInit: 폼모델 & 스키마 구성
+        report/Ready --> report/Editing: 사용자 입력 시작
+        report/Editing --> report/Validating: 유효성 검사 트리거
+        report/Validating --> valid/WatchFields: 필드 유효성 검사 시작
+        report/is_valid --> report/Editing: 실패
+        report/is_valid --> report/Edited: 성공
+        report/Edited --> report/Submitting: 저장/삭제
+        report/Submitting --> [*]: 페이지 이동
+    }
+    state "Pinia Store" as store {
+        store/Raw: Raw
+        store/Reactive: Reactive
+        store/Schema: Schema
+
+        [*] --> store/Raw: store 정의
+        store/Raw --> store/Reactive: proxy
+        store/Reactive --> store/Raw: proxy
+        store/Reactive --> store/Schema: zod 스키마 변환
+    }
+
+    note left of store
+        Proxy 방식 중앙상태저장소
+        상태 객체를 직접 관찰하고 변경 사항을 자동으로 감지
+    end note
+
+    state "vee-validate" as vlid {
+        valid/SchemaInit: SchemaInit
+        valid/FormInit: FormInit
+        valid/WatchFields: WatchFields
+        valid/ValidateField: ValidateField
+        valid/ErrorUpdate: ErrorUpdate
+        valid/AllValid: AllValid
+
+        valid/SchemaInit --> valid/FormInit: formData 초기화
+        valid/FormInit --> valid/WatchFields: v-model 감지
+        valid/WatchFields --> valid/ValidateField: 필드 검사
+        valid/ValidateField --> valid/ErrorUpdate: errorMessage 반영
+        valid/ErrorUpdate --> valid/WatchFields: 입력 대기
+        valid/WatchFields --> valid/AllValid: 전체 유효성 통과
+    }
+
+    load/join_state --> store: Setter
+    store --> report/Ready: Getter
+    valid/AllValid --> report/is_valid: report로 결과 전달
+```
 
 ### 🚚 CI/CD 파이프라인
 
