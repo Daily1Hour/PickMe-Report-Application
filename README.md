@@ -10,7 +10,7 @@
 - [🎨 스크린샷](#-스크린샷)
 - [📊 다이어그램](#-다이어그램)
   - [🧩 컴포넌트 구성](#-컴포넌트-구성)
-  - [🔄 CI/CD 파이프라인](#-cicd-파이프라인)
+  - [🚚 CI/CD 파이프라인](#-cicd-파이프라인)
 - [📂 폴더 구조](#-폴더-구조)
 - [🚀 실행 방법](#-실행-방법)
 
@@ -56,20 +56,37 @@
 
 ![components](https://github.com/user-attachments/assets/6d72a2b7-bd7a-4e10-8d13-dbd2d5a5fba8)
 
-### 🔄 CI/CD 파이프라인
+### 🚚 CI/CD 파이프라인
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Daily1Hour/PickMe-Report-Application/actions" title="GitHub Actions">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" height="45" /> GitHub Actions
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHubActions" height="45" /> GitHub Actions 바로가기
 </a>
 
 ```mermaid
 graph LR
-    Push[코드 푸시] --> Review[코드 리뷰]
-    Review -->|Accept| Merge[main 브랜치로 머지]
-    Merge --> Test[테스트]
-    Test --> |Success|Lint[린트]
-    Lint --> |Success|DeployGH[gh-pages 배포]
-    Lint --> |Success|DeployAWS[AWS S3 배포]
+    subgraph CD[🚀 CD 영역]
+        direction LR
+        Tag[태그 푸시]
+        Tag --> DeployGH[gh-pages에 배포] --> |자동 워크플로 실행|pages-build-deployment[GitHub Pages 배포 완료]
+        Tag --> DeployAWS[Amazon S3에 배포] --> |콘텐츠 서빙|CloudFront[Amazon CloudFront]
+    end
+
+    Build & Build_Single_SPA -.-> |📦 아티팩트|Tag
+
+    subgraph CI[🧪 CI 영역]
+        direction LR
+        Push[브랜치 푸시] --> Lint[린트] --> |🟢 통과|Test[테스트]
+        Test --> |🟢 통과|Build[빌드] & Build_Single_SPA[빌드 For single-spa] --> |🟢 통과|Review[리뷰]
+        Review -->|✔️ 승인|Merge[머지]
+    end
+
+    click Build "https://github.com/Daily1Hour/PickMe-Report-Application/actions/workflows/vite-build.yml"
+    click Build_Single_SPA "https://github.com/Daily1Hour/PickMe-Report-Application/actions/workflows/vite-build.yml"
+    click Review "https://github.com/Daily1Hour/PickMe-Report-Application/actions/workflows/auto-assign.yml"
+    click DeployGH "https://github.com/Daily1Hour/PickMe-Report-Application/actions/workflows/deploy-gh-pages.yml"
+    click pages-build-deployment "https://github.com/Daily1Hour/PickMe-Report-Application/actions/workflows/pages/pages-build-deployment"
+    click DeployAWS "https://github.com/Daily1Hour/PickMe-Report-Application/actions/workflows/deploy-aws-s3.yml"
 ```
 
 ## 📂 폴더 구조
